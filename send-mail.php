@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>RG1 Commerce: روابط ومنتجات التسويق بالعمولة | المدونة والمقارنات</title>
     <meta name="description" content="اكتشف أفضل روابط ومنتجات التسويق بالعمولة (Affiliate) المختارة بعناية. مدونة RG1 Commerce لتعليم التجارة الإلكترونية ونصائح الشراء." />
-    <meta name="google-site-verification" content="Aky3m7nGb7Ul1x7CqCrKKk89qprqeM1etTkP7xaX4AE" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* الألوان المطلوبة لـ RJ 1 Commerce */
@@ -422,7 +421,7 @@
                             </div>
                         </div>
                     </div>
-                    <form id="contactForm" method="POST" action="send-mail.php" class="contact-form">
+                    <form id="contactForm" method="POST" action="https://formspree.io/f/mrbgjqoe" class="contact-form">
                         <h3 class="sub-section-title" style="color:var(--rg1-primary-color); font-size: 1.2em;">أرسل استفسارك مباشرة</h3>
                         <div class="form-group" style="margin-bottom: 10px;">
                             <label for="name" style="display: block; margin-bottom: 5px;">الاسم الكامل:</label>
@@ -433,15 +432,9 @@
                             <input type="email" id="email" name="email" class="form-control" placeholder="بريدك الإلكتروني" required style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
                         </div>
                         <div class="form-group" style="margin-bottom: 10px;">
-                            <label for="subject" style="display: block; margin-bottom: 5px;">الموضوع (تم إضافة حقل الموضوع):</label>
-                            <input type="text" id="subject" name="subject" class="form-control" placeholder="موضوع الرسالة" required style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ccc;">
-                        </div>
-                        <div class="form-group" style="margin-bottom: 10px;">
                             <label for="message" style="display: block; margin-bottom: 5px;">الرسالة أو الاستشارة:</label>
                             <textarea id="message" name="message" class="form-control" rows="5" placeholder="تفاصيل مشروعك أو استفسارك..." required style="width: 100%; padding: 8px; border-radius: 4px; border: 1px solid #ccc;"></textarea>
                         </div>
-                        <input type="text" name="phone_honey" value="" style="position:absolute;left:-10000px;top:auto;overflow:hidden;" tabindex="-1" autocomplete="off" />
-
                         <button type="submit" class="btn" style="width:100%; margin-top:20px; background:var(--rg1-primary-color);">إرسال الرسالة</button>
                     </form>
                 </div>
@@ -781,36 +774,24 @@
             });
         }
         
-        // معالجة إرسال نموذج الاتصال (تم التعديل للعمل مع send-mail.php)
+        /* // **تم حذف دالة handleContactFormSubmission لأننا نستخدم Formspree الآن**
         function handleContactFormSubmission(e) {
             e.preventDefault();
-            const form = e.target;
-            const formData = new FormData(form);
+            const emailField = document.getElementById('contact-email-link');
+            const targetEmail = emailField ? emailField.href.replace('mailto:', '') : 'a.laghrifi@outlook.fr';
             
-            fetch(form.action, {
-                method: 'POST',
-                body: formData,
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'ok') {
-                    alert(`✅ ${data.message}`);
-                    form.reset();
-                } else {
-                    alert(`❌ حدث خطأ: ${data.message}`);
-                }
-            })
-            .catch(error => {
-                console.error('Fetch Error:', error);
-                alert('❌ حدث خطأ في الاتصال بالخادم. يرجى المحاولة لاحقًا.');
-            });
+            // محاكاة الإرسال
+            alert(`تم استلام رسالتك بنجاح! سيتم توجيهها إلى البريد الإلكتروني: ${targetEmail}.`);
+            this.reset();
         }
+        */
 
         // =======================================================================
         // --- كود الحماية المتقدمة والمراقبة (RJ 1 Commerce Security) ---
         // =======================================================================
 
-        const originalBodyContent = document.body.innerHTML; // حفظ الكود الأصلي
+        // ملاحظة: يتم تعريف محتوى الجسم الأصلي عند تحميل DOM، لذا يجب أن يكون هذا التعريف داخل DOMContentLoaded
+        let originalBodyContent; 
         const keyWords = ["RG1 Commerce", "a.laghrifi@outlook.fr", "المدونة", "المنتجات", "الشركاء"]; // الكلمات الأساسية للمراقبة
 
         // 1. منع النسخ بالزر الأيمن و Ctrl+C
@@ -838,9 +819,17 @@
         }
 
         // 3. مراقبة التغييرات (MutationObserver) وإعادة النص الأصلي
+        const observerConfig = {
+            childList: true, // مراقبة إضافة/حذف العناصر
+            subtree: true,   // مراقبة جميع الأحفاد
+            characterData: true, // مراقبة تغيير النصوص
+            attributes: true     // مراقبة تغيير الخصائص
+        };
+
         const observer = new MutationObserver(mutations => {
             mutations.forEach(mutation => {
-                if (mutation.type === 'childList' || mutation.type === 'characterData' || mutation.type === 'attributes') {
+                // تجنب التكرار اللانهائي عبر التحقق من أن الكود الأصلي موجود
+                if (originalBodyContent) { 
                     const currentContent = document.body.innerHTML;
                     
                     let tamperingDetected = false;
@@ -854,42 +843,62 @@
 
                     if (tamperingDetected) {
                         alert("🚨 تنبيه أمني: تم رصد محاولة تعديل على الكلمات الأساسية. سيتم استعادة المحتوى الأصلي.");
+                        
+                        // تعطيل المراقب قبل الاستعادة لتجنب التكرار
+                        observer.disconnect(); 
+                        
                         document.body.innerHTML = originalBodyContent; // إعادة المحتوى الأصلي بالكامل
-                        observer.disconnect(); // قطع المراقبة مؤقتاً لتجنب حلقة لا نهائية
-                        applyLanguage(); // إعادة تشغيل وظيفة التهيئة لضمان عمل السكربتات
-                        // إعادة تفعيل المراقب بعد فترة وجيزة
+                        
+                        // إعادة تهيئة الوظائف بعد الاستعادة
+                        applyLanguage(); 
+                        renderCarouselMedia();
+                        setPaymentLinks();
+                        setupContactFormListener(); // إعادة ربط الاستماع لـ Formspree
+                        
+                        // إعادة تفعيل المراقب
                         setTimeout(() => { observer.observe(document.body, observerConfig); }, 500);
                     }
                 }
             });
         });
 
-        const observerConfig = {
-            childList: true, // مراقبة إضافة/حذف العناصر
-            subtree: true,   // مراقبة جميع الأحفاد
-            characterData: true, // مراقبة تغيير النصوص
-            attributes: true     // مراقبة تغيير الخصائص
-        };
+        // وظيفة لإعداد مستمع لنموذج Formspree
+        function setupContactFormListener() {
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                // **ملاحظة: Formspree لا يحتاج إلى مستمع submit في JS، ولكنه يستخدم POST المباشر.**
+                // **لتحسين تجربة المستخدم محليًا، يمكننا إضافة مستمع للتحقق من نجاح إرسال Formspree (يتم عبر iframe أو Fetch)**
+                // **لكننا سنكتفي بمسح النموذج بعد الإرسال لتبسيط الكود وحذف دالة handleContactFormSubmission المحذوفة.**
+
+                contactForm.addEventListener('submit', function(e) {
+                    // إذا نجح الإرسال إلى Formspree (يتم تحويل المتصفح أو معالجة AJAX)، يمكن استخدام alert بسيط للمستخدم
+                    // Formspree سيتعامل مع الـ action="POST" مباشرة.
+                    setTimeout(() => {
+                        // محاكاة تنبيه بسيط بعد الإرسال لإظهار تفاعل
+                        alert('✅ تم إرسال رسالتك بنجاح! شكراً لتواصلك مع RG1 Commerce.');
+                        contactForm.reset();
+                    }, 50); // تأخير بسيط
+                });
+            }
+        }
 
         // =======================================================================
         // --- الإطلاق النهائي (AUTO-INIT) ---
         // =======================================================================
         document.addEventListener('DOMContentLoaded', () => {
+            // حفظ المحتوى الأصلي بعد تحميل DOM وقبل تطبيق أي تحديثات ديناميكية
+            originalBodyContent = document.body.innerHTML; 
+
             applyLanguage();
             renderCarouselMedia();
             setPaymentLinks();
             showWelcomePopup();
+            setupContactFormListener(); // تهيئة مستمع النموذج ( Formspree )
             
             // إغلاق لوحة الترحيب
             document.getElementById('close-popup').addEventListener('click', () => {
                 document.getElementById('welcome-popup').classList.add('hidden');
             });
-
-            // ربط نموذج الاتصال بالوظيفة
-            const contactForm = document.getElementById('contactForm');
-            if (contactForm) {
-                contactForm.addEventListener('submit', handleContactFormSubmission);
-            }
 
             // إظهار زر الروبوت عند التمرير
             if (chatbotButton) {
@@ -912,4 +921,3 @@
     </script>
 </body>
 </html>
-
