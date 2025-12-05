@@ -1,7 +1,7 @@
 --- 
 layout: post 
 title: "رؤيتنا: تسهيل الوصول إلى الضروريات وبناء جسور الثقة مع RG1Shop" 
-date: 2025-12-05 23:30:00 +0000 
+date: 05-12-2025 23:30:00 +0000 
 author: Adil Laghrifi - RG1Shop 
 --- 
  
