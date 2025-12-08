@@ -2092,3 +2092,43 @@
 </body>     
 </html> 
 
+<script>
+    // 🔴 هذا الكود يقوم بتحويل جميع روابط سياسة الخصوصية والشروط من (#hash) إلى (privacy.html) تلقائياً
+
+    // الدالة المسؤولة عن تحويل الروابط
+    function fixLegalLinks() {
+        // نحدد جميع الروابط في الصفحة
+        const allLinks = document.querySelectorAll('a[href]');
+        
+        allLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            
+            // إذا كان الرابط هو #privacy أو #policy
+            if (href && (href.includes('#privacy') || href.includes('#policy'))) {
+                link.setAttribute('href', 'privacy.html');
+                link.classList.remove('nav-link'); // نلغي كود التنقل الداخلي الخاص بك
+                link.removeEventListener('click', function(e) {
+                    // إزالة أي حدث نقر قديم
+                    e.preventDefault();
+                });
+            }
+            
+            // إذا كان الرابط هو #terms أو #conditions
+            if (href && (href.includes('#terms') || href.includes('#conditions'))) {
+                link.setAttribute('href', 'terms.html');
+                link.classList.remove('nav-link'); // نلغي كود التنقل الداخلي
+                link.removeEventListener('click', function(e) {
+                    e.preventDefault();
+                });
+            }
+        });
+    }
+
+    // تشغيل الدالة فوراً بعد تحميل جميع محتويات الصفحة
+    window.addEventListener('load', fixLegalLinks);
+    
+    // تشغيلها مرة أخرى بعد أي عملية تحميل ديناميكي للمحتوى (للتأكد)
+    fixLegalLinks(); 
+</script>
+
+
