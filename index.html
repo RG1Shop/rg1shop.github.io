@@ -1273,9 +1273,6 @@
         <!-- الشريط الأول: نصف الأقسام + أيقونة الإضاءة أسفل المنتجات -->    
         <div class="top-nav-bar">    
             <!-- أيقونة المنتجات (الرابط الأول) -->    
-            <a href="#products-section" class="nav-link" title="المنتجات">    
-                <i class="fas fa-box"></i><span data-key="menu_products">المنتجات</span>    
-            </a>    
             <!-- أيقونة تغيير الوضع -->    
             <button class="control-icon-btn theme-toggle" id="themeToggle" title="تبديل الوضع">    
                 <i class="fas fa-sun"></i>    
@@ -1285,17 +1282,11 @@
                 <i class="fas fa-blog"></i><span data-key="menu_blog">المدونة</span>    
             </a>    
             <!-- الشركاء -->    
-            <a href="#affiliates-section" class="nav-link" title="الشركاء">    
-                <i class="fas fa-handshake"></i><span data-key="menu_affiliates">الشركاء</span>    
-            </a>    
         </div>    
     
         <!-- الشريط الثاني: النصف الآخر + أيقونة اللغة أسفل تواصل -->    
         <div class="top-nav-bar">    
             <!-- روابط إعلانية -->    
-            <a href="#new-affiliate-links" class="nav-link" title="روابط إعلانية">    
-                <i class="fas fa-link"></i><span data-key="nav_links_text">روابط</span>    
-            </a>    
             <!-- تواصل -->    
             <a href="#contact-messages-section" class="nav-link" title="تواصل">    
                 <i class="fas fa-envelope"></i><span data-key="menu_contact">تواصل</span>    
@@ -1378,9 +1369,7 @@
             'shopping_title': { ar: '🛒 قسم التسوق', en: '🛒 Shopping Section' },    
             'section_products_title': { ar: 'اكتشف منتجاتنا', en: 'Discover Our Products' },    
             'section_affiliates_title': { ar: 'أفضل الروابط التجارية', en: 'Top Affiliate Platforms' },    
-            'blog_main_title': { ar: 'المدونة (المقالات)', en: 'Blog (Articles)' }, // لتجنب التعارض مع menu_blog    
-            'sidebar_title': { ar: '⭐ ارتباطات متميزة للنجاح المشترك ⭐', en: '⭐ Premium Partnerships ⭐' },    
-            'affiliates_main_title': { ar: '⭐ ارتباطات متميزة للنجاح المشترك ⭐', en: '⭐ Premium Partnerships ⭐' },    
+            'blog_main_title': { ar: 'المدونة (المقالات)', en: 'Blog (Articles)' }, // لتجنب التعارض مع menu_blog
             'specific_services_title': { ar: 'خدمات محددة', en: 'Specific Services' },    
             'contact_section_title': { ar: 'اتصل بنا', en: 'Contact Us' }, // لتجنب التعارض مع menu_contact    
     
@@ -2130,4 +2119,17 @@
     
     // تشغيلها مرة أخرى بعد أي عملية تحميل ديناميكي للمحتوى (للتأكد)
     fixLegalLinks(); 
+</script>
+
+<script>
+    function toggleAdsense() {
+        const adContainer = document.querySelector('.top-ads-container');
+        // يتم العرض فقط إذا كان الرابط لا يحتوي على وسم (#) أو يحتوي على #events-section (الرئيسية)
+        const isHomePage = window.location.hash === '' || window.location.hash === '#events-section';
+        if (adContainer) {
+            adContainer.style.display = isHomePage ? 'block' : 'none';
+        }
+    }
+    window.addEventListener('load', toggleAdsense); // تشغيل عند تحميل الصفحة
+    window.addEventListener('hashchange', toggleAdsense); // تشغيل عند التنقل بين الأقسام
 </script>
