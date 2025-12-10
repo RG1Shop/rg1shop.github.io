@@ -1,0 +1,33 @@
+# اسم سير العمل (يظهر في قائمة Actions)
+name: تحديث تلقائي لملف Index.html
+
+# متى يعمل هذا الإجراء؟
+on:
+  # سيعمل عند كل "دفع" (Push) يتم للفرع الرئيسي
+  push:
+    branches:
+      - main
+      
+# تعريف المهمة
+jobs:
+  تعديل_ودفع_تاريخ_التحديث:
+    runs-on: ubuntu-latest
+    
+    # خطوات العمل
+    steps:
+      - name: سحب الكود من المستودع
+        # يستخدم لإحضار ملفاتك لبيئة العمل
+        uses: actions/checkout@v4
+      
+      - name: تنفيذ أمر إضافة التاريخ إلى Index.html
+        run: |
+          # هذا هو أمر التعديل:
+          # يضيف تعليق HTML في نهاية ملف Index.html يحتوي على تاريخ ووقت التنفيذ.
+          echo "" >> Index.html
+          
+      - name: حفظ التغييرات ودفعها تلقائيًا
+        # يستخدم لأتمتة عملية الحفظ والدفع (Commit & Push) إلى المستودع
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: 'آلي: تحديث تاريخ التعديل التلقائي لملف Index.html'
+          token: ${{ secrets.GITHUB_TOKEN }}
