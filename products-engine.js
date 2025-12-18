@@ -1,33 +1,34 @@
 const productsData = [
     {
         id: 1,
-        title: "حجوزات فنادق فاخرة - Booking",
+        title: "حجوزات Booking الفاخرة",
         category: "tourism",
-        price: "أفضل سعر",
+        price: "خصومات حصرية",
         image: "https://r-xx.bstatic.com/xdata/images/hotel/max1280x900/123456.jpg", 
-        link: "رابط_الأفلييت_الخاص_بك"
+        link: "https://www.booking.com/index.html?aid=YOUR_ID"
     },
     {
         id: 2,
-        title: "عروض AliExpress الحصرية",
-        category: "shopping",
-        price: "خصم 70%",
-        image: "https://ae01.alicdn.com/kf/S...jpg",
-        link: "رابط_الأفلييت_الخاص_بك"
+        title: "عروض الطيران العالمية",
+        category: "flights",
+        price: "أفضل سعر",
+        image: "https://images.unsplash.com/photo-1436491865332-7a61a109c055",
+        link: "رابط_افلييت_الطيران"
     }
+    // يمكنك إضافة كل منتجاتك هنا بنفس النمط
 ];
 
 function renderProducts() {
     const container = document.getElementById('products-container');
     if (!container) return;
-    container.innerHTML = productsData.map(product => `
+    container.innerHTML = productsData.map(p => `
         <div class="product-card">
-            <img src="${product.image}" alt="${product.title}">
-            <h3>${product.title}</h3>
-            <p>${product.price}</p>
-            <a href="${product.link}" target="_blank" class="buy-btn">احجز الآن</a>
+            <div class="gold-stars">⭐⭐⭐⭐⭐</div>
+            <img src="${p.image}" alt="${p.title}" onerror="this.src='logo.png'">
+            <h3>${p.title}</h3>
+            <p class="price">${p.price}</p>
+            <a href="${p.link}" target="_blank" class="buy-btn">احجز الآن</a>
         </div>
     `).join('');
 }
-
 document.addEventListener('DOMContentLoaded', renderProducts);
