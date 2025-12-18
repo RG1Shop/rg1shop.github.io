@@ -1,42 +1,33 @@
-// خزان منتجات RG1Shop - AliExpress & Booking
 const productsData = [
     {
         id: 1,
-        title: "عرض AliExpress المميز",
-        category: "shopping",
-        price: "10.00$",
-        image: "logo.png",
-        link: "https://s.click.aliexpress.com/e/..." // ضع رابط الأفلييت هنا
+        title: "حجوزات فنادق فاخرة - Booking",
+        category: "tourism",
+        price: "أفضل سعر",
+        image: "https://r-xx.bstatic.com/xdata/images/hotel/max1280x900/123456.jpg", 
+        link: "رابط_الأفلييت_الخاص_بك"
     },
     {
         id: 2,
-        title: "فنادق Booking الفاخرة",
-        category: "tourism",
-        price: "إبتداءً من 50$",
-        image: "logo.png",
-        link: "https://www.booking.com/index.html?aid=..." // ضع رابط الأفلييت هنا
+        title: "عروض AliExpress الحصرية",
+        category: "shopping",
+        price: "خصم 70%",
+        image: "https://ae01.alicdn.com/kf/S...jpg",
+        link: "رابط_الأفلييت_الخاص_بك"
     }
 ];
 
-// وظيفة عرض المنتجات تلقائياً
 function renderProducts() {
-    const container = document.getElementById('dynamic-content');
+    const container = document.getElementById('products-container');
     if (!container) return;
-
-    let html = '<div class="products-grid">';
-    productsData.forEach(product => {
-        html += `
-            <div class="product-card" data-category="${product.category}">
-                <img src="${product.image}" alt="${product.title}">
-                <h3>${product.title}</h3>
-                <p class="price">${product.price}</p>
-                <a href="${product.link}" target="_blank" class="buy-btn">عرض التفاصيل</a>
-            </div>
-        `;
-    });
-    html += '</div>';
-    container.innerHTML = html;
+    container.innerHTML = productsData.map(product => `
+        <div class="product-card">
+            <img src="${product.image}" alt="${product.title}">
+            <h3>${product.title}</h3>
+            <p>${product.price}</p>
+            <a href="${product.link}" target="_blank" class="buy-btn">احجز الآن</a>
+        </div>
+    `).join('');
 }
 
-// تشغيل المحرك عند جاهزية الصفحة
 document.addEventListener('DOMContentLoaded', renderProducts);
