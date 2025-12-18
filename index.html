@@ -2,30 +2,54 @@
 <html lang="ar" dir="rtl">    
 <head>    
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KN75BHJN');</script>    
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9228235223985409" crossorigin="anonymous"></script>    
     
     <meta charset="utf-8" />    
     <meta name="viewport" content="width=device-width,initial-scale=1" />    
-    <title>RG1Shop | متجر العروض العالمية</title>    
+    <title>RG1Shop | متجر العروض العالمية - عادل لغريفي</title>    
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9228235223985409" crossorigin="anonymous"></script>    
 </head>
 <body data-theme="light">
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KN75BHJN" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-    <nav class="main-categories-nav">
-        <a href="#events-section" class="main-nav-link active-link"><i class="fas fa-calendar-alt"></i> <span>حفلات</span></a>    
-        <a href="#tourism-section" class="main-nav-link"><i class="fas fa-plane"></i> <span>سياحة</span></a>    
-        <a href="#shopping-section" class="main-nav-link"><i class="fas fa-shopping-bag"></i> <span>تسوق</span></a>    
+    <nav id="main-categories-nav" class="main-categories-nav">
+        <a href="#events" class="main-nav-link active-link" onclick="renderProducts('events')">
+            <i class="fas fa-calendar-alt"></i> <span>حفلات</span>
+        </a>    
+        <a href="#tourism" class="main-nav-link" onclick="renderProducts('tourism')">
+            <i class="fas fa-plane"></i> <span>سياحة</span>
+        </a>    
+        <a href="#shopping" class="main-nav-link" onclick="renderProducts('shopping')">
+            <i class="fas fa-shopping-bag"></i> <span>تسوق</span>
+        </a>    
     </nav>
 
     <div id="app-container">
+        <header class="hero-section">
+            <h1 id="site-title">RG1Shop</h1>
+            <p id="site-founder">المؤسس: عادل لغريفي</p>
+        </header>
+
         <main id="main-content">
-            <section id="dynamic-content" class="card active">
-                <div id="loading-spinner">جاري تحميل المحتوى الذكي لـ RG1Shop...</div>
+            <section id="dynamic-content" class="content-area">
+                <div id="loading-spinner">جاري تحميل العروض الحصرية...</div>
             </section>
         </main>
     </div>
 
-    <script src="translations.js"></script> <script src="products-engine.js"></script> <script src="app.js"></script> </body>
+    <footer class="main-footer">
+        <p>© 2025 RG1Shop - جميع الحقوق محفوظة</p>
+        <div class="footer-links">
+            <a href="privacy.html">الخصوصية</a>
+            <a href="terms.html">الشروط</a>
+        </div>
+    </footer>
+
+    <script src="translations.js"></script>
+    <script src="products-engine.js"></script>
+    <script src="app.js"></script>
+</body>
 </html>
