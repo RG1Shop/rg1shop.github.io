@@ -1,15 +1,31 @@
-// ✅ إصلاح مشكلة قفز الصفحة لأسفل عند التحميل أو التحديث
+// =======================================================================     
+// 🚀 حل مشكلة قفز الصفحة (الإصدار القوي والمحسن)
+// =======================================================================     
 if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
 }
-window.scrollTo(0, 0);
+
+function forceScrollToTop() {
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+}
+
+// تنفيذ الصعود في عدة مراحل زمنية حرجة
+forceScrollToTop(); 
+window.addEventListener('load', forceScrollToTop);
+document.addEventListener('DOMContentLoaded', forceScrollToTop);
+
+// منع أي كود آخر من سحب الصفحة للأسفل في أول ثانية
+let scrollInterval = setInterval(forceScrollToTop, 10);
+setTimeout(() => clearInterval(scrollInterval), 1000);
 
 // المتغيرات الأساسية العامة     
 let currentLang = localStorage.getItem('rg1_lang') || 'ar';     
 let currentTheme = localStorage.getItem('rg1_theme') || 'light'; 
 
 // =======================================================================     
-// 🔥 ترجمات كاملة لجميع النصوص الثابتة في الصفحة (بدون أي حذف)
+// 🔥 ترجمات كاملة لجميع النصوص الثابتة في الصفحة     
 // =======================================================================     
 const translations = {     
     // روابط التنقل العلوية     
@@ -36,7 +52,7 @@ const translations = {
     'shopping_title': { ar: '🛒 قسم التسوق', en: '🛒 Shopping Section' },     
     'section_products_title': { ar: 'اكتشف منتجاتنا', en: 'Discover Our Products' },     
     'section_affiliates_title': { ar: 'أفضل الروابط التجارية', en: 'Top Affiliate Platforms' },     
-    'blog_main_title': { ar: 'المدونة (المقالات)', en: 'Blog (Articles)' }, 
+    'blog_main_title': { ar: 'المدونة (المقالات)', en: 'Blog (Articles)' },     
     'specific_services_title': { ar: 'خدمات محددة', en: 'Specific Services' },     
     'contact_section_title': { ar: 'اتصل بنا', en: 'Contact Us' },     
      
@@ -135,7 +151,6 @@ const translations = {
     'footer_text': { ar: '&copy; 2025 RG1Shop. جميع الحقوق محفوظة.', en: '&copy; 2025 RG1Shop. All rights reserved.' },     
     'affiliate_notice': { ar: 'تنويه: بعض الروابط في هذا الموقع هي روابط تابعة وقد نربح عمولة دون أي تكلفة إضافية عليك.', en: 'Disclaimer: Some links on this site are affiliate links and we may earn a commission at no extra cost to you.' },     
     'affiliates_links_description': { ar: 'روابط مصنفة حسب المحتوى لسهولة الوصول:', en: 'Links categorized by content for easy access:' }, 
-    // ترجمات محتوى المدونة كاملة
     'blog_date_prefix': { ar: 'التاريخ: ', en: 'Date: ' }, 
     'blog1_title': { ar: '1. اكتشف منتجاتنا الرقمية المميزة وابدأ رحلتك نحو النجاح', en: '1. Discover Our Unique Digital Products and Start Your Journey to Success' },     
     'blog1_p1': { ar: 'هل تبحث عن منتجات رقمية وخدمات مبتكرة تساعدك على تحقيق أهدافك بسرعة وكفاءة؟ نقدم لك اليوم مجموعة مميزة من العروض الرقمية المصممة خصيصًا لتلبية احتياجاتك في عالم التسويق الرقمي والعمل عبر الإنترنت. سواء كنت تبحث عن أدوات لتطوير مهاراتك، أو خدمات رقمية تعزز حضورك على الإنترنت، أو منتجات جاهزة لزيادة دخلك، فإن مجموعتنا توفر لك الحل الأمثل.', en: 'Are you looking for innovative digital products and services that help you achieve your goals quickly and efficiently? Today, we offer you a unique collection of digital offerings specially designed to meet your needs in the world of digital marketing and online work. Whether you are looking for tools to develop your skills, digital services to enhance your online presence, or ready-made products to increase your income, our collection provides you with the optimal solution.' },     
@@ -167,7 +182,7 @@ const translations = {
     'blog2_p5': { ar: 'على سبيل المثال, باستخدام أدواتنا, يمكنك تحديد الفئة العمرية والمنطقة الجغرافية الأكثر تفاعلاً مع عروضك, مما يسمح لك بتخصيص المحتوى والروابط لتلك الفئة تحديداً. هذا التخصيص يرفع من قيمة صفحتك ويجعلها وجهة موثوقة لجمهورك.', en: 'For example, using our tools, you can identify the age group and geographical region most engaged with your offers, which allows you to tailor content and links specifically for that segment. This customization enhances your page\'s value and makes it a trusted destination for your audience.' },     
     'blog2_h4_3': { ar: 'ثالثاً: خدمات تصميم المحتوى الرقمي المؤثر', en: 'Third: Influential Digital Content Design Services' },     
     'blog2_p6': { ar: 'المحتوى هو الملك في عالم التسويق الرقمي, وصنع محتوى جذاب ومؤثر يتطلب خبرة ووقت. نقدم لك خدمات تصميم منشورات احترافية, فيديوهات قصيرة, ورسوم توضيحية تتناسب مع جمهورك. هذا المحتوى يزيد من تفاعل الزوار ويحفزهم على التفاعل مع منتجاتك وخدماتك الرقمية. نحن نضمن أن يكون المحتوى متوافقًا مع العلامة التجارية لـ RG1Shop ومعايير الجودة العالية.', en: 'Content is king in the world of digital marketing, and creating attractive and influential content requires expertise and time. We provide you with professional post design services, short videos, and illustrative graphics that suit your audience. This content increases visitor engagement and motivates them to interact with your digital products and services. We ensure that the content is consistent with the RG1Shop brand and high-quality standards.' },     
-    'blog2_p7': { ar: 'المحتوى المرئي القصير (مثل قصص Instagram أو TikTok) هو الأكثر شيوعًا حاليًا. نوفر لك قوالب وأدوات لإنشاء هذا نوع من المحتوى بسرعة, مع التركيز على الدعوة الواضحة للعمل (CTA) لزيادة النقرات على الروابط التابعة.', en: 'Short visual content (like Instagram stories or TikToks) is currently the most popular. We provide you with templates and tools to create this type of content quickly, focusing on a clear Call-to-Action (CTA) to increase clicks on affiliate links.' },     
+    'blog2_p7': { ar: 'المحتوى المرئي القصير (مثل قصص Instagram أو TikTok) هو الأكثر شيوعًا حاليًا. نوفر لك قوالب وأدوات لإنشاء هذا النوع من المحتوى بسرعة, مع التركيز على الدعوة الواضحة للعمل (CTA) لزيادة النقرات على الروابط التابعة.', en: 'Short visual content (like Instagram stories or TikToks) is currently the most popular. We provide you with templates and tools to create this type of content quickly, focusing on a clear Call-to-Action (CTA) to increase clicks on affiliate links.' },     
     'blog2_h4_4': { ar: 'رابعاً: الدعم والإرشاد المستمر لتحقيق النمو', en: 'Fourth: Continuous Support and Guidance for Growth' },     
     'blog2_p8': { ar: 'لا يقتصر دورنا على تقديم المنتجات والخدمات فقط, بل نوفر دعمًا متواصلاً لمساعدتك على تحقيق أقصى استفادة. سواء كنت مبتدئًا أو محترفًا, يمكنك الوصول إلى نصائح عملية, إرشادات واضحة, ودعم مباشر لحل أي مشكلة تواجهها أثناء استخدام الخدمات.', en: 'Our role is not limited to providing products and services; we also offer continuous support to help you achieve maximum benefit. Whether you are a beginner or a professional, you can access practical tips, clear guidelines, and direct support to solve any problem you encounter while using the services.' },     
     'blog2_list1_item1': { ar: 'ابدأ باختيار الخدمات التي تتوافق مع أهدافك الرقمية الحالية وتخدم هدفك الرئيسي في زيادة الأرباح.', en: 'Start by choosing services that align with your current digital goals and serve your primary objective of increasing profits.' },     
@@ -179,10 +194,9 @@ const translations = {
 };
 
 // =======================================================================     
-// 🔥 الوظائف البرمجية الأساسية (Logic)
+// 🔥 الوظائف المنطقية (Logic)     
 // =======================================================================     
 
-// وظيفة تحديث النصوص بناءً على اللغة المختارة
 function updateTranslations() {
     const elements = document.querySelectorAll('[data-lang-key]');
     elements.forEach(el => {
@@ -191,27 +205,16 @@ function updateTranslations() {
             el.innerText = translations[key][currentLang];
         }
     });
-    // تحديث اتجاه الصفحة
     document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
     document.documentElement.lang = currentLang;
 }
 
-// وظيفة تغيير اللغة
 function switchLang(lang) {
     currentLang = lang;
     localStorage.setItem('rg1_lang', lang);
     updateTranslations();
-    ensureTop(); // ضمان الصعود للأعلى عند تغيير اللغة
+    forceScrollToTop(); 
 }
 
-// وظيفة الصعود للأعلى لضمان عدم القفز
-function ensureTop() {
-    window.scrollTo({ top: 0, behavior: 'instant' });
-}
-
-// تنفيذ الصعود عند تحميل الدوم وعند تحميل كل المصادر
+// تشغيل الترجمة عند التحميل
 document.addEventListener('DOMContentLoaded', updateTranslations);
-window.addEventListener('load', ensureTop);
-
-// تكرار الصعود بعد فترة بسيطة لضمان استقرار العناصر
-setTimeout(ensureTop, 150);
