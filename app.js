@@ -1,9 +1,15 @@
+// ✅ إصلاح مشكلة قفز الصفحة لأسفل عند التحميل أو التحديث
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
+
 // المتغيرات الأساسية العامة     
 let currentLang = localStorage.getItem('rg1_lang') || 'ar';     
-let currentTheme = localStorage.getItem('rg1_theme') || 'light'; // ✅ تم التعديل هنا ليكون الوضع النهاري هو الافتراضي     
-     
+let currentTheme = localStorage.getItem('rg1_theme') || 'light'; 
+
 // =======================================================================     
-// 🔥 ترجمات كاملة لجميع النصوص الثابتة في الصفحة     
+// 🔥 ترجمات كاملة لجميع النصوص الثابتة في الصفحة (بدون أي حذف)
 // =======================================================================     
 const translations = {     
     // روابط التنقل العلوية     
@@ -30,11 +36,11 @@ const translations = {
     'shopping_title': { ar: '🛒 قسم التسوق', en: '🛒 Shopping Section' },     
     'section_products_title': { ar: 'اكتشف منتجاتنا', en: 'Discover Our Products' },     
     'section_affiliates_title': { ar: 'أفضل الروابط التجارية', en: 'Top Affiliate Platforms' },     
-    'blog_main_title': { ar: 'المدونة (المقالات)', en: 'Blog (Articles)' }, // لتجنب التعارض مع menu_blog 
+    'blog_main_title': { ar: 'المدونة (المقالات)', en: 'Blog (Articles)' }, 
     'specific_services_title': { ar: 'خدمات محددة', en: 'Specific Services' },     
-    'contact_section_title': { ar: 'اتصل بنا', en: 'Contact Us' }, // لتجنب التعارض مع menu_contact     
+    'contact_section_title': { ar: 'اتصل بنا', en: 'Contact Us' },     
      
-    // ترجمات Subcategory Cards (الأقسام الفرعية)     
+    // ترجمات Subcategory Cards     
     'sub_events_tickets': { ar: 'تذاكر الحفلات', en: 'Event Tickets' },     
     'sub_events_organization': { ar: 'تنظيم الحفلات', en: 'Event Organization' },     
     'sub_events_venue': { ar: 'تأجير القاعات', en: 'Venue Rental' },     
@@ -65,13 +71,10 @@ const translations = {
     'sub_shopping_home': { ar: 'مستلزمات منزلية', en: 'Home Essentials' },     
     'sub_shopping_accessories': { ar: 'اكسسوارات', en: 'Accessories' },     
      
-     
-    // ترجمات لـ Cookie Banner     
     'cookie_text': { ar: '🍪 نستخدم الكوكيز (Cookies) لتحسين تجربتك. هل تقبل؟', en: '🍪 We use cookies to improve your experience. Do you accept?' },     
     'accept_button': { ar: 'قبول', en: 'Accept' },     
     'reject_button': { ar: 'رفض', en: 'Reject' },     
      
-    // ترجمات لـ Contact Form     
     'contact_email_label': { ar: 'البريد الإلكتروني:', en: 'Email:' },     
     'whatsapp_label': { ar: 'تواصل عبر واتساب:', en: 'Contact via WhatsApp:' },     
     'whatsapp_link_text': { ar: 'انقر للبدء (رسائل فقط)', en: 'Click to start (messages only)' },     
@@ -86,7 +89,6 @@ const translations = {
     'message_placeholder': { ar: 'تفاصيل مشروعك أو استفسارك...', en: 'Details of your project or inquiry...' },     
     'send_message_button': { ar: 'إرسال الرسالة', en: 'Send Message' },     
      
-    // ترجمات Privacy Policy & Terms     
     'privacy_policy_title': { ar: '📜 سياسة الخصوصية لـ RG1Shop', en: '📜 RG1Shop Privacy Policy' },     
     'last_updated': { ar: 'تاريخ آخر تحديث:', en: 'Last updated:' },     
     'info_collection_title': { ar: '1. جمع واستخدام المعلومات', en: '1. Information Collection and Use' },     
@@ -131,10 +133,9 @@ const translations = {
     'about_us_para1': { ar: 'RG1Shop هو مشروع رقمي تم تأسيسه بهدف توفير محتوى موثوق, أدوات تجارة إلكترونية, شروحات تقنية, وروابط خدمات موثوقة للمستخدمين. هدف الموقع هو تسهيل الوصول للمعلومات والخدمات التجارية الرقمية وتقديم محتوى عالي الجودة يحترم قواعد Google AdSense.', en: 'RG1Shop is a digital project founded to provide reliable content, e-commerce tools, technical explanations, and trusted service links to users. The website aims to facilitate access to digital commercial information and services and to provide high-quality content that respects Google AdSense policies.' },     
     'about_us_para2': { ar: 'مؤسس الموقع: Adil Laghrifi الرؤية: بناء منصة مفيدة, صادقة, وقائمة على تقديم قيمة حقيقية للمستخدم.', en: 'Founder: Adil Laghrifi. Vision: To build a useful, honest, and value-driven platform.' },     
     'footer_text': { ar: '&copy; 2025 RG1Shop. جميع الحقوق محفوظة.', en: '&copy; 2025 RG1Shop. All rights reserved.' },     
-    // ترجمة نص التنويه الخاص بالروابط التابعة     
     'affiliate_notice': { ar: 'تنويه: بعض الروابط في هذا الموقع هي روابط تابعة وقد نربح عمولة دون أي تكلفة إضافية عليك.', en: 'Disclaimer: Some links on this site are affiliate links and we may earn a commission at no extra cost to you.' },     
     'affiliates_links_description': { ar: 'روابط مصنفة حسب المحتوى لسهولة الوصول:', en: 'Links categorized by content for easy access:' }, 
-    // ترجمات محتوى المدونة 
+    // ترجمات محتوى المدونة كاملة
     'blog_date_prefix': { ar: 'التاريخ: ', en: 'Date: ' }, 
     'blog1_title': { ar: '1. اكتشف منتجاتنا الرقمية المميزة وابدأ رحلتك نحو النجاح', en: '1. Discover Our Unique Digital Products and Start Your Journey to Success' },     
     'blog1_p1': { ar: 'هل تبحث عن منتجات رقمية وخدمات مبتكرة تساعدك على تحقيق أهدافك بسرعة وكفاءة؟ نقدم لك اليوم مجموعة مميزة من العروض الرقمية المصممة خصيصًا لتلبية احتياجاتك في عالم التسويق الرقمي والعمل عبر الإنترنت. سواء كنت تبحث عن أدوات لتطوير مهاراتك، أو خدمات رقمية تعزز حضورك على الإنترنت، أو منتجات جاهزة لزيادة دخلك، فإن مجموعتنا توفر لك الحل الأمثل.', en: 'Are you looking for innovative digital products and services that help you achieve your goals quickly and efficiently? Today, we offer you a unique collection of digital offerings specially designed to meet your needs in the world of digital marketing and online work. Whether you are looking for tools to develop your skills, digital services to enhance your online presence, or ready-made products to increase your income, our collection provides you with the optimal solution.' },     
@@ -166,7 +167,7 @@ const translations = {
     'blog2_p5': { ar: 'على سبيل المثال, باستخدام أدواتنا, يمكنك تحديد الفئة العمرية والمنطقة الجغرافية الأكثر تفاعلاً مع عروضك, مما يسمح لك بتخصيص المحتوى والروابط لتلك الفئة تحديداً. هذا التخصيص يرفع من قيمة صفحتك ويجعلها وجهة موثوقة لجمهورك.', en: 'For example, using our tools, you can identify the age group and geographical region most engaged with your offers, which allows you to tailor content and links specifically for that segment. This customization enhances your page\'s value and makes it a trusted destination for your audience.' },     
     'blog2_h4_3': { ar: 'ثالثاً: خدمات تصميم المحتوى الرقمي المؤثر', en: 'Third: Influential Digital Content Design Services' },     
     'blog2_p6': { ar: 'المحتوى هو الملك في عالم التسويق الرقمي, وصنع محتوى جذاب ومؤثر يتطلب خبرة ووقت. نقدم لك خدمات تصميم منشورات احترافية, فيديوهات قصيرة, ورسوم توضيحية تتناسب مع جمهورك. هذا المحتوى يزيد من تفاعل الزوار ويحفزهم على التفاعل مع منتجاتك وخدماتك الرقمية. نحن نضمن أن يكون المحتوى متوافقًا مع العلامة التجارية لـ RG1Shop ومعايير الجودة العالية.', en: 'Content is king in the world of digital marketing, and creating attractive and influential content requires expertise and time. We provide you with professional post design services, short videos, and illustrative graphics that suit your audience. This content increases visitor engagement and motivates them to interact with your digital products and services. We ensure that the content is consistent with the RG1Shop brand and high-quality standards.' },     
-    'blog2_p7': { ar: 'المحتوى المرئي القصير (مثل قصص Instagram أو TikTok) هو الأكثر شيوعًا حاليًا. نوفر لك قوالب وأدوات لإنشاء هذا النوع من المحتوى بسرعة, مع التركيز على الدعوة الواضحة للعمل (CTA) لزيادة النقرات على الروابط التابعة.', en: 'Short visual content (like Instagram stories or TikToks) is currently the most popular. We provide you with templates and tools to create this type of content quickly, focusing on a clear Call-to-Action (CTA) to increase clicks on affiliate links.' },     
+    'blog2_p7': { ar: 'المحتوى المرئي القصير (مثل قصص Instagram أو TikTok) هو الأكثر شيوعًا حاليًا. نوفر لك قوالب وأدوات لإنشاء هذا نوع من المحتوى بسرعة, مع التركيز على الدعوة الواضحة للعمل (CTA) لزيادة النقرات على الروابط التابعة.', en: 'Short visual content (like Instagram stories or TikToks) is currently the most popular. We provide you with templates and tools to create this type of content quickly, focusing on a clear Call-to-Action (CTA) to increase clicks on affiliate links.' },     
     'blog2_h4_4': { ar: 'رابعاً: الدعم والإرشاد المستمر لتحقيق النمو', en: 'Fourth: Continuous Support and Guidance for Growth' },     
     'blog2_p8': { ar: 'لا يقتصر دورنا على تقديم المنتجات والخدمات فقط, بل نوفر دعمًا متواصلاً لمساعدتك على تحقيق أقصى استفادة. سواء كنت مبتدئًا أو محترفًا, يمكنك الوصول إلى نصائح عملية, إرشادات واضحة, ودعم مباشر لحل أي مشكلة تواجهها أثناء استخدام الخدمات.', en: 'Our role is not limited to providing products and services; we also offer continuous support to help you achieve maximum benefit. Whether you are a beginner or a professional, you can access practical tips, clear guidelines, and direct support to solve any problem you encounter while using the services.' },     
     'blog2_list1_item1': { ar: 'ابدأ باختيار الخدمات التي تتوافق مع أهدافك الرقمية الحالية وتخدم هدفك الرئيسي في زيادة الأرباح.', en: 'Start by choosing services that align with your current digital goals and serve your primary objective of increasing profits.' },     
@@ -174,633 +175,43 @@ const translations = {
     'blog2_list1_item3': { ar: 'استخدم البيانات والتحليلات لاتخاذ قرارات تسويقية مستنيرة ومبنية على أرقام حقيقية وليست مجرد تخمينات.', en: 'Use data and analytics to make informed marketing decisions based on real numbers, not just guesses.' },     
     'blog2_list1_item4': { ar: 'اجعل محتوى الصفحة جذابًا مع صور ورسوم توضيحية متوافقة مع الخدمة المعروضة, فالمظهر البصري مهم جداً.', en: 'Make the page content attractive with images and illustrations that are consistent with the service offered, as visual appeal is very important.' },     
     'blog2_conclusion_title': { ar: 'خاتمة: الاستثمار في الأدوات الرقمية هو استثمار في المستقبل', en: 'Conclusion: Investing in Digital Tools is an Investment in the Future' },     
-    'blog2_conclusion_text': { ar: 'باستخدام خدماتنا الرقمية المتميزة, ستتمكن من تعزيز حضورك على الإنترنت, تحسين تفاعل جمهورك, وزيادة أرباحك بشكل مستمر. كل خدمة مصممة لت تكون سهلة الاستخدام وفعّالة, مما يمنحك ميزة تنافسية كبيرة في عالم التسويق الرقمي. لا تفوت الفرصة, ابدأ بالاستفادة من هذه الخدمات اليوم وارتقِ بأعمالك إلى المستوى التالي. تذكر أن الاستثمار في الأدوات الصحيحة هو أسرع طريق لتحقيق الحرية المالية عبر الإنترنت.', en: 'By using our distinguished digital services, you will be able to enhance your online presence, improve your audience engagement, and continuously increase your profits. Each service is designed to be easy to use and effective, giving you a significant competitive advantage in the world of digital marketing. Do not miss the opportunity; start benefiting from these services today and elevate your business to the next level. Remember that investing in the right tools is the fastest way to achieve financial freedom online.' },     
-     
-    'blog3_title': { ar: '3. كيف تساعدك منتجاتنا الرقمية على زيادة دخلك وتحقيق النجاح', en: '3. How Our Digital Products Help You Increase Your Income and Achieve Success' },     
-    'blog3_p1': { ar: 'في عالم التسويق الرقمي, اختيار الأدوات والخدمات المناسبة يمكن أن يكون الفارق بين النجاح والفشل. نقدم لك اليوم مجموعة من المنتجات الرقمية والخدمات المصممة خصيصًا لمساعدتك على جذب العملاء, زيادة التفاعل, وتحقيق أرباح مستمرة. إذا كنت تبحث عن طريقة سهلة وفعّالة لتطوير أعمالك الرقمية, فإن هذه المنتجات هي الحل الأمثل.', en: 'In the world of digital marketing, choosing the right tools and services can make the difference between success and failure. Today, we offer you a range of digital products and services specially designed to help you attract customers, increase engagement, and achieve continuous profits. If you are looking for an easy and effective way to develop your digital business, these products are the optimal solution.' },     
-    'blog3_h4_1': { ar: 'أولاً: المرونة والسهولة في استخدام منتجاتنا الرقمية', en: 'First: Flexibility and Ease of Use of Our Digital Products' },     
-    'blog3_p2': { ar: 'منتجاتنا الرقمية تتميز بالمرونة والسهولة في الاستخدام. سواء كنت مبتدئًا أو محترفًا, ستجد أن كل منتج يقدم قيمة واضحة تساعدك على إدارة أعمالك الرقمية بكفاءة. على سبيل المثال, برامج إدارة الحملات الرقمية تتيح لك تتبع الأداء, ضبط الاستهداف, وزيادة معدلات التحويل دون الحاجة لخبرة تقنية كبيرة. هذا يعني أنك تستطيع التركيز على الجانب الإبداعي لحملاتك بدلاً من التعقيدات التقنية.', en: 'Our digital products are characterized by flexibility and ease of use. Whether you are a beginner or a professional, you will find that each product offers clear value that helps you manage your digital business efficiently. For example, digital campaign management software allows you to track performance, adjust targeting, and increase conversion rates without the need for extensive technical expertise. This means you can focus on the creative aspect of your campaigns rather than technical complexities.' },     
-    'blog3_p3': { ar: 'المرونة تعني أيضاً أن منتجاتنا تتكامل بسهولة مع المنصات الأخرى التي تستخدمها, مثل فيسبوك, واتساب, أو موقعك الإلكتروني. هذا التكامل هو جوهر مشروع RG1Shop, حيث نهدف إلى توحيد جهودك التسويقية في مكان واحد.', en: 'Flexibility also means that our products integrate easily with other platforms you use, such as Facebook, WhatsApp, or your website. This integration is the core of the RG1Shop project, as we aim to unify your marketing efforts in one place.' },     
-    'blog3_h4_2': { ar: 'ثانياً: خدمات مرافقة تضمن لك الدعم الكامل', en: 'Second: Accompanying Services That Guarantee You Full Support' },     
-    'blog3_p4': { ar: 'خدماتنا المرافقة للمنتجات تضمن لك الدعم الكامل. ليس الهدف مجرد بيع منتج, بل توفير تجربة متكاملة تساعدك على تحقيق أفضل النتائج. يشمل هذا الدعم الإرشادات التفصيلية, الفيديوهات التعليمية, والمساعدة المباشرة عند الحاجة. بهذه الطريقة, يمكنك التركيز على تحسين استراتيجياتك وتحقيق أقصى استفادة من كل خدمة أو منتج.', en: 'Our accompanying services for products guarantee you full support. The goal is not just to sell a product, but to provide an integrated experience that helps you achieve the best results. This support includes detailed instructions, educational videos, and direct assistance when needed. This way, you can focus on improving your strategies and maximizing the benefit of each service or product.' },     
-    'blog3_p5': { ar: 'نحن ندرك أن الدعم الفني هو عامل حاسم. لذلك, قمنا بإنشاء فريق دعم مخصص لـ RG1Shop لضمان الرد على استفساراتك بأسرع وقت ممكن, خاصة فيما يتعلق بدمج الروابط التابعة أو تحليل نتائج الحملات.', en: 'We realize that technical support is a decisive factor. Therefore, we have established a dedicated support team for RG1Shop to ensure that your inquiries are answered as quickly as possible, especially regarding the integration of affiliate links or the analysis of campaign results.' },     
-    'blog3_h4_3': { ar: 'ثالثاً: استراتيجيات جذب العملاء المتقدمة', en: 'Third: Advanced Customer Acquisition Strategies' },     
-    'blog3_p6': { ar: 'منتجاتنا تساعدك على جذب العملاء بطريقة احترافية. من خلال أدوات التسويق الرقمي المتقدمة, يمكنك الوصول إلى جمهور محدد بدقة, معرفة تفضيلاتهم, وتقديم المنتجات أو الخدمات الأنسب لهم في الوقت المناسب. على سبيل المثال, أدوات تحليل سلوك الزوار تمكنك من اكتشاف أكثر المنتجات شعبية, مما يساعدك على تقديم العروض التي تحفز العملاء على التفاعل والشراء. هذا التخصيص يضمن أعلى نسبة تحويل.', en: 'Our products help you attract customers professionally. Through advanced digital marketing tools, you can reach a specific audience with precision, understand their preferences, and offer the most suitable products or services to them at the right time. For example, visitor behavior analysis tools enable you to discover the most popular products, which helps you offer deals that motivate customers to interact and purchase. This customization ensures the highest conversion rate.' },     
-    'blog3_p7': { ar: 'بدلاً من استهداف الجميع, أدواتنا تمكنك من بناء شخصيات العملاء (Buyer Personas) واستهدافهم بمحتوى مخصص. هذا النوع من التسويق المخصص يضاعف نسبة التحويلات بشكل كبير مقارنة بالحملات العامة.', en: 'Instead of targeting everyone, our tools enable you to build Buyer Personas and target them with personalized content. This type of customized marketing significantly doubles conversion rates compared to general campaigns.' },     
-    'blog3_h4_4': { ar: 'رابعاً: تحقيق أقصى استفادة عبر التكامل', en: 'Fourth: Maximizing Benefit Through Integration' },     
-    'blog3_p8': { ar: 'كيف تحقق أقصى استفادة؟ استخدم المنتجات بشكل متكامل مع خدماتنا الرقمية. على سبيل المثال, عند استخدام أداة إدارة الحملات الرقمية مع خدمات تصميم المحتوى, ستحصل على تجربة متكاملة تعزز حضورك الرقمي وتزيد من أرباحك. الجمع بين المنتجات والخدمات يوفر الوقت والجهد ويضاعف النتائج بشكل ملحوظ. التكامل هو القوة الدافعة وراء نمو مشروعك.', en: 'How do you maximize benefits? Use the products in an integrated way with our digital services. For example, by using a digital campaign management tool with content design services, you will get an integrated experience that enhances your digital presence and increases your profits. Combining products and services saves time and effort and significantly doubles results. Integration is the driving force behind the growth of your project.' },     
-    'blog3_list1_item1': { ar: 'ابدأ بالمنتجات التي تتناسب مع أهدافك الحالية لتجنب التشتت والتركيز على هدف واحد في البداية.', en: 'Start with products that align with your current goals to avoid distraction and focus on one goal initially.' },     
-    'blog3_list1_item2': { ar: 'جرّب الأدوات والخدمات المتاحة لفترة قصيرة قبل الالتزام الكامل لتحديد الأنسب لنموذج عملك.', en: 'Try out available tools and services for a short period before full commitment to determine what best suits your business model.' },     
-    'blog3_list1_item3': { ar: 'استخدم ميزات التدريب أو الإرشادات المصاحبة لكل منتج لتحقيق أقصى استفادة ممكنة من جميع الخصائص.', en: 'Utilize training features or accompanying instructions for each product to maximize the benefits of all its features.' },     
-    'blog3_list1_item4': { ar: 'شارك تجربتك مع الآخرين عبر التقييمات أو التعليقات, لتعزيز المجتمع الرقمي الخاص بك والمساهمة في بناء الثقة.', en: 'Share your experience with others through reviews or comments to strengthen your digital community and contribute to building trust.' },     
-    'blog3_conclusion_title': { ar: 'خاتمة: نجاحك يبدأ هنا', en: 'Conclusion: Your Success Starts Here' },     
-    'blog3_conclusion_text': { ar: 'منتجاتنا وخدماتنا الرقمية تم تصميمها خصيصًا لمن يبحث عن حلول عملية وفعّالة في عالم التسويق الرقمي. بفضل المزايا المتنوعة والدعم المستمر, ستتمكن من تحسين مهاراتك, زيادة إنتاجيتك, وتحقيق دخل مستدام من خلال التفاعل مع هذه الأدوات. لا تنتظر أكثر, استكشف منتجاتنا المميزة اليوم وابدأ رحلتك نحو النجاح الرقمي بثقة وفعالية. اجعل كل نقرة وكل عملية شراء خطوة نحو هدفك الكبير.', en: 'Our digital products and services are specifically designed for those seeking practical and effective solutions in the digital marketing world. Thanks to diverse features and continuous support, you will be able to enhance your skills, increase your productivity, and achieve sustainable income by interacting with these tools. Don\'t wait any longer, explore our unique products today and embark on your journey towards digital success with confidence and efficiency. Make every click and every purchase a step towards your big goal.' },     
-     
-    'blog4_title': { ar: '4. منتجاتنا الرقمية المبتكرة لتطوير أعمالك وزيادة أرباحك', en: '4. Our Innovative Digital Products to Develop Your Business and Increase Your Profits' },     
-    'blog4_p1': { ar: 'في عصر التسويق الرقمي, كل مسوق يبحث عن الأدوات والخدمات التي تساعده على تحقيق نتائج سريعة ومستدامة. نقدم لك اليوم مجموعة من المنتجات الرقمية والخدمات المبتكرة المصممة لتسهيل أعمالك, زيادة التفاعل مع جمهورك, وتحقيق أرباح أكبر بطريقة سهلة وفعّالة. إذا كنت ترغب في تعزيز حضورك الرقمي وتحقيق نمو مستدام, فإن هذه المنتجات والخدمات هي الحل المثالي.', en: 'In the era of digital marketing, every marketer seeks tools and services that help them achieve fast and sustainable results. Today, we offer you a collection of innovative digital products and services designed to facilitate your work, increase engagement with your audience, and achieve greater profits in an easy and effective way. If you wish to enhance your digital presence and achieve sustainable growth, these products and services are the ideal solution.' },     
-    'blog4_h4_1': { ar: 'أولاً: تنوع المنتجات لتلبية جميع الاحتياجات', en: 'First: Product Diversity to Meet All Needs' },     
-    'blog4_p2': { ar: 'منتجاتنا الرقمية تتميز بالتنوع لتلبية جميع احتياجات المسوقين الرقميين. سواء كنت تحتاج إلى أدوات إدارة الحملات, برامج تحليل البيانات, أو حلول تصميم المحتوى, فإن كل منتج مصمم بعناية لتوفير أقصى قيمة لك. على سبيل المثال, أدوات إدارة الحملات تساعدك على تحسين الاستهداف, متابعة الأداء, وزيادة معدلات التحويل بشكل ملحوظ. نحن نقدم حلولاً متكاملة بدلاً من مجرد أدوات منفصلة.', en: 'Our digital products are characterized by diversity to meet all the needs of digital marketers. Whether you need campaign management tools, data analysis software, or content design solutions, each product is carefully designed to provide maximum value to you. For example, campaign management tools help you improve targeting, monitor performance, and significantly increase conversion rates. We offer integrated solutions instead of just separate tools.' },     
-    'blog4_p3': { ar: 'في RG1Shop, نفهم أن احتياجات المسوقين تختلف. لذلك, قمنا بتنويع منتجاتنا لتشمل كل شيء من البرامج التعليمية المتقدمة إلى الأدوات القائمة على الذكاء الاصطناعي التي تساعد في صياغة المحتوى وتحليل نتائج الإعلانات.', en: 'At RG1Shop, we understand that marketers\' needs vary. Therefore, we have diversified our products to include everything from advanced educational programs to AI-powered tools that assist in content creation and ad results analysis.' },     
-    'blog4_h4_2': { ar: 'ثانياً: خدمات الدعم والإرشاد الرقمي', en: 'Second: Digital Support and Guidance Services' },     
-    'blog4_p4': { ar: 'خدماتنا الرقمية المرافقة تضمن لك تجربة سلسة وفعّالة. نقدم دعمًا كاملًا يشمل إرشادات خطوة بخطوة, نصائح عملية, ودعم مباشر عند الحاجة. الهدف هو تمكينك من استخدام المنتجات بكفاءة, وتحقيق أفضل النتائج دون مواجهة أي صعوبات تقنية. نحن نعتبر أن نجاحك هو نجاحنا, ولهذا نستثمر في تقديم إرشاد شخصي للمستخدمين.', en: 'Our accompanying digital services ensure a smooth and effective experience. We provide full support including step-by-step instructions, practical tips, and direct support when needed. The goal is to enable you to use products efficiently and achieve the best results without encountering any technical difficulties. We consider your success to be our success, which is why we invest in providing personalized guidance to users.' },     
-    'blog4_p5': { ar: 'بالإضافة إلى الدعم التقني, نوفر أيضاً نصائح استراتيجية حول كيفية اختيار أفضل الروابط التابعة (Affiliate Links) التي تحقق أعلى عمولات في قطاعك. هذا النوع من الإرشاد يختصر عليك أشهر من التجربة والخطأ.', en: 'In addition to technical support, we also provide strategic advice on how to choose the best affiliate links that yield the highest commissions in your sector. This type of guidance saves you months of trial and error.' },     
-    'blog4_h4_3': { ar: 'ثالثاً: الوصول إلى جمهور محدد بدقة', en: 'Third: Reaching a Specific Audience with Precision' },     
-    'blog4_p6': { ar: 'منتجاتنا تساعدك على جذب العملاء بطريقة احترافية. من خلال أدوات التسويق الرقمي المتقدمة, يمكنك الوصول إلى جمهور محدد بدقة, معرفة تفضيلاتهم, وتقديم المنتجات أو الخدمات الأنسب لهم في الوقت المناسب. على سبيل المثال, أدوات تحليل سلوك الزوار تمكنك من اكتشاف أكثر المنتجات شعبية, مما يساعدك على تقديم العروض التي تحفز العملاء على التفاعل والشراء. هذا التخصيص يضمن أعلى نسبة تحويل.', en: 'Our products help you attract customers professionally. Through advanced digital marketing tools, you can accurately reach a specific audience, understand their preferences, and offer the most suitable products or services to them at the right time. For example, visitor behavior analysis tools enable you to discover the most popular products, which helps you offer deals that motivate customers to interact and purchase. This customization ensures the highest conversion rate.' },     
-    'blog4_p7': { ar: 'استخدم أدواتنا ليس فقط لتحديد الجمهور, ولكن لتفهم دوافعه الشرائية. عندما تفهم لماذا يشتري العميل, يمكنك صياغة رسائل تسويقية أكثر إقناعًا وتأثيراً, وهذا هو جوهر التسويق الناجح.', en: 'Use our tools not only to identify the audience, but also to understand their purchasing motives. When you understand why a customer buys, you can formulate more compelling and influential marketing messages, which is the essence of successful marketing.' },     
-    'blog4_h4_4': { ar: 'رابعاً: التكامل الرقمي لتضاعف النتائج', en: 'Fourth: Digital Integration to Multiply Results' },     
-    'blog4_p8': { ar: 'دمج المنتجات مع الخدمات الرقمية يزيد من فعالية أعمالك. عند استخدام أدوات إدارة الحملات مع خدمات تصميم المحتوى الاحترافي, تحصل على تجربة متكاملة تعزز حضورك الرقمي وتزيد من أرباحك. الجمع بين المنتجات والخدمات يوفر الوقت والجهد ويضاعف النتائج بشكل ملحوظ. التكامل هو القوة الدافعة وراء نمو مشروعك.', en: 'Integrating products with digital services increases the effectiveness of your business. By using campaign management tools with professional content design services, you will get an integrated experience that enhances your digital presence and increases your profits. Combining products and services saves time and effort and significantly multiplies results. Integration is the driving force behind the growth of your project.' },     
-    'blog4_list1_item1': { ar: 'ركز على المنتجات والخدمات التي تتناسب مع أهدافك الحالية لتجنب التشتت.', en: 'Focus on products and services that align with your current goals to avoid distraction.' },     
-    'blog4_list1_item2': { ar: 'جرّب الأدوات والخدمات المتاحة لفترة قصيرة قبل الالتزام الكامل لتحديد الأنسب لنموذج عملك.', en: 'Try out available tools and services for a short period before full commitment to determine what best suits your business model.' },     
-    'blog4_list1_item3': { ar: 'استخدم التحليلات والبيانات لاتخاذ قرارات تسويقية مستنيرة ومبنية على أرقام حقيقية وليست مجرد تخمينات.', en: 'Use analytics and data to make informed marketing decisions based on real numbers, not just guesses.' },     
-    'blog4_list1_item4': { ar: 'أضف محتوى بصري جذاب يدعم المنتجات والخدمات ويتوافق مع الخدمة المعروضة, فالمظهر البصري مهم جداً.', en: 'Add attractive visual content that supports products and services and is consistent with the service offered, as visual appeal is very important.' },     
-    'blog4_conclusion_title': { ar: 'خاتمة: نجاحك يبدأ هنا', en: 'Conclusion: Your Success Starts Here' },     
-    'blog4_conclusion_text': { ar: 'منتجاتنا وخدماتنا الرقمية مصممة لتمنحك القدرة على تطوير أعمالك, جذب العملاء, وزيادة أرباحك بطريقة مستمرة. بالاعتماد على الأدوات المناسبة والدعم الكامل, ستتمكن من تحسين أداء حملاتك الرقمية وتحقيق نتائج ملموسة بسرعة وفعالية.', en: 'Our digital products and services are designed to empower you to grow your business, attract customers, and continuously increase your profits. By relying on the right tools and full support, you will be able to improve the performance of your digital campaigns and achieve tangible results quickly and effectively.' },     
-     
-    'blog5_title': { ar: '5. أدواتنا الرقمية لتعزيز نجاحك وزيادة أرباحك بسرعة', en: '5. Our Digital Tools to Boost Your Success and Rapidly Increase Your Profits' },     
-    'blog5_p1': { ar: 'هل ترغب في الحصول على أدوات رقمية تساعدك على تحسين أداء أعمالك وزيادة دخلك بطريقة سهلة وفعّالة؟ نقدم لك اليوم مجموعة من الأدوات الرقمية المميزة التي صممت خصيصًا لتلبية احتياجات المسوقين الرقميين ورواد الأعمال عبر الإنترنت. مع هذه الأدوات, ستتمكن من إدارة حملاتك, تحسين التفاعل, وزيادة أرباحك بسرعة.', en: 'Do you want to get digital tools that help you improve your business performance and increase your income in an easy and effective way? Today, we offer you a collection of unique digital tools specifically designed to meet the needs of digital marketers and online entrepreneurs. With these tools, you will be able to manage your campaigns, enhance engagement, and rapidly increase your profits.' },     
-    'blog5_h4_1': { ar: 'أولاً: أدوات إدارة الحملات الرقمية المتكاملة', en: 'First: Integrated Digital Campaign Management Tools' },     
-    'blog5_p2': { ar: 'هذه الأدوات تتيح لك إنشاء حملات تسويقية ناجحة عبر منصات متعددة مثل وسائل التواصل الاجتماعي والبريد الإلكتروني. ستتمكن من متابعة الأداء بشكل مستمر, ضبط الاستهداف, وزيادة معدلات التحويل دون الحاجة لخبرة تقنية كبيرة. كل أداة توفر تقارير مفصلة تساعدك على اتخاذ قرارات أفضل وزيادة معدل التحويل. هدفنا هو جعل كل خطوة في حملتك التسويقية محسوبة وموجهة.', en: 'These tools allow you to create successful marketing campaigns across multiple platforms such as social media and email. You will be able to continuously monitor performance, adjust targeting, and increase conversion rates without the need for extensive technical expertise. Each tool provides detailed reports to help you make better decisions and increase your conversion rate. Our goal is to make every step of your marketing campaign measured and targeted.' },     
-    'blog5_p3': { ar: 'إدارة الحملات لا تعني فقط النشر, بل تشمل اختبار A/B للرسائل التسويقية. أدواتنا تمكنك من إجراء هذه الاختبارات بسهولة لتحديد أفضل عنوان أو صورة تجذب جمهورك, مما يزيد من فعالية روابط التسويق بالعمولة (Affiliate Links).', en: 'Campaign management does not only mean publishing; it also includes A/B testing of marketing messages. Our tools enable you to easily conduct these tests to determine the best title or image that attracts your audience, which increases the effectiveness of your affiliate links.' },     
-    'blog5_h4_2': { ar: 'ثانياً: التحليل المتقدم لبيانات العملاء', en: 'Second: Advanced Customer Data Analysis' },     
-    'blog5_p4': { ar: 'النجاح في التسويق الرقمي يعتمد على فهم جمهورك بدقة. نوفر لك أدوات تحليل متقدمة تساعدك على معرفة اهتمامات العملاء, تتبع سلوكهم, واكتشاف الفرص الجديدة لزيادة التفاعل والمبيعات. هذه الأدوات تجعل قراراتك التسويقية أكثر دقة واحترافية, وتساعدك على توجيه الموارد نحو القنوات الأكثر ربحية. التحليل هو بوصلتك في عالم التجارة الإلكترونية.', en: 'Success in digital marketing depends on accurately understanding your audience. We provide you with advanced analysis tools that help you understand customer interests, track their behavior, and discover new opportunities to increase engagement and sales. These tools make your marketing decisions more accurate and professional, and help you direct resources towards the most profitable channels. Analysis is your compass in the e-commerce world.' },     
-    'blog5_p5': { ar: 'باستخدام تحليل البيانات, يمكنك أيضاً تحديد "نقاط الهروب" في رحلة العميل على صفحتك. عندما تعلم متى وأين يغادر الزائر, يمكنك تعديل المحتوى أو موضع الرابط التابع (Affiliate Link) لتحسين فرص التحويل.', en: 'Using data analysis, you can also identify "exit points" in the customer journey on your page. When you know when and where visitors leave, you can adjust content or affiliate link placement to improve conversion opportunities.' },     
-    'blog5_h4_3': { ar: 'ثالثاً: أدوات تصميم المحتوى المرئي الاحترافي', en: 'Third: Professional Visual Content Design Tools' },     
-    'blog5_p6': { ar: 'المحتوى الجذاب يزيد من تفاعل الزوار ويحفزهم على التفاعل مع منتجاتك وخدماتك. نقدم لك أدوات تصميم منشورات احترافية, فيديوهات قصيرة, ورسوم توضيحية جذابة تتوافق مع المنتجات والخدمات التي تقدمها. هذه الأدوات توفر لك الوقت والجهد, وتساعدك على تقديم محتوى بصري جذاب يرفع من مصداقية صفحتك الرقمية. تذكر أن الصورة هي أول ما يلفت انتباه الزائر.', en: 'Attractive content increases visitor engagement and motivates them to interact with your products and services. We offer you tools for designing professional posts, short videos, and appealing illustrations that are compatible with the products and services you offer. These tools save you time and effort, and help you present engaging visual content that enhances the credibility of your digital page. Remember that the image is the first thing that catches the visitor\'s attention.' },     
-    'blog5_p7': { ar: 'لتحقيق أقصى استفادة من المحتوى المرئي, استخدم الصور والرسوم البيانية لتوضيح فوائد المنتج الرقمي بدلاً من مجرد ذكر الميزات. هذا النهج يسهل على الزائر اتخاذ قرار الشراء.', en: 'To maximize the benefit of visual content, use images and infographics to illustrate the benefits of the digital product instead of merely stating its features. This approach makes it easier for the visitor to make a purchase decision.' },     
-    'blog5_h4_4': { ar: 'رابعاً: دعم شامل وإرشاد مستمر لضمان النجاح', en: 'Fourth: Comprehensive Support and Guidance to Ensure Success' },     
-    'blog5_p8': { ar: 'لا يقتصر دورنا على توفير الأدوات فقط, بل نقدم دعمًا متواصلاً لمساعدتك على تحقيق أقصى استفادة. سواء كنت مبتدئًا أو محترفًا, يمكنك الوصول إلى نصائح عملية, إرشادات واضحة, ودعم مباشر لحل أي مشكلة تواجهها أثناء استخدام الخدمات.', en: 'Our role is not limited to providing tools; we also offer continuous support to help you achieve maximum benefit. Whether you are a beginner or a professional, you can access practical tips, clear guidelines, and direct support to solve any problem you encounter while using the services.' },     
-    'blog5_list1_item1': { ar: 'اختر الأدوات التي تتوافق مع أهدافك الحالية لتحقيق أفضل النتائج وأسرعها.', en: 'Choose tools that align with your current goals to achieve the best and fastest results.' },     
-    'blog5_list1_item2': { ar: 'جرّب كل أداة لفترة قصيرة لتحديد الأنسب لك قبل الالتزام الكامل بها.', en: 'Try each tool for a short period to determine which is most suitable for you before fully committing to it.' },     
-    'blog5_list1_item3': { ar: 'استخدم التحليلات لتوجيه استراتيجياتك الرقمية وزيادة الفعالية بناءً على بيانات حقيقية.', en: 'Use analytics to guide your digital strategies and increase effectiveness based on real data.' },     
-    'blog5_list1_item4': { ar: 'أضف محتوى بصري داعم للخدمات والمنتجات لتعزيز جاذبية الصفحة.', en: 'Add supportive visual content for services and products to enhance page appeal.' },     
-    'blog5_conclusion_title': { ar: 'خاتمة: ابدأ اليوم رحلة الأرباح المستدامة', en: 'Conclusion: Start the Journey of Sustainable Profits Today' },     
-    'blog5_conclusion_text': { ar: 'أدواتنا الرقمية المتميزة تمنحك القدرة على إدارة حملاتك بكفاءة, جذب العملاء, وزيادة أرباحك بسرعة وفعالية. بالاعتماد على هذه الأدوات, ستتمكن من تحسين استراتيجياتك الرقمية وتحقيق نتائج ملموسة ومستدامة. لا تضيع الوقت, ابدأ اليوم باستخدام هذه الأدوات وارتقِ بأعمالك الرقمية إلى المستوى الاحترافي الذي تطمح إليه.', en: 'Our distinguished digital tools empower you to manage your campaigns efficiently, attract customers, and rapidly increase your profits effectively. By relying on these tools, you will be able to improve your digital strategies and achieve tangible and sustainable results. Don\'t waste time; start using these tools today and elevate your digital business to the professional level you aspire to.' },     
-     
-    'blog6_title': { ar: '6. حلولنا الرقمية لتعزيز أعمالك وزيادة دخلك بسرعة', en: '6. Our Digital Solutions to Boost Your Business and Rapidly Increase Your Income' },     
-    'blog6_p1': { ar: 'في عالم التسويق الرقمي, النجاح يعتمد على استخدام الحلول والأدوات المناسبة التي تساعدك على تحسين أداء أعمالك وزيادة التفاعل مع العملاء. نقدم لك اليوم مجموعة من الحلول الرقمية المبتكرة المصممة لتلبية احتياجاتك, سواء كنت تبحث عن أدوات لإدارة الحملات, تصميم محتوى جذاب, أو تحسين تواجدك الرقمي. هذه الحلول تمنحك القدرة على تحقيق نتائج ملموسة بسرعة وفعالية.', en: 'In the world of digital marketing, success depends on using the right solutions and tools that help you improve your business performance and increase customer engagement. Today, we offer you a range of innovative digital solutions designed to meet your needs, whether you are looking for campaign management tools, attractive content design, or enhancing your digital presence. These solutions give you the ability to achieve tangible results quickly and effectively.' },     
-    'blog6_h4_1': { ar: 'أولاً: حلول إدارة الحملات الرقمية الشاملة', en: 'First: Comprehensive Digital Campaign Management Solutions' },     
-    'blog6_p2': { ar: 'هذه الحلول تساعدك على إنشاء حملات تسويقية فعّالة عبر منصات متعددة مثل وسائل التواصل الاجتماعي والبريد الإلكتروني. من خلال أدواتنا, يمكنك تتبع الأداء بدقة, ضبط استراتيجيات الاستهداف, وتحسين معدلات التحويل بشكل ملحوظ. كل حل يأتي مع واجهة سهلة الاستخدام وتقرير مفصل لمساعدتك على اتخاذ قرارات دقيقة وسريعة. نضمن لك التحكم الكامل في ميزانيتك الإعلانية وتحقيق أعلى كفاءة ممكنة.', en: 'These solutions help you create effective marketing campaigns across multiple platforms such as social media and email. Through our tools, you can accurately track performance, adjust targeting strategies, and significantly improve conversion rates. Each solution comes with a user-friendly interface and a detailed report to help you make precise and quick decisions. We guarantee you full control over your advertising budget and the highest possible efficiency.' },     
-    'blog6_p3': { ar: 'ركز على ميزة الأتمتة التي توفرها حلولنا. الأتمتة تسمح لك بإطلاق حملات متتابعة بناءً على تفاعل العميل (مثل إرسال بريد إلكتروني تلقائي بعد النقر على رابط معين), مما يزيد من فرص إتمام عملية الشراء وتحقيق العمولة.', en: 'Focus on the automation feature provided by our solutions. Automation allows you to launch sequential campaigns based on customer interaction (e.g., sending an automatic email after clicking a specific link), which increases the chances of completing a purchase and earning a commission.' },     
-    'blog6_h4_2': { ar: 'ثانياً: أدوات تحليل البيانات المتقدمة لزيادة الأرباح', en: 'Second: Advanced Data Analysis Tools for Increased Profits' },     
-    'blog6_p4': { ar: 'فهم بيانات جمهورك هو مفتاح النجاح في التسويق الرقمي. نوفر لك أدوات تساعدك على معرفة اهتمامات العملاء, تتبع سلوكهم, واكتشاف الفرص الجديدة لزيادة التفاعل والمبيعات. هذه التحليلات تمكنك من تقديم عروض وخدمات أكثر ملاءمة لجمهورك, مما يزيد من فرص النقر والتحويل. كن مسوقاً يعتمد على البيانات لا التخمينات.', en: 'Understanding your audience\'s data is key to success in digital marketing. We provide you with tools that help you understand customer interests, track their behavior, and discover new opportunities to increase engagement and sales. These analyses enable you to offer more relevant promotions and services to your audience, which increases click-through and conversion opportunities. Be a marketer who relies on data, not assumptions.' },     
-    'blog6_p5': { ar: 'أدواتنا التحليلية لا تكتفي بجمع الأرقام, بل تقدم تقارير قابلة للتنفيذ (Actionable Insights) حول كيفية تحسين صياغة العناوين أو تعديل وقت النشر للحصول على أفضل تفاعل من جمهور RG1Shop.', en: 'Our analytical tools do more than just collect numbers; they provide actionable insights on how to improve headline phrasing or adjust publishing times to get the best engagement from the RG1Shop audience.' },     
-    'blog6_h4_3': { ar: 'ثالثاً: حلول تصميم المحتوى الرقمي الموجه', en: 'Third: Targeted Digital Content Design Solutions' },     
-    'blog6_p6': { ar: 'المحتوى المرئي الجذاب يرفع من معدل التفاعل ويحفز العملاء على اتخاذ إجراء. نقدم أدوات لإنشاء منشورات احترافية, فيديوهات قصيرة, ورسوم توضيحية تدعم المنتجات والخدمات الرقمية. هذه الحلول توفر الوقت والجهد وتساعدك على تقديم محتوى جذاب يعكس جودة خدماتك. هدفنا هو تمكينك من المنافسة بأعلى مستوى من الجودة المرئية.', en: 'Attractive visual content increases engagement rates and motivates customers to take action. We offer tools to create professional posts, short videos, and illustrative graphics that support digital products and services. These solutions save time and effort and help you deliver engaging content that reflects the quality of your services. Our goal is to enable you to compete at the highest level of visual quality.' },     
-    'blog6_p7': { ar: 'لتحقيق أقصى تأثير, استخدم حلولنا لإنشاء "محتوى حل المشكلات" (Problem-Solving Content) الذي يركز على كيف يمكن للمنتج الرقمي أن يحل مشكلة يواجهها العميل, بدلاً من التركيز فقط على ميزاته التقنية.', en: 'To achieve maximum impact, use our solutions to create "Problem-Solving Content" that focuses on how a digital product can solve a customer\'s problem, rather than just focusing on its technical features.' },     
-    'blog6_h4_4': { ar: 'رابعاً: إرشادات ودعم مستمر من الخبراء', en: 'Fourth: Continuous Guidance and Expert Support' },     
-    'blog6_p8': { ar: 'نقدم لك إرشادات مفصلة حول كيفية استخدام كل أداة أو خدمة لتحقيق أفضل النتائج. سواء كنت مبتدئًا أو محترفًا, ستحصل على نصائح عملية ودعم مباشر لحل أي تحديات قد تواجهك أثناء استخدام الحلول الرقمية. هذا يضمن تجربة سلسة وفعّالة, ويؤكد على التزامنا بدعم نمو مشروعك.', en: 'We provide you with detailed instructions on how to use each tool or service to achieve the best results. Whether you are a beginner or a professional, you will receive practical advice and direct support to solve any challenges you may encounter while using digital solutions. This ensures a smooth and effective experience and affirms our commitment to supporting the growth of your project.' },     
-    'blog6_list1_item1': { ar: 'ركز على الحلول التي تتوافق مع أهدافك الحالية لتعظيم النتائج في أسرع وقت ممكن.', en: 'Focus on solutions that align with your current goals to maximize results as quickly as possible.' },     
-    'blog6_list1_item2': { ar: 'جرّب كل أداة أو خدمة لفترة قصيرة لتحديد الأنسب قبل الالتزام الكامل.', en: 'Try each tool or service for a short period to determine which is most suitable before making a full commitment.' },     
-    'blog6_list1_item3': { ar: 'استخدم التحليلات لاتخاذ قرارات تسويقية ذكية وزيادة معدل التحويل بشكل مستمر.', en: 'Use analytics to make smart marketing decisions and continuously increase conversion rates.' },     
-    'blog6_list1_item4': { ar: 'أضف محتوى بصري داعم للخدمات والمنتجات لزيادة جاذبية الصفحة وإقناع الزوار.', en: 'Add supportive visual content for services and products to increase page appeal and persuade visitors.' },     
-    'blog6_conclusion_title': { ar: 'خاتمة: القوة في الحلول المتكاملة', en: 'Conclusion: Strength in Integrated Solutions' },     
-    'blog6_conclusion_text': { ar: 'حلولنا الرقمية المبتكرة تمنحك القدرة على تعزيز أعمالك, جذب العملاء, وزيادة أرباحك بطريقة مستمرة وفعّالة. من خلال الجمع بين أدوات إدارة الحملات, تحليل البيانات, وتصميم المحتوى, ستحصل على تجربة متكاملة تعزز نجاحك الرقمي. لا تنتظر, ابدأ اليوم باستخدام حلولنا الرقمية وارتقِ بأعمالك إلى مستوى احترافي في التسويق الرقمي, محققاً كل أهدافك المالية.', en: 'Our innovative digital solutions empower you to boost your business, attract customers, and continuously and effectively increase your profits. By combining campaign management tools, data analysis, and content design, you will gain an integrated experience that enhances your digital success. Don\'t wait, start using our digital solutions today and elevate your business to a professional level in digital marketing, achieving all your financial goals.' },     
-     
-    'blog7_title': { ar: '7. اكتشف عروضنا الرقمية المميزة لتعزيز أرباحك بسرعة', en: '7. Discover Our Unique Digital Offers to Quickly Boost Your Profits' },     
-    'blog7_p1': { ar: 'في عالم التسويق الرقمي, النجاح الحقيقي يأتي من اختيار المنتجات والخدمات الرقمية الصحيحة التي تساعدك على جذب العملاء وتحقيق أرباح ملموسة. نقدم لك اليوم مجموعة من العروض الرقمية المميزة التي صممت خصيصًا لتلبية احتياجات المسوقين الرقميين ورواد الأعمال عبر الإنترنت. باستخدام هذه العروض, ستتمكن من زيادة التفاعل مع جمهورك وتحقيق نتائج ملموسة بسرعة وفعالية.', en: 'In the world of digital marketing, true success comes from choosing the right digital products and services that help you attract customers and achieve tangible profits. Today, we offer you a range of unique digital offers specially designed to meet the needs of digital marketers and online entrepreneurs. By using these offers, you will be able to increase engagement with your audience and achieve tangible results quickly and effectively.' },     
-    'blog7_h4_1': { ar: 'أولاً: سهولة الاستخدام والفعالية العالية للعروض', en: 'First: Ease of Use and High Effectiveness of Offers' },     
-    'blog7_p2': { ar: 'عروضنا الرقمية تتميز بسهولة الاستخدام والفعالية العالية. كل منتج أو خدمة مصمم لتقديم قيمة واضحة, سواء كان أداة لإدارة الحملات, برنامج لتحليل البيانات, أو خدمة تصميم محتوى رقمي. مع هذه العروض, يمكنك تحسين استراتيجيات التسويق الرقمي الخاصة بك دون الحاجة لخبرة تقنية واسعة, مما يجعل العملية أسرع وأكثر نجاحًا. هذه السهولة هي مفتاح الوصول إلى نتائج سريعة.', en: 'Our digital offers are characterized by ease of use and high effectiveness. Every product or service is designed to provide clear value, whether it\'s a campaign management tool, data analysis software, or a digital content design service. With these offers, you can improve your digital marketing strategies without the need for extensive technical expertise, making the process faster and more successful. This ease is the key to achieving quick results.' },     
-    'blog7_p3': { ar: 'الفعالية تكمن في أن العروض مختارة بعناية لتناسب جمهور RG1Shop المهتم بالتجارة الإلكترونية والعمل عن بعد. هذا يعني أن نسبة التحويل (Conversion Rate) ستكون أعلى بكثير مقارنة بالعروض العامة.', en: 'Effectiveness lies in the fact that the offers are carefully selected to suit the RG1Shop audience interested in e-commerce and remote work. This means that the Conversion Rate will be much higher compared to general offers.' },     
-    'blog7_h4_2': { ar: 'ثانياً: الدعم المتكامل والإرشادات الواضحة', en: 'Second: Integrated Support and Clear Guidelines' },     
-    'blog7_p4': { ar: 'المنتجات والخدمات المرافقة تساعدك على تحقيق أقصى استفادة. عند استخدام أي عرض من مجموعتنا, ستجد إرشادات واضحة وخطوات عملية تمكنك من الوصول إلى أفضل النتائج بسرعة. كما يتوفر دعم مباشر للإجابة على أي استفسارات أو حل أي تحديات تواجهها أثناء استخدام المنتجات. هذا يضمن أنك لن تترك بمفردك في أي مرحلة.', en: 'Accompanying products and services help you achieve maximum benefit. When you use any offer from our collection, you will find clear instructions and practical steps that enable you to achieve the best results quickly. Direct support is also available to answer any inquiries or solve any challenges you encounter while using the products. This ensures that you will not be left alone at any stage.' },     
-    'blog7_p5': { ar: 'نحن نوفر فيديوهات تعليمية قصيرة وواضحة تركز على كيفية "تغليف" العرض الترويجي بمحتوى قيم لجمهورك, مما يزيد من مصداقية رابط التسويق بالعمولة (Affiliate Link).', en: 'We provide short and clear educational videos that focus on how to "package" the promotional offer with valuable content for your audience, which increases the credibility of the affiliate link.' },     
-    'blog7_h4_3': { ar: 'ثالثاً: استراتيجية جذب العملاء عبر التحليل', en: 'Third: Customer Acquisition Strategy Through Analysis' },     
-    'blog7_p6': { ar: 'كيفية جذب العملاء باستخدام هذه العروض. من خلال أدوات التحليل الرقمي, يمكنك معرفة سلوك جمهورك, تحديد اهتماماتهم, وتقديم المنتجات والخدمات الأكثر ملاءمة لهم في الوقت الأمثل. هذا يزيد من فرص النقر والتحويل ويعزز العلاقة بينك وبين جمهورك, مما يؤدي إلى زيادة المبيعات والأرباح. التركيز على العميل هو أساس استراتيجيتنا.', en: 'How to attract customers using these offers. Through digital analysis tools, you can understand your audience\'s behavior, identify their interests, and provide the most suitable products and services to them at the optimal time. This increases click-through and conversion opportunities and strengthens the relationship between you and your audience, leading to increased sales and profits. Customer focus is the foundation of our strategy.' },     
-    'blog7_p7': { ar: 'عند تحليل البيانات, يمكنك اكتشاف العروض التي تحقق أداءً جيداً وتلك التي تحتاج إلى تعديل أو استبدال. هذا التحليل المستمر يضمن أن صفحتك تقدم دائماً أفضل ما يمكن لزوارها.', en: 'When analyzing data, you can discover which offers are performing well and which need to be modified or replaced. This continuous analysis ensures that your page always provides the best possible experience for its visitors.' },     
-    'blog7_h4_4': { ar: 'رابعاً: دمج العروض الرقمية مع محتوى جذاب', en: 'Fourth: Integrating Digital Offers with Engaging Content' },     
-    'blog7_p8': { ar: 'لضمان أفضل تجربة للزائر, نوصي بتقديم محتوى بصري جذاب يدعم كل عرض, مثل الصور والرسوم التوضيحية والفيديوهات القصيرة. هذا يجعل الصفحة أكثر جاذبية ويحفز العملاء على التفاعل واتخاذ القرار بسرعة. المحتوى الجذاب هو الجسر الذي يعبر به العميل من فضول إلى شراء.', en: 'To ensure the best visitor experience, we recommend providing attractive visual content that supports each offer, such as images, illustrations, and short videos. This makes the page more appealing and motivates customers to interact and make decisions quickly. Engaging content is the bridge that customers cross from curiosity to purchase.' },     
-    'blog7_list1_item1': { ar: 'ابدأ بالعروض التي تتوافق مع أهدافك الحالية لضمان أقصى تأثير على أرباحك.', en: 'Start with offers that align with your current goals to ensure maximum impact on your profits.' },     
-    'blog7_list1_item2': { ar: 'جرّب كل عرض لفترة قصيرة لتحديد الأنسب قبل الاستثمار الكامل في الترويج له.', en: 'Try each offer for a short period to determine the most suitable before fully investing in its promotion.' },     
-    'blog7_list1_item3': { ar: 'استخدم التحليلات لتوجيه قراراتك التسويقية وزيادة معدل التحويل بناءً على سلوك الزوار.', en: 'Use analytics to guide your marketing decisions and increase conversion rates based on visitor behavior.' },     
-    'blog7_list1_item4': { ar: 'أضف محتوى داعم بصريًا لتعزيز جاذبية العروض وزيادة التفاعل الفوري.', en: 'Add supportive visual content for services and products to enhance the attractiveness of offers and increase immediate engagement.' },     
-    'blog7_conclusion_title': { ar: 'خاتمة: النجاح السريع والمستمر', en: 'Conclusion: Fast and Continuous Success' },     
-    'blog7_conclusion_text': { ar: 'عروضنا الرقمية المميزة تمنحك القدرة على تحسين استراتيجياتك التسويقية, جذب العملاء, وزيادة أرباحك بطريقة مستمرة وفعّالة. بالاعتماد على هذه العروض, ستتمكن من تعزيز حضورك الرقمي وتحقيق نتائج ملموسة بسرعة. لا تضيع الوقت, استكشف عروضنا الرقمية اليوم وابدأ رحلتك نحو النجاح الرقمي بثقة وكفاءة, واجعل كل خطوة تحقق لك عائداً مادياً.', en: 'Our unique digital offers empower you to improve your marketing strategies, attract customers, and continuously and effectively increase your profits. By relying on these offers, you will be able to enhance your digital presence and achieve tangible results quickly. Do not waste time; explore our digital offers today and start your journey towards digital success with confidence and efficiency, making every step yield financial returns for you.' },     
-     
-    'blog8_title': { ar: '8. منتجاتنا وخدماتنا الرقمية لتعزيز نجاحك وزيادة دخلك', en: '8. Our Digital Products and Services to Boost Your Success and Increase Your Income' },     
-    'blog8_p1': { ar: 'في عالم التسويق الرقمي, النجاح لا يأتي من الصدفة, بل من اختيار المنتجات والخدمات الرقمية الصحيحة التي تساعدك على جذب العملاء وزيادة الأرباح. نقدم لك اليوم مجموعة مميزة من المنتجات والخدمات الرقمية المصممة بعناية لتلبية احتياجاتك وتحقيق نتائج ملموسة بسرعة وكفاءة. باستخدام هذه الحلول, ستتمكن من تحسين حضورك الرقمي وتعزيز التفاعل مع جمهورك.', en: 'In the world of digital marketing, success does not come by chance, but from choosing the right digital products and services that help you attract customers and increase profits. Today, we offer you a unique collection of digital products and services carefully designed to meet your needs and achieve tangible results quickly and efficiently. By using these solutions, you will be able to enhance your digital presence and boost engagement with your audience.' },     
-    'blog8_h4_1': { ar: 'أولاً: حلول متكاملة لإدارة الحملات التسويقية', en: 'First: Integrated Solutions for Managing Marketing Campaigns' },     
-    'blog8_p2': { ar: 'منتجاتنا الرقمية تقدم حلولاً متكاملة لإدارة الحملات التسويقية. سواء كنت تدير صفحة على وسائل التواصل الاجتماعي أو حملة بريد إلكتروني, توفر هذه المنتجات أدوات متقدمة لتحليل الأداء, ضبط الاستهداف, وزيادة معدل التحويل. كل أداة سهلة الاستخدام وتوفر تقارير دقيقة تساعدك على اتخاذ القرارات الصحيحة لتحقيق أفضل النتائج. نحن نركز على تبسيط العمليات المعقدة.', en: 'Our digital products offer integrated solutions for managing marketing campaigns. Whether you manage a social media page or an email campaign, these products provide advanced tools to analyze performance, adjust targeting, and increase conversion rates. Each tool is easy to use and provides accurate reports that help you make the right decisions to achieve the best results. We focus on simplifying complex processes.' },     
-    'blog8_p3': { ar: 'تشمل أدواتنا ميزات تتبع الروابط التابعة المتقدمة, والتي تتيح لك معرفة بالضبط أي من منشوراتك على فيسبوك أو واتساب هي الأكثر ربحية, وهذا أمر بالغ الأهمية لمشروع RG1Shop.', en: 'Our tools include advanced affiliate link tracking features, which allow you to know exactly which of your Facebook or WhatsApp posts are most profitable, and this is crucial for the RG1Shop project.' },     
-    'blog8_h4_2': { ar: 'ثانياً: الدعم والإرشاد المباشر لضمان الاستمرارية', en: 'Second: Direct Support and Guidance to Ensure Continuity' },     
-    'blog8_p4': { ar: 'خدماتنا المرافقة تضمن لك الدعم الكامل لتحقيق أقصى استفادة من المنتجات. نقدم إرشادات خطوة بخطوة, نصائح عملية, ودعم مباشر للتعامل مع أي تحديات أثناء استخدام المنتجات الرقمية. هذا يضمن لك تجربة سلسة وفعّالة, ويزيد من فرص نجاح استراتيجياتك الرقمية. نحن شريكك في رحلة النجاح.', en: 'Our accompanying services guarantee you full support to maximize the benefit from our products. We provide step-by-step guidance, practical tips, and direct support to deal with any challenges while using digital products. This ensures a smooth and effective experience for you and increases the chances of success for your digital strategies. We are your partner on the journey to success.' },     
-    'blog8_p5': { ar: 'نحرص على تزويدك بأفضل الممارسات (Best Practices) في مجال التسويق بالعمولة, بما في ذلك كيفية الامتثال لسياسات الشركاء دون المساس بمصداقية المحتوى.', en: 'We are keen to provide you with the best practices in affiliate marketing, including how to comply with partner policies without compromising content credibility.' },     
-    'blog8_h4_3': { ar: 'ثالثاً: كيفية جذب العملاء وزيادة التفاعل', en: 'Third: How to Attract Customers and Increase Engagement' },     
-    'blog8_p6': { ar: 'باستخدام أدوات التحليل الرقمي, يمكنك معرفة اهتمامات جمهورك, تحديد المنتجات الأكثر طلبًا, وتقديم العروض المناسبة في الوقت الأمثل. هذا يعزز معدل النقر والتحويل ويجعل العملاء يشعرون بقيمة حقيقية عند التفاعل مع منتجاتك وخدماتك. هذا التركيز على القيمة هو ما يميز المسوق الناجح.', en: 'By using digital analysis tools, you can understand your audience\'s interests, identify the most in-demand products, and offer suitable deals at the optimal time. This boosts the click-through and conversion rates and makes customers feel real value when interacting with your products and services. This focus on value is what distinguishes a successful marketer.' },     
-    'blog8_p7': { ar: 'استغل أدواتنا لفهم دورة حياة العميل (Customer Journey) على صفحتك, واحرص على تقديم محتوى يلبي احتياجاته في كل مرحلة, من الوعي إلى الشراء.', en: 'Leverage our tools to understand the customer journey on your page, and ensure you provide content that meets their needs at every stage, from awareness to purchase.' },     
-    'blog8_h4_4': { ar: 'رابعاً: دمج المنتجات مع محتوى بصري جذاب', en: 'Fourth: Integrating Products with Attractive Visual Content' },     
-    'blog8_p8': { ar: 'دمج المنتجات مع محتوى جذاب يزيد من جاذبية الصفحة. استخدم صورًا ورسومًا توضيحية وفيديوهات قصيرة تدعم المنتجات والخدمات, مما يحفز الزوار على التفاعل واتخاذ القرار بسرعة. المحتوى المرئي الجذاب يرفع من مصداقية الصفحة ويزيد من فرص تحويل الزائر إلى عميل. الجاذبية البصرية هي عامل لا يمكن إغفاله.', en: 'Integrating products with engaging content increases page attractiveness. Use images, illustrations, and short videos that support products and services, which encourages visitors to interact and make decisions quickly. Attractive visual content enhances page credibility and increases the chances of converting a visitor into a customer. Visual appeal is a factor that cannot be overlooked.' },     
-    'blog8_list1_item1': { ar: 'ركز على المنتجات والخدمات التي تتناسب مع أهدافك الحالية لتأثير على دخلك.', en: 'Focus on products and services that align with your current goals to impact your income.' },     
-    'blog8_list1_item2': { ar: 'جرّب الأدوات والخدمات لفترة قصيرة لتحديد الأفضل قبل الالتزام الكامل.', en: 'Try tools and services for a short period to determine the best before full commitment.' },     
-    'blog8_list1_item3': { ar: 'استخدم التحليلات لتوجيه استراتيجياتك وزيادة التفاعل مع العملاء بشكل مستمر.', en: 'Use analytics to guide your strategies and continuously increase engagement with customers.' },     
-    'blog8_list1_item4': { ar: 'أضف محتوى بصري داعم للمنتجات لتعزيز جاذبية الصفحة وتحفيز النقرات.', en: 'Add supportive visual content for products to enhance page appeal and encourage clicks.' },     
-    'blog8_conclusion_title': { ar: 'خاتمة: تعزيز الحضور الرقمي وأرباح مستمرة', en: 'Conclusion: Enhancing Digital Presence and Continuous Profits' },     
-    'blog8_conclusion_text': { ar: 'منتجاتنا وخدماتنا الرقمية تم تصميمها خصيصًا لمساعدتك على تحسين أداء حملاتك الرقمية, جذب العملاء, وزيادة أرباحك بطريقة فعّالة ومستدامة. بالاعتماد على هذه الحلول, ستتمكن من تحقيق نتائج ملموسة وزيادة تأثيرك الرقمي بسرعة وسهولة. لا تنتظر, استكشف منتجاتنا وخدماتنا الرقمية اليوم وابدأ رحلتك نحو النجاح الرقمي بثقة, مع ضمان وجود شريك قوي يدعمك.', en: 'Our digital products and services are specifically designed to help you improve the performance of your digital campaigns, attract customers, and increase your profits in an effective and sustainable way. By relying on these solutions, you will be able to achieve tangible results and increase your digital impact quickly and easily. Don\'t wait, explore our digital products and services today and start your journey towards digital success with confidence, ensuring a strong partner supports you.' },     
-     
-    'blog9_title': { ar: '9. خدماتنا الرقمية المميزة لتحقيق أرباح مستمرة ونمو سريع', en: '9. Our Unique Digital Services for Continuous Profits and Rapid Growth' },     
-    'blog9_p1': { ar: 'في عالم التسويق الرقمي, النجاح يعتمد على اختيار المنتجات والخدمات الرقمية المناسبة التي تساعدك على جذب العملاء وتحقيق دخل مستمر. نقدم لك اليوم مجموعة من الخدمات الرقمية المميزة المصممة خصيصًا لتلبية احتياجات المسوقين ورواد الأعمال عبر الإنترنت. باستخدام هذه الخدمات, ستتمكن من تحسين أداء حملاتك الرقمية, زيادة التفاعل, وتحقيق أرباح ملموسة بسرعة وكفاءة.', en: 'In the world of digital marketing, success depends on choosing the right digital products and services that help you attract customers and achieve continuous income. Today, we offer you a range of unique digital services specifically designed to meet the needs of marketers and online entrepreneurs. By using these services, you will be able to improve the performance of your digital campaigns, increase engagement, and achieve tangible profits quickly and efficiently.' },     
-    'blog9_h4_1': { ar: 'أولاً: خدمات متخصصة في إدارة الحملات الرقمية', en: 'First: Specialized Services in Digital Campaign Management' },     
-    'blog9_p2': { ar: 'تساعدك هذه الخدمات على إنشاء حملات تسويقية ناجحة عبر منصات متعددة مثل وسائل التواصل الاجتماعي والبريد الإلكتروني. يمكنك متابعة الأداء بدقة, ضبط الاستهداف, وتحسين معدل التحويل بشكل ملحوظ. كل خدمة مصممة لتوفير تجربة سهلة وفعّالة, مع واجهة واضحة وتقارير مفصلة لمساعدتك على اتخاذ أفضل القرارات. استثمر في هذه الخدمات لضمان أن كل ميزانية إعلانية تحقق أقصى عائد.', en: 'These services help you create successful marketing campaigns across multiple platforms such as social media and email. You can precisely monitor performance, adjust targeting, and significantly improve conversion rates. Each service is designed to provide an easy and effective experience, with a clear interface and detailed reports to help you make the best decisions. Invest in these services to ensure that every advertising budget achieves maximum return.' },     
-    'blog9_p3': { ar: 'نحن نركز على توفير خدمات تمكنك من الاستهداف السلوكي (Behavioral Targeting), مما يضمن وصول رسائل التسويق بالعمولة إلى الأشخاص الأكثر احتمالاً للشراء, بناءً على اهتماماتهم وسلوكهم السابق على الإنترنت.', en: 'We focus on providing services that enable you to use behavioral targeting, which ensures that affiliate marketing messages reach those most likely to buy, based on their interests and past online behavior.' },     
-    'blog9_h4_2': { ar: 'ثانياً: أدوات تحليل البيانات لتعزيز فرص البيع', en: 'Second: Data Analysis Tools to Enhance Sales Opportunities' },     
-    'blog9_p4': { ar: 'فهم سلوك جمهورك واهتماماتهم هو مفتاح النجاح في التسويق الرقمي. نوفر لك أدوات تحليل متقدمة تساعدك على معرفة المنتجات الأكثر شعبية, تتبع تفاعل العملاء, واكتشاف فرص جديدة لزيادة المبيعات. هذه التحليلات تمكنك من تقديم عروض وخدمات أكثر ملاءمة لجمهورك, مما يعزز من فرص الشراء والتفاعل. دقة التحليل تعني نمواً مستمراً.', en: 'Understanding your audience\'s behavior and interests is key to success in digital marketing. We provide you with advanced analysis tools that help you identify the most popular products, track customer engagement, and discover new opportunities to increase sales. These analyses enable you to offer more relevant promotions and services to your audience, which increases purchase and engagement opportunities. Accurate analysis means continuous growth.' },     
-    'blog9_p5': { ar: 'أدواتنا تقدم خرائط حرارية (Heatmaps) بسيطة لصفحتك, لتفهم بالضبط أذين ينقر الزوار وأين يتجاهلون المحتوى, مما يساعدك على وضع روابط العروض الترويجية في المكان الأمثل.', en: 'Our tools provide simple heatmaps for your page, allowing you to understand exactly where visitors click and where they ignore content, which helps you place promotional links in the optimal location.' },     
-    'blog9_h4_3': { ar: 'ثالثاً: خدمات تصميم المحتوى المرئي الفعال', en: 'Third: Effective Visual Content Design Services' },     
-    'blog9_p6': { ar: 'المحتوى المرئي الجذاب يزيد من تفاعل العملاء ويحفزهم على اتخاذ إجراء. نقدم لك أدوات وخدمات لإنشاء منشورات احترافية, فيديوهات قصيرة, ورسوم توضيحية تتوافق مع المنتجات والخدمات الرقمية. هذا المحتوى يرفع مصداقية صفحتك ويجعل العملاء يشعرون بقيمة حقيقية عند التفاعل. لا يمكن إغفال أهمية الجودة المرئية في جذب العملاء.', en: 'Attractive visual content increases customer engagement and motivates them to take action. We provide you with tools and services to create professional posts, short videos, and illustrative graphics that are compatible with digital products and services. This content enhances your page\'s credibility and makes customers feel real value when interacting. The importance of visual quality in attracting customers cannot be overlooked.' },     
-    'blog9_p7': { ar: 'نحن نضمن أن المحتوى الذي تنشئه من خلال أدواتنا يتبع مبدأ "التنوع هو أساس هذه الصفحة" (كما طلبت سابقًا), لضمان جاذبية بصرية مستمرة لصفحة المدونة.', en: 'We ensure that the content you create through our tools follows the principle of "diversity is the basis of this page" (as you previously requested), to ensure continuous visual appeal for the blog page.' },     
-    'blog9_h4_4': { ar: 'رابعاً: دعم وإرشاد مستمر لتحقيق الكفاءة', en: 'Fourth: Continuous Support and Guidance to Achieve Efficiency' },     
-    'blog9_p8': { ar: 'نقدم لك نصائح عملية وإرشادات خطوة بخطوة لتحقيق أفضل استفادة من كل خدمة. سواء كنت مبتدئًا أو محترفًا, ستجد دعمًا مباشرًا لمساعدتك على حل أي تحديات, مما يضمن تجربة سلسة وفعّالة مع المنتجات والخدمات الرقمية. الكفاءة هي هدفنا المشترك.', en: 'We provide you with practical tips and step-by-step guidance to make the most of each service. Whether you are a beginner or a professional, you will find direct support to help you solve any challenges, which ensures a smooth and effective experience with digital products and services. Efficiency is our shared goal.' },     
-    'blog9_list1_item1': { ar: 'ركز على الخدمات التي تتوافق مع أهدافك الحالية لتعظيم النتائج في مشروعك.', en: 'Focus on services that align with your current goals to maximize results in your project.' },     
-    'blog9_list1_item2': { ar: 'جرّب كل أداة أو خدمة لفترة قصيرة لتحديد الأنسب قبل الالتزام الكامل.', en: 'Try each tool or service for a short period to determine the most suitable before full commitment.' },     
-    'blog9_list1_item3': { ar: 'استخدم التحليلات لتوجيه استراتيجياتك الرقمية وزيادة التفاعل مع العملاء.', en: 'Use analytics to guide your digital strategies and increase engagement with customers.' },     
-    'blog9_list1_item4': { ar: 'أضف محتوى بصري داعم للخدمات والمنتجات لتعزيز جاذبية الصفحة.', en: 'Add supportive visual content for services and products to enhance page appeal.' },     
-    'blog9_conclusion_title': { ar: 'خاتمة: نمو متسارع وأرباح مستدامة', en: 'Conclusion: Accelerated Growth and Sustainable Profits' },     
-    'blog9_conclusion_text': { ar: 'خدماتنا الرقمية المميزة تمنحك القدرة على تعزيز أعمالك, جذب العملاء, وزيادة أرباحك بطريقة مستمرة وفعّالة. بالاعتماد على هذه الخدمات, ستتمكن من تحسين استراتيجياتك الرقمية وتحقيق نتائج ملموسة بسرعة وكفاءة. لا تضيع الوقت, ابدأ اليوم بالاستفادة من خدماتنا الرقمية وارتقِ بأعمالك الرقمية إلى مستوى احترافي يحقق لك الأرباح المستمرة التي تطمح إليها.', en: 'Our distinguished digital services empower you to boost your business, attract customers, and continuously and effectively increase your profits. By relying on these services, you will be able to enhance your digital presence and achieve tangible results quickly and efficiently. Don\'t wait, start benefiting from our digital services today and elevate your digital business to a professional level that achieves the continuous profits you aspire to.' },     
-     
-    'blog10_title': { ar: '10. اكتشف خدماتنا الرقمية لتعزيز نجاحك وزيادة أرباحك', en: '10. Discover Our Digital Services to Boost Your Success and Increase Your Profits' },     
-    'blog10_p1': { ar: 'في عالم التسويق الرقمي المتسارع, يعتمد النجاح على اختيار المنتجات والخدمات الرقمية الصحيحة التي تساعدك على جذب العملاء وتحقيق أرباح مستمرة. نقدم لك اليوم مجموعة من الخدمات الرقمية المبتكرة المصممة خصيصًا لتلبية احتياجات المسوقين ورواد الأعمال. باستخدام هذه الخدمات, ستتمكن من تحسين أداء حملاتك الرقمية, زيادة التفاعل مع جمهورك, وتحقيق نتائج ملموسة بسرعة وفعالية.', en: 'In the fast-paced world of digital marketing, success depends on choosing the right digital products and services that help you attract customers and achieve continuous profits. Today, we offer you a range of innovative digital services specifically designed to meet the needs of marketers and entrepreneurs. By using these services, you will be able to improve the performance of your digital campaigns, increase engagement with your audience, and achieve tangible results quickly and effectively.' },     
-    'blog10_h4_1': { ar: 'أولاً: خدمات إدارة الحملات الرقمية الفعالة', en: 'First: Effective Digital Campaign Management Services' },     
-    'blog10_p2': { ar: 'هذه الخدمات تساعدك على إنشاء حملات تسويقية ناجحة عبر منصات متعددة مثل وسائل التواصل الاجتماعي والبريد الإلكتروني. توفر لك الأدوات متابعة دقيقة للأداء, ضبط الاستهداف, وتحسين معدلات التحويل بشكل ملحوظ. كل خدمة تأتي مع واجهة سهلة الاستخدام وتقارير مفصلة لمساعدتك على اتخاذ قرارات تسويقية أفضل. التخصص في إدارة الحملات هو سر التوفير وزيادة الأرباح.', en: 'These services help you create successful marketing campaigns across multiple platforms such as social media and email. The tools provide you with precise performance monitoring, targeting adjustments, and significantly improved conversion rates. Each service comes with a user-friendly interface and detailed reports to help you make better marketing decisions. Specialization in campaign management is the secret to saving and increasing profits.' },     
-    'blog10_p3': { ar: 'استغل ميزات الجدولة الذكية في خدماتنا, والتي تقوم بتحليل أوقات الذروة لتفاعل جمهورك على مختلف المنصات, وتقوم بنشر المحتوى الترويجي تلقائياً في هذه الأوقات لضمان أقصى وصول ممكن.', en: 'Leverage the smart scheduling features in our services, which analyze peak times for your audience\'s engagement across various platforms and automatically publish promotional content during these times to ensure maximum possible reach.' },     
-    'blog10_h4_2': { ar: 'ثانياً: أدوات تحليل البيانات الرقمية الموثوقة', en: 'Second: Reliable Digital Data Analysis Tools' },     
-    'blog10_p4': { ar: 'فهم سلوك واهتمامات جمهورك هو المفتاح لتحقيق نتائج ملموسة. نقدم أدوات تحليل متقدمة تمكنك من معرفة المنتجات الأكثر طلبًا, تتبع تفاعل العملاء, واكتشاف فرص جديدة لزيادة المبيعات. هذا يضمن تقديم عروض وخدمات تتوافق مع احتياجات جمهورك, مما يعزز فرص التفاعل والشراء. اتخذ قراراتك بناءً على إحصائيات دقيقة وموثوقة.', en: 'Understanding your audience\'s behavior and interests is key to achieving tangible results. We offer advanced analysis tools that enable you to identify the most popular products, track customer engagement, and discover new opportunities to increase sales. This ensures that you offer promotions and services that align with your audience\'s needs, thereby enhancing engagement and purchase opportunities. Make your decisions based on accurate and reliable statistics.' },     
-    'blog10_p5': { ar: 'تحليل البيانات يساعدك أيضاً في تحديد "قنوات الجذب" (Acquisition Channels) الأكثر كفاءة لـ RG1Shop, سواء كانت إعلانات فيسبوك, أو محتوى واتساب, أو زيارات مباشرة للمدونة.', en: 'Data analysis also helps you identify the most efficient "Acquisition Channels" for RG1Shop, whether they are Facebook ads, WhatsApp content, or direct blog visits.' },     
-    'blog10_h4_3': { ar: 'ثالثاً: خدمات تصميم المحتوى المرئي الاحترافي', en: 'Third: Professional Visual Content Design Services' },     
-    'blog10_p6': { ar: 'المحتوى الجذاب يرفع من معدل التفاعل ويحفز العملاء على اتخاذ إجراء. نقدم لك أدوات وخدمات لإنشاء منشورات احترافية, فيديوهات قصيرة, ورسوم توضيحية تدعم المنتجات والخدمات الرقمية. هذا المحتوى يرفع مصداقية الصفحة ويجعل العملاء يشعرون بالقيمة الحقيقية عند التفاعل. نحن نضمن جودة تتناسب مع تطلعاتك الاحترافية.', en: 'Attractive content increases engagement rates and motivates customers to take action. We provide you with tools and services to create professional posts, short videos, and illustrative graphics that support digital products and services. This content enhances your page\'s credibility and makes customers feel real value when interacting. We guarantee quality that meets your professional aspirations.' },     
-    'blog10_p7': { ar: 'لتحقيق أعلى مستوى من الجاذبية البصرية, استخدم خدماتنا لإنشاء محتوى يتضمن دراسات حالة (Case Studies) مرئية توضح كيفية استخدام المنتج الرقمي وكيف أدى إلى تحقيق نتائج إيجابية للآخرين.', en: 'To achieve the highest level of visual appeal, use our services to create content that includes visual case studies demonstrating how a digital product is used and how it led to positive results for others.' },     
-    'blog10_h4_4': { ar: 'رابعاً: الدعم والإرشاد المستمر لنتائج مضمونة', en: 'Fourth: Continuous Support and Guidance for Guaranteed Results' },     
-    'blog10_p8': { ar: 'نقدم إرشادات واضحة ونصائح عملية حول كيفية استخدام كل خدمة لتحقيق أفضل النتائج. سواء كنت مبتدئًا أو محترفًا, ستجد دعمًا مباشرًا لمساعدتك على حل أي تحديات أثناء استخدام الخدمات الرقمية, مما يضمن تجربة سلسة وفعّالة. هدفنا هو أن تكون مستقلاً وقادراً على تحقيق النتائج بنفسك.', en: 'We provide clear guidelines and practical tips on how to use each service to achieve the best results. Whether you are a beginner or a professional, you will find direct support to solve any challenges while using digital services, which ensures a smooth and effective experience. Our goal is for you to be independent and capable of achieving results on your own.' },     
-    'blog10_list1_item1': { ar: 'ركز على الخدمات والمنتجات التي تتناسب مع أهدافك الحالية لتعظيم النتائج.', en: 'Focus on services and products that align with your current goals to maximize results.' },     
-    'blog10_list1_item2': { ar: 'جرّب كل أداة أو خدمة لفترة قصيرة لتحديد الأنسب قبل الالتزام الكامل.', en: 'Try each tool or service for a short period to determine the most suitable before full commitment.' },     
-    'blog10_list1_item3': { ar: 'استخدم التحليلات لتوجيه استراتيجياتك الرقمية وزيادة التفاعل مع العملاء.', en: 'Use analytics to guide your digital strategies and increase engagement with customers.' },     
-    'blog10_list1_item4': { ar: 'أضف محتوى بصري داعم للخدمات والمنتجات لتعزيز جاذبية الصفحة.', en: 'Add supportive visual content for services and products to enhance page appeal.' },     
-    'blog10_conclusion_title': { ar: 'خاتمة: نجاح رقمي بخطوات محسوبة', en: 'Conclusion: Digital Success with Calculated Steps' },     
-    'blog10_conclusion_text': { ar: 'خدماتنا ومنتجاتنا الرقمية تمنحك القدرة على تعزيز أعمالك, جذب العملاء, وزيادة أرباحك بطريقة مستمرة وفعّالة. بالاعتماد على هذه الخدمات, ستتمكن من تحسين استراتيجياتك الرقمية وتحقيق نتائج ملموسة بسرعة وكفاءة. لا تنتظر, استكشف منتجاتنا وخدماتنا الرقمية اليوم وابدأ رحلتك نحو النجاح الرقمي بثقة وفعالية, مستخدماً كل أداة بشكل استراتيجي ومدروس.', en: 'Our digital services and products empower you to boost your business, attract customers, and continuously and effectively increase your profits. By relying on these services, you will be able to improve your digital strategies and achieve tangible results quickly and efficiently. Don\'t wait, explore our digital products and services today and start your journey towards digital success with confidence and effectiveness, using every tool strategically and thoughtfully.' }, 
-}; 
-     
-// بيانات الروابط التجارية مع ترجمة لأسمائها     
-const affiliatePlatforms = Object.freeze([     
-    { name: { ar: "Booking.com", en: "Booking.com" }, link: "https://www.booking.com/index.html?aid=your_affiliate_id", img: "https://via.placeholder.com/48x48/003580/FFFFFF?text=Booking" },     
-    { name: { ar: "Marriott", en: "Marriott" }, link: "https://www.marriott.com/default.mi?aff=your_affiliate_id", img: "https://via.placeholder.com/48x48/5C0028/FFFFFF?text=Marriott" },     
-    { name: { ar: "Hilton", en: "Hilton" }, link: "https://www.hilton.com/en/?cid=OM,WW,HILTONLINK,EN,DirectLink&affid=your_affiliate_id", img: "https://via.placeholder.com/48x48/000000/FFFFFF?text=Hilton" },     
-    { name: { ar: "Expedia", en: "Expedia" }, link: "https://www.expedia.com/?siteid=your_affiliate_id", img: "https://via.placeholder.com/48x48/336699/FFFFFF?text=Expedia" },     
-    { name: { ar: "Agoda", en: "Agoda" }, link: "https://www.agoda.com/?cid=your_affiliate_id", img: "https://via.placeholder.com/48x48/006699/FFFFFF?text=Agoda" }     
-]);     
-     
-// بيانات المنتجات مع ترجمة     
-const products = Object.freeze([     
-    { id: 1, name: { ar: "فندق الرمال الذهبية الفاخر", en: "Golden Sands Luxury Hotel" }, price: { ar: "يبدأ من 250$ / الليلة", en: "From $250/night" }, category: "tourism-hotels", image: "https://via.placeholder.com/150x100/FFD700/000000?text=Luxury+Hotel", link: "https://example.com/hotel1_affiliate_link" },     
-    { id: 2, name: { ar: "منتجع الواحة الهادئة", en: "Oasis Serenity Resort" }, price: { ar: "يبدأ من 300$ / الليلة", en: "From $300/night" }, category: "tourism-hotels", image: "https://via.placeholder.com/150x100/008080/FFFFFF?text=Resort+Spa", link: "https://example.com/resort2_affiliate_link" },     
-    { id: 3, name: { ar: "جولة سياحية في المدينة القديمة", en: "Old City Sightseeing Tour" }, price: { ar: "50$ للفرد", en: "$50 per person" }, category: "tourism-destinations", image: "https://via.placeholder.com/150x100/A52A2A/FFFFFF?text=City+Tour", link: "https://example.com/tour3_affiliate_link" },     
-    { id: 4, name: { ar: "عشاء فاخر في مطعم النجوم", en: "Fine Dining at Star Restaurant" }, price: { ar: "80$ للفرد", en: "$80 per person" }, category: "restaurants-luxury", image: "https://via.placeholder.com/150x100/800080/FFFFFF?text=Fine+Dining", link: "https://example.com/restaurant4_affiliate_link" },     
-    { id: 5, name: { ar: "تذاكر حفل الموسيقى الكلاسيكية", en: "Classical Music Concert Tickets" }, price: { ar: "من 60$", en: "From $60" }, category: "events-tickets", image: "https://via.placeholder.com/150x100/4B0082/FFFFFF?text=Concert+Tickets", link: "https://example.com/event5_affiliate_link" },     
-]);     
-     
-// باقي البيانات (الكاروسيل) كما هي     
-const carouselMedia = Object.freeze([     
-    { type: 'image', src: "https://via.placeholder.com/300/6B21A8/FFFFFF?text=RG1+Ad+1+(Image)" },     
-    { type: 'video', src: "https://www.youtube-nocookie.com/embed/jfKfPfyJRdk?controls=0" },     
-    { type: 'image', src: "https://via.placeholder.com/300/4F46E5/FFFFFF?text=RG1+Ad+2+(Image)" },     
-    { type: 'video', src: "https://www.youtube-nocookie.com/embed/aqgV-n_25Sg?controls=0" },     
-    { type: 'image', src: "https://via.placeholder.com/300/F59E0B/FFFFFF?text=RG1+Ad+3+(Image)" },     
-    { type: 'video', src: "https://www.youtube-nocookie.com/embed/DWd9xR-mCj0?controls=0" },     
-    { type: 'image', src: "https://via.placeholder.com/300/10B981/FFFFFF?text=RG1+Ad+4+(Image)" },     
-    { type: 'video', src: "https://www.youtube-nocookie.com/embed/n4g29S_zVjA?controls=0" },     
-    { type: 'image', src: "https://via.placeholder.com/300/EF4444/FFFFFF?text=RG1+Ad+5+(Image)" },     
-    { type: 'video', src: "https://www.youtube-nocookie.com/embed/Vl85j_0n-uA?controls=0" },     
-]);     
-     
-// =======================================================================     
-// 🔥 دالة الترجمة المُحسّنة والكاملة     
-// =======================================================================     
-function applyLanguage() {     
-    // 1️⃣ تغيير اتجاه الصفحة و lang attribute     
-    document.documentElement.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');     
-    document.documentElement.setAttribute('lang', currentLang);     
-    document.body.style.direction = currentLang === 'ar' ? 'rtl' : 'ltr'; // تحديث لـ body أيضاً     
-     
-    // 2️⃣ ترجمة جميع العناصر التي تحتوي على data-key     
-    document.querySelectorAll('[data-key]').forEach(element => {     
-        const key = element.getAttribute('data-key');     
-        if (translations[key] && translations[key][currentLang]) {     
-            const text = translations[key][currentLang];     
-            if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {     
-                 // استخدم data-placeholder-key للـ placeholders     
-                 const placeholderKey = element.getAttribute('data-placeholder-key');     
-                 if (placeholderKey && translations[placeholderKey]) {     
-                    element.placeholder = translations[placeholderKey][currentLang];     
-                 }     
-            } else if (element.matches('.main-categories-nav span') || element.matches('.secondary-bottom-nav-wrapper .nav-link span') || element.matches('.subcategory-card span')) {     
-                // حالة خاصة لـ span داخل الروابط (Main Nav & Subcategory Cards)     
-                element.textContent = text;     
-            }     
-            else if (element.tagName === 'H2' || element.tagName === 'H3' || element.tagName === 'H4') {     
-                // معالجة عناوين الأقسام الرئيسية والأقسام الفرعية للحفاظ على الإيموجي أو الأيقونات     
-                const originalContent = element.innerHTML;     
-                const emojiMatch = originalContent.match(/^((\p{Emoji}|\p{Emoji_Modifier_Base}|\p{Emoji_Modifier}|\p{Emoji_Component}|\p{Extended_Pictographic})\s*)+/u); // Unicode emoji regex     
-                const emojiPrefix = emojiMatch ? emojiMatch[0] : '';     
-                     
-                const iconMatch = originalContent.match(/<i[^>]*><\/i>/i);     
-                const iconPrefix = iconMatch ? iconMatch[0] : '';     
-     
-                element.innerHTML = emojiPrefix + iconPrefix + ' ' + text;     
-            }     
-            else if (element.tagName === 'SMALL' && key === 'blog_date_prefix') { // معالجة خاصة لـ small في المدونة     
-                element.textContent = text + '2025-11-25'; // التاريخ ثابت     
-            }     
-            else if (element.matches('strong[data-key="important_note"]')) {     
-                // هذا الـ strong سيكون فارغاً والنص في الـ span المجاور     
-                // لا تفعل شيئاً هنا، الـ span المجاور سيتولى الترجمة     
-            }     
-            else {     
-                element.textContent = text;     
-            }     
-        }     
-    });     
-         
-    // 5️⃣ إعادة رسم المنتجات والشركاء باللغة الجديدة     
-    // هذه الاستدعاءات يجب أن تكون مشروطة بالصفحة الحالية 
-    if (document.getElementById('products-container')) renderProducts('all'); 
-    if (document.getElementById('affiliates-grid')) renderAffiliates(); 
-    if (document.getElementById('blog-container')) translateBlogContent(); 
-     
-    // 6️⃣ تحديث أيقونة اللغة     
-    document.getElementById('langToggle').setAttribute('data-lang', currentLang);     
-    console.log(`✅ Language applied: ${currentLang}`);     
-}     
-     
-// =======================================================================     
-// --- وظائف عرض المنتجات والروابط التابعة (محدثة لدعم الترجمة) ---     
-// =======================================================================     
-     
-function renderProducts(filterCategory) {     
-    const container = document.getElementById('products-container');     
-    if (!container) return;     
-    container.innerHTML = '';     
-     
-    const actualFilter = (filterCategory === 'all') ? null : filterCategory;     
-    products.forEach(product => {     
-        if (actualFilter === null || product.category === actualFilter) {     
-            const card = document.createElement('div');     
-            card.className = 'product-card';     
-            card.setAttribute('data-category', product.category);     
-            card.innerHTML = `<img src="${product.image}" alt="${product.name[currentLang]}" loading="lazy" style="width:100%; height:auto; border-radius: 14px; margin-bottom: 10px;" />     
-                              <h3 style="font-size:1.1em; color: var(--accent-primary);">${product.name[currentLang]}</h3>     
-                              <p style="color: var(--text-secondary); margin-bottom: 10px; font-size:0.9em;">${product.price[currentLang]}</p>     
-                              <a href="${product.link}" target="_blank" class="btn" style="width:100%; text-align:center; display:block; background:var(--accent-success); text-decoration:none; font-weight: bold;">${currentLang === 'ar' ? 'عرض التفاصيل' : 'View Details'}</a>`;     
-            container.appendChild(card);     
-        }     
-    });     
-}     
-     
-function renderAffiliates() {     
-    const affiliatesGrid = document.getElementById('affiliates-grid');     
-    if (!affiliatesGrid) return;     
-    affiliatesGrid.innerHTML = '';     
-     
-    affiliatePlatforms.forEach(platform => {     
-        const platformDiv = document.createElement('a');     
-        platformDiv.href = platform.link;     
-        platformDiv.target = '_blank';     
-        platformDiv.className = 'affiliate-link-card';     
-        platformDiv.style.cssText = 'text-decoration:none; display:flex; flex-direction: column; align-items: center; justify-content: center; gap:8px;';     
-        platformDiv.innerHTML = `     
-            <img src="${platform.img}" alt="${platform.name[currentLang]}" style="width:48px; height:48px; object-fit:contain; border-radius: 14px;">     
-            <span style="font-size:1.1em; font-weight:bold; color: var(--accent-primary);">${platform.name[currentLang]}</span>     
-        `;     
-        affiliatesGrid.appendChild(platformDiv);     
-    });     
-}     
-     
-// 🔥🔥 دالة ترجمة محتوى المدونة والصفحات الثابتة 🔥🔥     
-function translateBlogContent() {     
-    // ترجمة محتوى المدونة     
-    for (let i = 1; i <= 10; i++) { // بما أن لدينا 10 مقالات     
-        const blogCard = document.querySelector(`.blog-card[data-blog-id="${i}"]`);     
-        if (blogCard) {     
-            // العناوين     
-            const titleElement = blogCard.querySelector(`h3[data-key="blog${i}_title"]`);     
-            if (titleElement && translations[`blog${i}_title`]) titleElement.textContent = translations[`blog${i}_title`][currentLang];     
-                 
-            // التاريخ     
-            const dateElement = blogCard.querySelector(`small[data-key="blog_date_prefix"]`);     
-            if (dateElement && translations['blog_date_prefix']) dateElement.textContent = translations['blog_date_prefix'][currentLang] + '2025-11-25';     
-     
-            // الفقرات الرئيسية     
-            const p1Element = blogCard.querySelector(`p[data-key="blog${i}_p1"]`);     
-            if (p1Element && translations[`blog${i}_p1`]) p1Element.textContent = translations[`blog${i}_p1`][currentLang];     
-     
-            // العناوين الفرعية h4 والفقرات المرتبطة بها     
-            for (let h = 1; h <= 4; h++) {     
-                const h4Element = blogCard.querySelector(`h4[data-key="blog${i}_h4_${h}"]`);     
-                if (h4Element && translations[`blog${i}_h4_${h}`]) h4Element.textContent = translations[`blog${i}_h4_${h}`][currentLang];     
-                     
-                const pElement1 = blogCard.querySelector(`p[data-key="blog${i}_p${(h*2)}"]`);     
-                if (pElement1 && translations[`blog${i}_p${(h*2)}`]) pElement1.textContent = translations[`blog${i}_p${(h*2)}`][currentLang];     
-                     
-                const pElement2 = blogCard.querySelector(`p[data-key="blog${i}_p${(h*2)+1}"]`);     
-                if (pElement2 && translations[`blog${i}_p${(h*2)+1}`]) pElement2.textContent = translations[`blog${i}_p${(h*2)+1}`][currentLang];     
-            }     
-     
-            // ترجمة عناصر القائمة (<ul>) داخل المدونة     
-            const ulElement = blogCard.querySelector('ul');     
-            if (ulElement) {     
-                const listItems = ulElement.querySelectorAll('li span'); // استهدف الـ span داخل الـ li     
-                listItems.forEach((span, index) => {     
-                    const key = `blog${i}_list1_item${index + 1}`;     
-                    if (translations[key] && translations[key][currentLang]) {     
-                        span.textContent = translations[key][currentLang];     
-                    }     
-                });     
-            }     
-                 
-            // الخلاصة     
-            const conclusionTitleElement = blogCard.querySelector(`h4[data-key="blog${i}_conclusion_title"]`);     
-            if (conclusionTitleElement && translations[`blog${i}_conclusion_title`]) conclusionTitleElement.textContent = translations[`blog${i}_conclusion_title`][currentLang];     
-                 
-            const conclusionTextElement = blogCard.querySelector(`p[data-key="blog${i}_conclusion_text"]`);     
-            if (conclusionTextElement && translations[`blog${i}_conclusion_text`]) conclusionTextElement.textContent = translations[`blog${i}_conclusion_text`][currentLang];     
-        }     
-    }     
-}     
-     
-// دالة عرض المدونة (المقالات) - لم تعد تفعل شيئًا سوى استدعاء دالة الترجمة     
-function renderBlog() {     
-    translateBlogContent();     
-}     
-     
-// =======================================================================     
-// --- وظائف الـ Carousel الجانبي (تم إلغاء تفعيلها) ---     
-// =======================================================================     
-let currentMediaIndex = 0;     
-let carouselInterval;     
-     
-function renderCarouselMedia() { /* لا شيء هنا، تم حذف العنصر من HTML */ }     
-function showNextMedia() { /* لا شيء هنا */ }     
-function startCarousel() { /* لا شيء هنا */ }     
-     
-// =======================================================================     
-// --- وظائف الترحيب والـ PayPal ونموذج الاتصال ---     
-// =======================================================================     
-     
-function setPaymentLinks() {     
-    const paypalButtons = document.querySelectorAll('[id^="paypal-support-button"]');     
-    paypalButtons.forEach(button => {     
-        button.href = 'https://www.paypal.com/ncp/payment/QTMEP82WWYHQ2';     
-    });     
-}     
-     
-function handleContactFormSubmission(e) {     
-    e.preventDefault();     
-    const emailField = document.getElementById('contact-email-link');     
-    const targetEmail = emailField ? emailField.href.replace('mailto:', '') : 'a.laghrifi@outlook.fr';     
-     
-    alert(`${currentLang === 'ar' ? 'تم استلام رسالتك بنجاح! سيتم توجيهها إلى البريد الإلكتروني: ' : 'Your message has been received successfully! It will be directed to the email: '}${targetEmail}.`);     
-    this.reset();     
-}     
-     
-// =======================================================================     
-// --- وظائف الكوكيز (Cookie Banner) ---     
-// =======================================================================     
-function initializeCookieBanner() {     
-    const banner = document.getElementById('cookie-banner');     
-    const acceptButton = document.getElementById('accept-cookies');     
-    const rejectButton = document.getElementById('reject-cookies');     
-     
-    if (localStorage.getItem('rg1_cookie_consent') === 'accepted') {     
-        if (banner) banner.style.display = 'none';     
-    } else if (localStorage.getItem('rg1_cookie_consent') === 'rejected') {     
-        if (banner) banner.style.display = 'none';     
-    } else {     
-        if (banner) banner.style.display = 'flex';     
-    }     
-     
-    if (acceptButton) {     
-        acceptButton.addEventListener('click', () => {     
-            localStorage.setItem('rg1_cookie_consent', 'accepted');     
-            if (banner) banner.style.display = 'none';     
-        });     
-    }     
-     
-    if (rejectButton) {     
-        rejectButton.addEventListener('click', () => {     
-            localStorage.setItem('rg1_cookie_consent', 'rejected');     
-            if (banner) banner.style.display = 'none';     
-        });     
-    }     
-}     
-     
-// =======================================================================     
-// --- وظائف الشريط السفلي الجديد (Bottom Bar) - هذا الشريط الآن غير موجود     
-// =======================================================================     
-     
-// =======================================================================     
-// --- الإطلاق النهائي (AUTO-INIT) ---     
-// =======================================================================     
-document.addEventListener('DOMContentLoaded', () => {     
-    // تهيئة الوضع النهاري/الليلي واللغة عند تحميل الصفحة     
-    const body = document.documentElement;     
-    body.setAttribute('data-theme', currentTheme);     
-    const themeIcon = document.querySelector('#themeToggle i');     
-    themeIcon.className = currentTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';     
-     
-    // الزر الصحيح الذي نستخدمه لتبديل اللغة موجود في الشريط السفلي بالفعل بـ id="langToggle"     
-    const langToggleBtn = document.getElementById('langToggle');     
-    langToggleBtn.setAttribute('data-lang', currentLang);     
-     
-    // إضافة مستمعي الأحداث لأزرار الوضع واللغة     
-    document.getElementById('themeToggle').addEventListener('click', () => {     
-        const isDark = body.getAttribute('data-theme') === 'dark';     
-        currentTheme = isDark ? 'light' : 'dark';     
-        body.setAttribute('data-theme', currentTheme);     
-        localStorage.setItem('rg1_theme', currentTheme);     
-        themeIcon.className = currentTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';     
-    });     
-     
-    // 🔥🔥 تبديل اللغة المُصحح ✅     
-    langToggleBtn.addEventListener('click', () => { // استخدام langToggleBtn الذي يمثل الزر الصحيح     
-        currentLang = currentLang === 'ar' ? 'en' : 'ar';     
-        localStorage.setItem('rg1_lang', currentLang);     
-        applyLanguage(); // 🔥 تطبيق اللغة فوراً بدون إعادة تحميل!     
-        console.log(`🔄 Language switched to: ${currentLang}`);     
-    });     
-     
-    initializeCookieBanner(); // استدعاء وظيفة تهيئة لافتة الكوكيز     
-     
-    // 🔥 تطبيق اللغة فور تحميل الصفحة (قبل أي عمليات أخرى قد تعتمد على اللغة)     
-    applyLanguage();     
-     
-    setPaymentLinks();     
-     
-    const contactForm = document.getElementById('contactForm');     
-    if (contactForm) {     
-        contactForm.addEventListener('submit', handleContactFormSubmission);     
-    }     
-     
-    console.log(`RG1Shop App Initialized: All requested features applied.`);     
-     
-    // هذا الجزء الخاص بالتنقل بين الأقسام أصبح غير ضروري للصفحات المنفصلة التي لا تحتوي على عدة أقسام بنفس الملف. 
-    // يجب تعديل الروابط في HTML لتشير مباشرة إلى الصفحات الجديدة (e.g., href="products.html" بدلاً من href="#products-section") 
-    const mainNavLinks = document.querySelectorAll('.main-categories-nav .main-nav-link');     
-    const secondaryNavLinks = document.querySelectorAll('.secondary-bottom-nav-wrapper .nav-link');     
-    const allSections = document.querySelectorAll('.section');     
-     
-    // تحديث تفعيل الرابط في شريط التنقل العلوي والسفلي بناءً على الصفحة الحالية 
-    const currentPath = window.location.pathname.split('/').pop(); // Get current file name 
-    mainNavLinks.forEach(link => { 
-        if (link.href.includes(currentPath)) { 
-            link.classList.add('active-link'); 
-        } else { 
-            link.classList.remove('active-link'); 
-        } 
-    }); 
-    secondaryNavLinks.forEach(link => { 
-        if (link.href.includes(currentPath)) { 
-            link.classList.add('active-link'); 
-        } else { 
-            link.classList.remove('active-link'); 
-        } 
-    }); 
- 
-    // يجب حذف هذا الجزء أو تعديله ليناسب الصفحات المنفصلة 
-    // حيث لا يوجد "section active" واحد فقط في الصفحة الرئيسية 
-    // وفي الصفحات الأخرى، القسم النشط هو القسم الوحيد في الصفحة 
-    // const initialActiveSection = document.getElementById('events-section');     
-    // if (initialActiveSection) {     
-    //     allSections.forEach(sec => sec.classList.remove('active'));     
-    //     initialActiveSection.classList.add('active');     
-    //     const initialActiveLink = document.querySelector('.main-categories-nav .main-nav-link[href="#events-section"]');     
-    //     if(initialActiveLink) {     
-    //         mainNavLinks.forEach(l => l.classList.remove('active-link'));     
-    //         initialActiveLink.classList.add('active-link');     
-    //     }     
-    // }     
-     
-    // هذا الجزء الخاص بمعالجة النقر على الروابط الداخلية (hash links) يجب أن يبقى فقط لـ index.html 
-    // أو يتم تعديله ليعالج الانتقال بين الصفحات الخارجية بشكل صحيح. 
-    mainNavLinks.forEach(link => {     
-        link.addEventListener('click', function(e) {     
-            const targetHref = this.getAttribute('href'); 
-            if (targetHref.startsWith('#')) { // إذا كان رابط داخلي في نفس الصفحة 
-                e.preventDefault(); 
-                allSections.forEach(sec => sec.classList.remove('active'));     
-                mainNavLinks.forEach(l => l.classList.remove('active-link'));     
-                secondaryNavLinks.forEach(l => l.classList.remove('active-link'));     
-         
-                const targetId = targetHref.substring(1);     
-                const targetSection = document.getElementById(targetId);     
-         
-                if(targetSection) targetSection.classList.add('active');     
-                this.classList.add('active-link');     
-         
-                // لا داعي لـ renderProducts/renderBlog هنا لأنها ليست في index.html 
-                // if (targetId === 'products-section') {     
-                //     renderProducts('all');     
-                // }     
-                // if (targetId === 'blog-section') {     
-                //     renderBlog();     
-                // }     
-         
-                const topNavHeight = document.getElementById('main-categories-nav').offsetHeight;     
-                const topPosition = targetSection.offsetTop - topNavHeight;     
-         
-                window.scrollTo({     
-                    top: topPosition > 0 ? topPosition : 0,     
-                    behavior: 'smooth'     
-                });     
-         
-                if (window.dataLayer) {     
-                    dataLayer.push({     
-                        'event': 'section_view',     
-                        'pagePath': '/' + targetId     
-                    });     
-                }     
-            } else { // رابط لصفحة خارجية 
-                // دعه يتصرف بشكل طبيعي 
-            } 
-        });     
-    });     
-     
-    secondaryNavLinks.forEach(link => {     
-        link.addEventListener('click', function(e) {     
-            const targetHref = this.getAttribute('href'); 
-            if (targetHref.startsWith('#')) { // إذا كان رابط داخلي 
-                e.preventDefault(); 
-                allSections.forEach(sec => sec.classList.remove('active'));     
-                mainNavLinks.forEach(l => l.classList.remove('active-link'));     
-                secondaryNavLinks.forEach(l => l.classList.remove('active-link'));     
-         
-                const targetId = targetHref.substring(1);     
-                const targetSection = document.getElementById(targetId);     
-         
-                if(targetSection) targetSection.classList.add('active');     
-                this.classList.add('active-link');     
-         
-                // لا داعي لـ renderProducts/renderBlog هنا 
-                // if (targetId === 'products-section') {     
-                //     renderProducts('all');     
-                // }     
-                // if (targetId === 'blog-section') {     
-                //     renderBlog();     
-                // }     
-         
-                const topNavHeight = document.getElementById('main-categories-nav').offsetHeight;     
-                const topPosition = targetSection.offsetTop - topNavHeight;     
-         
-                window.scrollTo({     
-                    top: topPosition > 0 ? topPosition : 0,     
-                    behavior: 'smooth'     
-                });     
-         
-                if (window.dataLayer) {     
-                    dataLayer.push({     
-                        'event': 'section_view',     
-                        'pagePath': '/' + targetId     
-                    });     
-                }     
-            } else { // رابط لصفحة خارجية 
-                // دعه يتصرف بشكل طبيعي 
-            } 
-        });     
-    });     
-     
-    // هذا السطر يقوم بإزالة active-link من جميع روابط الشريط السفلي عند التحميل الأولي     
-    // قد تحتاج إلى تحديد رابط معين ليكون نشطًا افتراضيًا إذا لم يكن هناك واحد     
-    // secondaryNavLinks.forEach(l => l.classList.remove('active-link')); // تم تعديلها أعلاه 
-});     
- 
-// 🔴 هذا الكود يقوم بتحويل جميع روابط سياسة الخصوصية والشروط من (#hash) إلى (privacy.html) تلقائياً 
-function fixLegalLinks() { 
-    const allLinks = document.querySelectorAll('a[href]'); 
-    allLinks.forEach(link => { 
-        const href = link.getAttribute('href'); 
-         
-        if (href && (href.includes('#privacy-policy-full') || href.includes('#privacy'))) { 
-            link.setAttribute('href', 'privacy.html'); 
-            link.classList.remove('nav-link');  
-            link.removeEventListener('click', function(e) { e.preventDefault(); }); 
-        } 
-         
-        if (href && (href.includes('#terms-conditions-full') || href.includes('#terms'))) { 
-            link.setAttribute('href', 'terms.html'); 
-            link.classList.remove('nav-link');  
-            link.removeEventListener('click', function(e) { e.preventDefault(); }); 
-        } 
-    }); 
-} 
- 
-function fixTopAdPosition() { 
-    const nav = document.getElementById('main-categories-nav'); 
-    const ad = document.getElementById('top-fixed-ad'); 
-    if (nav && ad) { 
-        const navHeight = nav.offsetHeight; 
-        ad.style.marginTop = navHeight + "px"; 
-    } 
-} 
- 
-window.addEventListener('load', fixLegalLinks); 
-fixLegalLinks();  
- 
-window.addEventListener('load', fixTopAdPosition); 
-window.addEventListener('resize', fixTopAdPosition); 
- 
+    'blog2_conclusion_text': { ar: 'باستخدام خدماتنا الرقمية المتميزة, ستتمكن من تعزيز حضورك على الإنترنت, تحسين تفاعل جمهورك, وزيادة أرباحك بشكل مستمر. كل خدمة مصممة لتكون سهلة الاستخدام وفعّالة, مما يمنحك ميزة تنافسية كبيرة في عالم التسويق الرقمي. لا تفوت الفرصة, ابدأ بالاستفادة من هذه الخدمات اليوم وارتقِ بأعمالك إلى المستوى التالي. تذكر أن الاستثمار في الأدوات الرقمية هو استثمار في المستقبل.', en: 'By using our premium digital services, you will be able to enhance your online presence, improve audience engagement, and consistently increase your profits. Every service is designed to be easy to use and effective, giving you a significant competitive edge in the digital marketing world. Don’t miss the opportunity; start benefiting from these services today and take your business to the next level. Remember that investing in digital tools is an investment in the future.' },     
+};
 
+// =======================================================================     
+// 🔥 الوظائف البرمجية الأساسية (Logic)
+// =======================================================================     
+
+// وظيفة تحديث النصوص بناءً على اللغة المختارة
+function updateTranslations() {
+    const elements = document.querySelectorAll('[data-lang-key]');
+    elements.forEach(el => {
+        const key = el.getAttribute('data-lang-key');
+        if (translations[key]) {
+            el.innerText = translations[key][currentLang];
+        }
+    });
+    // تحديث اتجاه الصفحة
+    document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+    document.documentElement.lang = currentLang;
+}
+
+// وظيفة تغيير اللغة
+function switchLang(lang) {
+    currentLang = lang;
+    localStorage.setItem('rg1_lang', lang);
+    updateTranslations();
+    ensureTop(); // ضمان الصعود للأعلى عند تغيير اللغة
+}
+
+// وظيفة الصعود للأعلى لضمان عدم القفز
+function ensureTop() {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+}
+
+// تنفيذ الصعود عند تحميل الدوم وعند تحميل كل المصادر
+document.addEventListener('DOMContentLoaded', updateTranslations);
+window.addEventListener('load', ensureTop);
+
+// تكرار الصعود بعد فترة بسيطة لضمان استقرار العناصر
+setTimeout(ensureTop, 150);
