@@ -1,43 +1,38 @@
 <header class="bg-white border-b-2 border-purple-600 sticky top-0 z-50">
     <div class="flex items-center p-2 gap-2">
         <div class="flex-shrink-0 border-2 border-purple-600 rounded-lg overflow-hidden w-12 h-12">
-            <img src="https://via.placeholder.com/48" alt="RG1Shop Logo" class="w-full h-full object-cover">
+            <img src="https://via.placeholder.com/48" alt="RG1Shop" class="w-full h-full object-cover">
         </div>
 
         <nav class="flex-grow grid grid-cols-5 gap-1">
-            <button onclick="setActive(this)" class="nav-item active flex flex-col items-center justify-center py-1 rounded-lg transition-all">
-                <span class="text-xl">📅</span>
-                <span class="text-[9px] font-bold" data-key="menu_events">Events</span>
+            <button onclick="changeActive(this)" class="nav-item active-red flex flex-col items-center justify-center py-1 rounded-lg">
+                <span class="text-xl">🎉</span><span class="text-[9px] font-bold">Events</span>
             </button>
-            <button onclick="setActive(this)" class="nav-item flex flex-col items-center justify-center py-1 rounded-lg transition-all">
-                <span class="text-xl">✈️</span>
-                <span class="text-[9px] font-bold" data-key="menu_tourism">Tourism</span>
+            <button onclick="changeActive(this)" class="nav-item flex flex-col items-center justify-center py-1 rounded-lg">
+                <span class="text-xl">✈️</span><span class="text-[9px] font-bold">Tourism</span>
             </button>
-            <button onclick="setActive(this)" class="nav-item flex flex-col items-center justify-center py-1 rounded-lg transition-all">
-                <span class="text-xl">🍴</span>
-                <span class="text-[9px] font-bold" data-key="menu_restaurants">Resto</span>
+            <button onclick="changeActive(this)" class="nav-item flex flex-col items-center justify-center py-1 rounded-lg">
+                <span class="text-xl">🍴</span><span class="text-[9px] font-bold">Resto</span>
             </button>
-            <button onclick="setActive(this)" class="nav-item flex flex-col items-center justify-center py-1 rounded-lg transition-all">
-                <span class="text-xl">🛫</span>
-                <span class="text-[9px] font-bold" data-key="menu_flights">Flights</span>
+            <button onclick="changeActive(this)" class="nav-item flex flex-col items-center justify-center py-1 rounded-lg">
+                <span class="text-xl">🛫</span><span class="text-[9px] font-bold">Flights</span>
             </button>
-            <button onclick="setActive(this)" class="nav-item flex flex-col items-center justify-center py-1 rounded-lg transition-all">
-                <span class="text-xl">🛒</span>
-                <span class="text-[9px] font-bold" data-key="menu_shop">Shop</span>
+            <button onclick="changeActive(this)" class="nav-item flex flex-col items-center justify-center py-1 rounded-lg">
+                <span class="text-xl">🛒</span><span class="text-[9px] font-bold">Shop</span>
             </button>
         </nav>
     </div>
 </header>
 
 <style>
-    .nav-item { color: #581c87; border: 1px solid transparent; }
-    /* اللون الأحمر الذي ينتقل عند الضغط */
-    .nav-item.active { background-color: #ff4d4d !important; color: white !important; shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    .nav-item { color: #581c87; transition: all 0.2s ease; border: 1px solid transparent; cursor: pointer; }
+    .active-red { background-color: #ff4d4d !important; color: white !important; }
 </style>
 
 <script>
-    function setActive(el) {
-        document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
-        el.classList.add('active');
+    function changeActive(element) {
+        // إزالة الكلاس من الجميع ثم إضافته للعنصر المضغوط
+        document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active-red'));
+        element.classList.add('active-red');
     }
 </script>
