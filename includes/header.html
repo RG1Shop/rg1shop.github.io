@@ -1,23 +1,43 @@
-<div class="bg-white border-b border-purple-200 sticky top-0 z-50 overflow-hidden">
-    <div class="flex overflow-x-auto py-4 px-2 gap-4 no-scrollbar items-center">
-        <a href="#events" class="flex items-center gap-2 bg-[#ff4d4d] text-white px-4 py-2 rounded-xl text-sm font-bold shadow-md whitespace-nowrap min-w-fit">
-            <span class="text-lg">📅</span>
-            <span data-key="menu_events">Events</span>
-        </a>
+<header class="bg-white border-b-2 border-purple-600 sticky top-0 z-50">
+    <div class="flex items-center p-2 gap-2">
+        <div class="flex-shrink-0 border-2 border-purple-600 rounded-lg overflow-hidden w-12 h-12">
+            <img src="https://via.placeholder.com/48" alt="RG1Shop Logo" class="w-full h-full object-cover">
+        </div>
 
-        <a href="#tourism" class="flex items-center gap-2 bg-white text-purple-900 border border-purple-100 px-4 py-2 rounded-xl text-sm font-bold shadow-sm whitespace-nowrap min-w-fit">
-            <span class="text-lg">✈️</span>
-            <span data-key="menu_tourism">Tourism</span>
-        </a>
-
-        <a href="#restaurants" class="flex items-center gap-2 bg-white text-purple-900 border border-purple-100 px-4 py-2 rounded-xl text-sm font-bold shadow-sm whitespace-nowrap min-w-fit">
-            <span class="text-lg">🍴</span>
-            <span data-key="menu_restaurants">Restaurants</span>
-        </a>
-
-        <a href="#flights" class="flex items-center gap-2 bg-white text-purple-900 border border-purple-100 px-4 py-2 rounded-xl text-sm font-bold shadow-sm whitespace-nowrap min-w-fit">
-            <span class="text-lg">🛫</span>
-            <span data-key="menu_flights">Flights</span>
-        </a>
+        <nav class="flex-grow grid grid-cols-5 gap-1">
+            <button onclick="setActive(this)" class="nav-item active flex flex-col items-center justify-center py-1 rounded-lg transition-all">
+                <span class="text-xl">📅</span>
+                <span class="text-[9px] font-bold" data-key="menu_events">Events</span>
+            </button>
+            <button onclick="setActive(this)" class="nav-item flex flex-col items-center justify-center py-1 rounded-lg transition-all">
+                <span class="text-xl">✈️</span>
+                <span class="text-[9px] font-bold" data-key="menu_tourism">Tourism</span>
+            </button>
+            <button onclick="setActive(this)" class="nav-item flex flex-col items-center justify-center py-1 rounded-lg transition-all">
+                <span class="text-xl">🍴</span>
+                <span class="text-[9px] font-bold" data-key="menu_restaurants">Resto</span>
+            </button>
+            <button onclick="setActive(this)" class="nav-item flex flex-col items-center justify-center py-1 rounded-lg transition-all">
+                <span class="text-xl">🛫</span>
+                <span class="text-[9px] font-bold" data-key="menu_flights">Flights</span>
+            </button>
+            <button onclick="setActive(this)" class="nav-item flex flex-col items-center justify-center py-1 rounded-lg transition-all">
+                <span class="text-xl">🛒</span>
+                <span class="text-[9px] font-bold" data-key="menu_shop">Shop</span>
+            </button>
+        </nav>
     </div>
-</div>
+</header>
+
+<style>
+    .nav-item { color: #581c87; border: 1px solid transparent; }
+    /* اللون الأحمر الذي ينتقل عند الضغط */
+    .nav-item.active { background-color: #ff4d4d !important; color: white !important; shadow: 0 2px 4px rgba(0,0,0,0.1); }
+</style>
+
+<script>
+    function setActive(el) {
+        document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+        el.classList.add('active');
+    }
+</script>
