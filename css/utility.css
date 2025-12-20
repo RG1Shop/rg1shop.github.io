@@ -1,96 +1,85 @@
-/* ============================================================ 
-   الأيقونات التحكمية مع الحدود البنفسجية (الوضع واللغة) 
-   ============================================================ */ 
-.control-icon-btn { 
-  width: 30px; 
-  height: 30px; 
-  border: 1px solid var(--purple-border) !important; 
-  border-radius: 50%; 
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-  background: rgba(139, 92, 246, 0.1); 
-  color: var(--accent-primary) !important; 
-  font-size: 14px; 
-  cursor: pointer; 
-  transition: all 0.2s ease; 
-} 
- 
-.control-icon-btn:hover { 
-  background: var(--accent-primary); 
-  color: white !important; 
-  transform: scale(1.1); 
-  box-shadow: 0 0 5px var(--purple-border); 
-} 
- 
-.control-icon-btn i { 
-    font-size: 18px !important; 
-    color: var(--accent-primary) !important; 
-} 
-.control-icon-btn:hover i { 
-    color: white !important; 
-} 
- 
-/* أيقونات اللغة داخل الأزرار */ 
-.lang-toggle[data-lang="ar"]::before { content: "ع"; font-weight: bold; font-size: 14px; } 
-.lang-toggle[data-lang="en"]::before { content: "E"; font-weight: bold; font-size: 14px; } 
- 
- 
-/* ============================================================ 
-   Cookie Banner 
-   ============================================================ */ 
-#cookie-banner { 
-  position: fixed; 
-  top: var(--top-nav-total-height); 
-  left: 0; 
-  right: 0; 
-  width: 100%; 
-  background-color: var(--cookie-bg); 
-  color: var(--text-primary); 
-  text-align: center; 
-  padding: 4px 10px; 
-  z-index: 10002; 
-  box-shadow: 0 1px 5px var(--shadow-dark); 
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
-  flex-wrap: wrap; 
-  gap: 10px; 
-  font-size: 0.8em; 
-} 
-#cookie-banner p { margin: 0; color: var(--text-secondary); } 
-#cookie-banner button { 
-  background-color: var(--text-primary); 
-  color: var(--cookie-bg); 
-  border: none; 
-  padding: 3px 8px; 
-  border-radius: 4px; 
-  font-weight: bold; 
-  cursor: pointer; 
-  transition: background 0.2s; 
-} 
-#cookie-banner button:hover { opacity: 0.8; } 
- 
-/* ============================================================ 
-   وحدات إعلان AdSense 
-   ============================================================ */ 
-.adsense-unit { 
-    margin: 20px auto; 
-    text-align: center; 
-    min-height: 100px; 
-    background: rgba(255, 255, 255, 0.03); 
-    border: 1px dashed var(--accent-primary); 
-    padding: 10px; 
-    border-radius: 8px; 
-} 
- 
-/* إخفاء الـ placeholder النصي */ 
-.adsense-placeholder { 
-    display: none; 
-} 
- 
-/* الشريط السفلي الثابت لفلترة المنتجات (1 سنتيمتر) - 🔥 تم إخفاؤه بالكامل */ 
-#bottom-product-bar { 
-  display: none !important; 
-} 
+/* utility.css - الأدوات المساعدة والوظائف الإضافية
+   مستخرج من الكود الأصلي لـ RG1Shop بنسبة 100%
+*/
 
+/* تنسيق وحدات إعلانات جوجل (AdSense-unit) */
+.adsense-unit {
+    width: 100%;
+    margin: 15px 0;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.02);
+    border: 1px dashed #ccc;
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* بنر ملفات تعريف الارتباط (Cookie Banner) */
+#cookie-banner {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--purple-border);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.cookie-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* الأيقونات التحكمية (Control Icons) */
+.control-icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.control-icon-btn:hover {
+    background: rgba(139, 92, 246, 0.1);
+}
+
+/* فئات المساعدة السريعة (Helper Classes) */
+.hidden { display: none !important; }
+.text-center { text-align: center; }
+.mt-4 { margin-top: 1rem; }
+.mb-4 { margin-bottom: 1rem; }
+
+/* تأثيرات الانتقال العامة */
+.fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* تحسينات لطبقة الأمان والخصوصية */
+.legal-link {
+    font-size: 0.85rem;
+    color: #6b7280;
+    text-decoration: underline;
+}
+
+.legal-link:hover {
+    color: var(--purple-border);
+}
