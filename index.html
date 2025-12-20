@@ -1,10 +1,15 @@
 <!DOCTYPE html> 
 <html lang="ar" dir="rtl"> 
 <head> 
-    <!-- سيتم تضمين head.html هنا بواسطة JS --> 
+    <!-- تضمين ملف الرأس --> 
     <div data-include="includes/head.html"></div> 
 </head> 
 <body data-theme="light"> 
+    <!-- Google Tag Manager (noscript) --> 
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KN75BHJN" 
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> 
+    <!-- End Google Tag Manager (noscript) --> 
+ 
     <!-- Cookie Banner --> 
     <div id="cookie-banner" style="display: none;"> 
         <p data-key="cookie_text"></p> 
@@ -13,14 +18,14 @@
     </div> 
  
     <div id="app-container"> 
-        <!-- سيتم تضمين sidebar.html هنا --> 
+        <!-- تضمين الشريط الجانبي --> 
         <div data-include="includes/sidebar.html"></div> 
          
         <div id="main-content"> 
-            <!-- سيتم تضمين header.html هنا --> 
+            <!-- تضمين شريط التنقل العلوي والإعلانات العلوية --> 
             <div data-include="includes/header.html"></div> 
  
-            <!-- سيتم تضمين الأقسام هنا --> 
+            <!-- الأقسام الرئيسية --> 
             <div data-include="includes/main-sections.html"></div> 
             <div data-include="includes/products-section.html"></div> 
             <div data-include="includes/affiliates-section.html"></div> 
@@ -30,12 +35,12 @@
             <div data-include="includes/terms-section.html"></div> 
             <div data-include="includes/about-section.html"></div> 
  
-            <!-- سيتم تضمين footer.html هنا --> 
+            <!-- تضمين الشريط السفلي والتذييل --> 
             <div data-include="includes/footer.html"></div> 
         </div> 
     </div> 
  
-    <!-- تحميل ملفات CSS --> 
+    <!-- ملفات CSS --> 
     <link rel="stylesheet" href="css/main.css"> 
     <link rel="stylesheet" href="css/header.css"> 
     <link rel="stylesheet" href="css/footer.css"> 
@@ -46,7 +51,7 @@
     <link rel="stylesheet" href="css/contact.css"> 
     <link rel="stylesheet" href="css/utility.css"> 
  
-    <!-- تحميل ملفات JS --> 
+    <!-- ملفات JavaScript --> 
     <script src="js/data.js"></script> 
     <script src="js/utils.js"></script> 
     <script src="js/components.js"></script> 
