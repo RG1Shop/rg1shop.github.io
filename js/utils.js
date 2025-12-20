@@ -1,124 +1,63 @@
-// ======================================================================= 
-// 🔥 دالة الترجمة المُحسّنة والكاملة 
-// ======================================================================= 
+// 🔥 دالة تضمين ملفات HTML خارجية (لـ GitHub Pages) 
+function includeHTML() { 
+  const elements = document.querySelectorAll('[data-include]'); 
+  elements.forEach(element => { 
+    const file = element.getAttribute('data-include'); 
+    fetch(file) 
+      .then(response => response.text()) 
+      .then(data => { 
+        element.outerHTML = data; 
+        // إعادة تشغيل التهيئة بعد التضمين 
+        setTimeout(initializeApp, 100); 
+      }) 
+      .catch(err => console.error('Error loading include:', file, err)); 
+  }); 
+} 
+ 
+// دالة الترجمة المُحسّنة 
 function applyLanguage() { 
-    // 1️⃣ تغيير اتجاه الصفحة و lang attribute 
-    document.documentElement.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr'); 
-    document.documentElement.setAttribute('lang', currentLang); 
-    document.body.style.direction = currentLang === 'ar' ? 'rtl' : 'ltr'; // تحديث لـ body أيضاً 
+  document.documentElement.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr'); 
+  document.documentElement.setAttribute('lang', currentLang); 
+  document.body.style.direction = currentLang === 'ar' ? 'rtl' : 'ltr'; 
  
-    // 2️⃣ ترجمة جميع العناصر التي تحتوي على data-key 
-    document.querySelectorAll('[data-key]').forEach(element => { 
-        const key = element.getAttribute('data-key'); 
-        if (translations[key] && translations[key][currentLang]) { 
-            const text = translations[key][currentLang]; 
-            if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') { 
-                 // استخدم data-placeholder-key للـ placeholders 
-                 const placeholderKey = element.getAttribute('data-placeholder-key'); 
-                 if (placeholderKey && translations[placeholderKey]) { 
-                    element.placeholder = translations[placeholderKey][currentLang]; 
-                 } 
-            } else if (element.matches('.main-categories-nav span') || element.matches('.secondary-bottom-nav-wrapper .nav-link span') || element.matches('.subcategory-card span')) { 
-                // حالة خاصة لـ span داخل الروابط (Main Nav & Subcategory Cards) 
-                element.textContent = text; 
-            } 
-            else if (element.tagName === 'H2' || element.tagName === 'H3' || element.tagName === 'H4') { 
-                // معالجة عناوين الأقسام الرئيسية والأقسام الفرعية للحفاظ على الإيموجي أو الأيقونات 
-                const originalContent = element.innerHTML; 
-                const emojiMatch = originalContent.match(/^((\p{Emoji}|\p{Emoji_Modifier_Base}|\p{Emoji_Modifier}|\p{Emoji_Component}|\p{Extended_Pictographic})\s*)+/u); // Unicode emoji regex 
-                const emojiPrefix = emojiMatch ? emojiMatch[0] : ''; 
-                     
-                const iconMatch = originalContent.match(/<i[^>]*><\/i>/i); 
-                const iconPrefix = iconMatch ? iconMatch[0] : ''; 
- 
-                element.innerHTML = emojiPrefix + iconPrefix + ' ' + text; 
-            } 
-            else if (element.tagName === 'SMALL' && key === 'blog_date_prefix') { // معالجة خاصة لـ small في المدونة 
-                element.textContent = text + '2025-11-25'; // التاريخ ثابت 
-            } 
-            else if (element.matches('strong[data-key="important_note"]')) { 
-                // هذا الـ strong سيكون فارغاً والنص في الـ span المجاور 
-                // لا تفعل شيئاً هنا، الـ span المجاور سيتولى الترجمة 
-            } 
-            else { 
-                element.textContent = text; 
-            } 
-        } 
-    }); 
-         
-    // 5️⃣ إعادة رسم المنتجات والشركاء باللغة الجديدة 
-    renderProducts('all'); 
-    renderAffiliates(); 
-    translateBlogContent(); // 🔥 استدعاء دالة ترجمة المدونة 
-    // renderBlog(); // لم نعد بحاجة لهذه لأن translateBlogContent ستتكفل بالترجمة 
- 
-    // 6️⃣ تحديث أيقونة اللغة 
-    document.getElementById('langToggle').setAttribute('data-lang', currentLang); 
-    console.log(`✅ Language applied: ${currentLang}`); 
+  document.querySelectorAll('[data-key]').forEach(element => { 
+    const key = element.getAttribute('data-key'); 
+    if (translations[key] && translations[key][currentLang]) { 
+      element.textContent = translations[key][currentLang]; 
+    } 
+  }); 
 } 
  
-// ======================================================================= 
-// --- وظائف الكوكيز (Cookie Banner) --- 
-// ======================================================================= 
-function initializeCookieBanner() { 
-    const banner = document.getElementById('cookie-banner'); 
-    const acceptButton = document.getElementById('accept-cookies'); 
-    const rejectButton = document.getElementById('reject-cookies'); 
- 
-    if (localStorage.getItem('rg1_cookie_consent') === 'accepted') { 
-        if (banner) banner.style.display = 'none'; 
-    } else if (localStorage.getItem('rg1_cookie_consent') === 'rejected') { 
-        if (banner) banner.style.display = 'none'; 
-    } else { 
-        if (banner) banner.style.display = 'flex'; 
-    } 
- 
-    if (acceptButton) { 
-        acceptButton.addEventListener('click', () => { 
-            localStorage.setItem('rg1_cookie_consent', 'accepted'); 
-            if (banner) banner.style.display = 'none'; 
-        }); 
-    } 
- 
-    if (rejectButton) { 
-        rejectButton.addEventListener('click', () => { 
-            localStorage.setItem('rg1_cookie_consent', 'rejected'); 
-            if (banner) banner.style.display = 'none'; 
-        }); 
-    } 
-} 
- 
-// الدالة المسؤولة عن تحويل الروابط 
+// إصلاح روابط الخصوصية والشروط 
 function fixLegalLinks() { 
-    // نحدد جميع الروابط في الصفحة 
-    const allLinks = document.querySelectorAll('a[href]'); 
-     
-    allLinks.forEach(link => { 
-        const href = link.getAttribute('href'); 
-         
-        // إذا كان الرابط هو #privacy أو #policy 
-        if (href && (href.includes('#privacy') || href.includes('#policy'))) { 
-            link.setAttribute('href', 'privacy.html'); 
-            link.classList.remove('nav-link'); // نلغي كود التنقل الداخلي الخاص بك 
-            // لا حاجة لإزالة event listener هنا إذا لم يكن قد تم إضافته 
-        } 
-         
-        // إذا كان الرابط هو #terms أو #conditions 
-        if (href && (href.includes('#terms') || href.includes('#conditions'))) { 
-            link.setAttribute('href', 'terms.html'); 
-            link.classList.remove('nav-link'); // نلغي كود التنقل الداخلي 
-            // لا حاجة لإزالة event listener هنا إذا لم يكن قد تم إضافته 
-        } 
-    }); 
+  const allLinks = document.querySelectorAll('a[href]'); 
+  allLinks.forEach(link => { 
+    const href = link.getAttribute('href'); 
+    if (href && (href.includes('#privacy') || href.includes('#policy'))) { 
+      link.setAttribute('href', 'privacy.html'); 
+    } 
+    if (href && (href.includes('#terms') || href.includes('#conditions'))) { 
+      link.setAttribute('href', 'terms.html'); 
+    } 
+  }); 
 } 
  
-function fixTopAdPosition() { 
-    const nav = document.getElementById('main-categories-nav'); 
-    const ad = document.getElementById('top-fixed-ad'); 
+// تهيئة لافتة الكوكيز 
+function initializeCookieBanner() { 
+  const banner = document.getElementById('cookie-banner'); 
+  if (localStorage.getItem('rg1_cookie_consent') !== null) { 
+    banner.style.display = 'none'; 
+  } else { 
+    banner.style.display = 'flex'; 
+  } 
+} 
  
-    if (nav && ad) { 
-        const navHeight = nav.offsetHeight; 
-        ad.style.marginTop = navHeight + "px"; 
-    } 
+// إصلاح موضع الإعلان العلوي 
+function fixTopAdPosition() { 
+  const nav = document.getElementById('main-categories-nav'); 
+  const ad = document.getElementById('top-fixed-ad'); 
+  if (nav && ad) { 
+    ad.style.marginTop = nav.offsetHeight + "px"; 
+  } 
 } 
 
