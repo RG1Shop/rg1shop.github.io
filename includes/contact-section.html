@@ -1,37 +1,49 @@
-<section id="contact" class="py-20 bg-dark-deep">
-    <div class="container mx-auto px-4">
-        <h2 class="text-4xl font-bold text-center mb-16 text-gold" data-key="contact_section_title">تواصل معنا مباشرة</h2>
-        
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div class="space-y-8 text-right">
-                <div class="bg-dark-accent p-6 rounded-2xl border border-gold/10">
-                    <h3 class="text-xl font-bold text-gold mb-4" data-key="whatsapp_label">الدعم الفني والطلبات</h3>
-                    <p class="text-gray-300 mb-4">نحن هنا لمساعدتك في حجز رحلاتك وفعالياتك.</p>
-                    <a href="https://wa.me/212660074196" class="text-gold font-bold hover:underline">
-                        +212 660-074196
-                    </a>
+<section id="contact" class="space-y-10 py-12 border-t border-gray-100">
+    <div class="text-center space-y-2">
+        <h2 class="text-3xl font-bold text-gray-900" data-key="contact_title">Contact Us</h2>
+        <p class="text-gray-500 max-w-2xl mx-auto" data-key="contact_subtitle">Our concierge team is available 24/7 to assist with your luxury arrangements.</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 bg-white p-8 rounded-[2rem] shadow-sm border border-purple-50">
+        <form class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1" data-key="form_name">Name</label>
+                <input type="text" class="w-full px-4 py-3 rounded-xl border-gray-200 focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1" data-key="form_email">Email</label>
+                <input type="email" class="w-full px-4 py-3 rounded-xl border-gray-200 focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all">
+            </div>
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1" data-key="form_message">Message</label>
+                <textarea rows="4" class="w-full px-4 py-3 rounded-xl border-gray-200 focus:ring-2 focus:ring-purple-600 focus:border-transparent outline-none transition-all"></textarea>
+            </div>
+            <button type="submit" class="w-full bg-purple-600 text-white font-bold py-4 rounded-xl hover:bg-purple-700 transition-colors shadow-lg shadow-purple-200" data-key="form_submit">
+                Send Message
+            </button>
+        </form>
+
+        <div class="space-y-8">
+            <div class="bg-gray-50 p-6 rounded-2xl space-y-4">
+                <div class="flex items-start gap-4">
+                    <div class="bg-purple-100 p-3 rounded-lg text-purple-600"><i class="fas fa-envelope"></i></div>
+                    <div>
+                        <h4 class="font-bold text-gray-800" data-key="info_email_title">Email Us</h4>
+                        <p class="text-gray-600">concierge@rg1shop.com</p>
+                    </div>
                 </div>
-                
-                <div class="bg-dark-accent p-6 rounded-2xl border border-gold/10">
-                    <h3 class="text-xl font-bold text-gold mb-4" data-key="contact_email_label">البريد الإلكتروني</h3>
-                    <p class="text-gray-300">support@rg1shop.com</p>
+                <div class="flex items-start gap-4">
+                    <div class="bg-purple-100 p-3 rounded-lg text-purple-600"><i class="fas fa-map-marker-alt"></i></div>
+                    <div>
+                        <h4 class="font-bold text-gray-800" data-key="info_address_title">Global HQ</h4>
+                        <p class="text-gray-600">Luxury District, Zurich, Switzerland</p>
+                    </div>
                 </div>
             </div>
-
-            <div class="bg-dark-accent p-8 rounded-2xl border border-gold/20">
-                <form id="contact-form" class="space-y-6">
-                    <div>
-                        <label class="block text-gold mb-2 text-right" data-key="full_name_label">الاسم الكامل</label>
-                        <input type="text" class="w-full bg-dark-deep border border-gold/20 rounded-lg p-3 text-white focus:outline-none focus:border-gold" data-placeholder-key="full_name_placeholder" placeholder="أدخل اسمك هنا...">
-                    </div>
-                    <div>
-                        <label class="block text-gold mb-2 text-right" data-key="message_label">رسالتك</label>
-                        <textarea rows="4" class="w-full bg-dark-deep border border-gold/20 rounded-lg p-3 text-white focus:outline-none focus:border-gold" data-placeholder-key="message_placeholder" placeholder="كيف يمكننا مساعدتك؟"></textarea>
-                    </div>
-                    <button type="submit" class="w-full bg-gold text-black font-bold py-4 rounded-lg hover:bg-yellow-500 transition-all shadow-lg" data-key="send_message_button">
-                        إرسال الرسالة الآن
-                    </button>
-                </form>
+            <div class="flex gap-4">
+                <a href="#" class="w-12 h-12 flex items-center justify-center rounded-xl bg-blue-600 text-white hover:scale-110 transition-transform"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="w-12 h-12 flex items-center justify-center rounded-xl bg-gradient-to-tr from-yellow-500 to-purple-600 text-white hover:scale-110 transition-transform"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="w-12 h-12 flex items-center justify-center rounded-xl bg-blue-400 text-white hover:scale-110 transition-transform"><i class="fab fa-twitter"></i></a>
             </div>
         </div>
     </div>
