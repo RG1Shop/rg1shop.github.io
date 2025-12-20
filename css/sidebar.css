@@ -1,0 +1,16 @@
+#media-sidebar {     
+  width: 300px;     
+  flex-shrink: 0;     
+  background: var(--bg-card);     
+  border-radius: 14px;     
+  padding: 20px;     
+  border: 1px solid var(--border-light);     
+  box-shadow: 0 4px 20px var(--shadow-dark);     
+  position: sticky;     
+  top: calc(var(--top-nav-total-height) + 20px);     
+  height: fit-content;     
+  align-self: flex-start;     
+  z-index: 500;     
+  border: 1px solid var(--purple-border);     
+} 
+
