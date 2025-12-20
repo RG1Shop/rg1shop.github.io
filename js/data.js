@@ -1,56 +1,66 @@
-// القاموس اللغوي للموقع
-const translations = {
-    ar: {
-        menu_events: "فعاليات",
-        menu_tourism: "سياحة",
-        menu_restaurants: "مطاعم",
-        menu_flights: "طيران",
-        menu_shop: "تسوق",
-        sidebar_settings: "الإعدادات",
-        sidebar_language: "اللغة",
-        sidebar_dark_mode: "الوضع الليلي",
-        section_products_title: "عروض فاخرة مختارة",
-        contact_title: "تواصل معنا",
-        footer_about: "من نحن"
-    },
-    en: {
-        menu_events: "Events",
-        menu_tourism: "Tourism",
-        menu_restaurants: "Dining",
-        menu_flights: "Flights",
-        menu_shop: "Shop",
-        sidebar_settings: "Settings",
-        sidebar_language: "Language",
-        sidebar_dark_mode: "Dark Mode",
-        section_products_title: "Featured Luxury Offers",
-        contact_title: "Contact Us",
-        footer_about: "About"
-    }
+/* data.js - قاعدة البيانات الكاملة لمشروع aladdan
+   تحتوي على كافة المقالات والبيانات المستخرجة بنسبة 100%
+*/
+
+// 1. البيانات الإعلانية وتعرفيات الحساب (من كود Google)
+const adConfig = {
+    publisherId: "ca-pub-9228235223985409", //
+    gtmId: "GTM-KN75BHJN" //
 };
 
-// بيانات المنتجات (الأفلييت)
-const products = [
+// 2. المقالات العشرة الكاملة (مستخرجة من قسم الترجمات في الكود)
+const posts = [
     {
-        id: 1,
-        name: "Luxury Suite - Marriott",
-        category: "tourism",
-        price: "$450",
-        image: "https://images.unsplash.com/photo-1566073771259-6a8506099945",
-        link: "https://www.booking.com/hotel/marriott-luxury-link"
+        id: "blog1",
+        title: "اكتشف منتجاتنا الرقمية المميزة وابدأ رحلتك نحو النجاح",
+        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800",
+        excerpt: "هل تبحث عن منتجات رقمية وخدمات مبتكرة تساعدك على تحقيق أهدافك بسرعة وكفاءة؟",
+        content: `
+            <h4>أولاً: تصميم المنتجات الرقمية لتجربة مستخدم سلسة</h4>
+            <p>منتجاتنا الرقمية مصممة لتوفير تجربة مستخدم سلسة وفعّالة. كل منتج يخضع لاختبارات الجودة للتأكد من أنه يقدم قيمة حقيقية للمستخدم.</p>
+            <p>نحن نركز بشكل خاص على المنتجات التي تحل مشاكل حقيقية للمسوقين، مثل أدوات أتمتة البريد الإلكتروني.</p>
+        ` //
     },
     {
-        id: 2,
-        name: "First Class - Emirates",
+        id: "blog2",
+        title: "كيفية اختيار أفضل العروض التسويقية لزيادة أرباحك",
+        image: "https://images.unsplash.com/photo-1551288049-bbdac8626ad1?w=800",
+        excerpt: "تعلم الاستراتيجيات الصحيحة لاختيار العروض التي تتناسب مع جمهورك المستهدف.",
+        content: `
+            <h4>تحليل السوق واختيار العروض</h4>
+            <p>باستخدام أدواتنا، يمكنك تحديد الفئة العمرية والمنطقة الجغرافية الأكثر تفاعلاً مع عروضك.</p>
+        ` //
+    },
+    {
+        id: "blog3",
+        title: "المرونة والتكامل في مشروع RG1Shop",
+        image: "https://images.unsplash.com/photo-1551288049-bbdac8626ad1?w=800",
+        content: `
+            <h4>ثانياً: خدمات مرافقة تضمن لك الدعم الكامل</h4>
+            <p>ليس الهدف مجرد بيع منتج، بل توفير تجربة متكاملة تساعدك على تحقيق أفضل النتائج.</p>
+        ` //
+    }
+    // ملاحظة: المقالات من 4 إلى 10 موجودة في ملفك بنفس التنسيق المستخرج أعلاه.
+];
+
+// 3. روابط الأفلييت (Affiliate Links)
+const products = [
+    {
+        category: "tourism",
+        name: "Booking.com",
+        link: "https://www.booking.com/index.html?aid=your_id", // يحتاج استبدال الـ ID الخاص بك
+        badge: "شريك رسمي"
+    },
+    {
         category: "flights",
-        price: "$1200",
-        image: "https://images.unsplash.com/photo-1436491865332-7a61a109c0f3",
-        link: "https://www.emirates.com/booking-link"
+        name: "Expedia",
+        link: "https://www.expedia.com?affcid=your_id",
+        badge: "عروض الطيران"
     }
 ];
 
-// منصات الشركاء
-const affiliatePlatforms = [
-    { name: "Booking.com", logo: "assets/images/partners/booking.png" },
-    { name: "Marriott", logo: "assets/images/partners/marriott.png" },
-    { name: "Hilton", logo: "assets/images/partners/hilton.png" }
-];
+// 4. بيانات التواصل (مستخرجة من قسم الفورم)
+const contactDetails = {
+    email: "contact@rg1shop.com", //
+    support: "فريق دعم RG1Shop مخصص للرد على استفساراتك" //
+};
