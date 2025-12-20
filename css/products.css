@@ -1,21 +1,33 @@
-/* Product Card Styles */     
-.product-card, .affiliate-link-card {     
-    border: 1px solid var(--border-light);     
-    box-shadow: 0 2px 8px var(--shadow-dark);     
-    padding: 12px;     
-    margin: 10px 0;     
-    transition: all 0.2s;     
-    border-radius: 14px;     
-    text-align: center;     
-    background: var(--bg-card);     
-    border: 1px solid var(--purple-border);     
-}     
+/* ============================================================ 
+   ستايلات بطاقات المنتجات والروابط التابعة 
+   ============================================================ */ 
+.product-card, .affiliate-link-card { 
+    border: 1px solid var(--border-light); 
+    box-shadow: 0 2px 8px var(--shadow-dark); 
+    padding: 12px; 
+    margin: 10px 0; 
+    transition: all 0.2s; 
+    border-radius: 14px; 
+    text-align: center; 
+    background: var(--bg-card); 
+    border: 1px solid var(--purple-border); 
+} 
  
-.product-card:hover, .affiliate-link-card:hover {     
-    box-shadow: 0 4px 12px var(--shadow-dark);     
-    transform: translateY(-2px);     
-}     
-.product-card.hidden-by-filter {     
-    display: none;     
+.product-card:hover, .affiliate-link-card:hover { 
+    box-shadow: 0 4px 12px var(--shadow-dark); 
+    transform: translateY(-2px); 
+} 
+.product-card.hidden-by-filter { 
+    display: none; 
+} 
+ 
+/* Affiliate/Ad Links Styling */ 
+.ad-link-icon { 
+    font-size: 1.2em; 
+    margin-left: 5px; 
+    color: var(--accent-primary) !important; 
+    border: 1px solid var(--purple-border); 
+    border-radius: 50%; 
+    padding: 2px; 
 } 
 
