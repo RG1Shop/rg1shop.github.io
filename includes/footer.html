@@ -1,59 +1,37 @@
-.secondary-bottom-nav-wrapper { 
-  position: fixed; 
-  bottom: 0; 
-  left: 0; 
-  right: 0; 
-  z-index: 1000; 
-  height: var(--top-nav-total-height); 
-  background: var(--bg-secondary); 
-  box-shadow: 0 -2px 10px var(--shadow-dark); 
-  backdrop-filter: blur(20px); 
-  border-top: 2px solid var(--purple-border); 
-} 
- 
-.secondary-bottom-nav-wrapper .top-nav-bar { 
-  width: 100%; 
-  height: var(--top-nav-bar-height); 
-  display: flex; 
-  align-items: center; 
-  justify-content: space-evenly; 
-  padding: 0 5px; 
-  font-size: 10px; 
-  overflow: hidden; 
-  border-bottom: 1px solid rgba(255,255,255,0.05); 
-} 
- 
-.secondary-bottom-nav-wrapper .nav-link { 
-  color: var(--text-primary); 
-  text-decoration: none; 
-  font-weight: 600; 
-  font-size: 13px; 
-  white-space: nowrap; 
-  padding: 5px 8px; 
-  border-radius: 4px; 
-  transition: all 0.2s ease; 
-  display: flex; 
-  align-items: center; 
-  gap: 6px; 
-  border: 1px solid transparent; 
-} 
- 
-.secondary-bottom-nav-wrapper .nav-link i { 
-  font-size: 18px !important; 
-  color: var(--accent-primary) !important; 
-  border: 1px solid var(--purple-border); 
-  border-radius: 50%; 
-  padding: 2px; 
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-} 
- 
-.secondary-bottom-nav-wrapper .nav-link:hover { 
-  background: var(--accent-primary); 
-  color: white !important; 
-  border-color: var(--accent-primary); 
-  transform: translateY(-2px); 
-  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3); 
-} 
+<div class="secondary-bottom-nav-wrapper fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-md">
+    <nav class="bg-white/80 backdrop-blur-lg border border-purple-100 shadow-2xl rounded-2xl p-2 flex justify-around items-center">
+        <a href="#about" class="nav-link flex flex-col items-center gap-1 p-2 rounded-xl transition-all" onclick="handleNav(this)">
+            <i class="fas fa-info-circle text-lg"></i>
+            <span class="text-[10px] font-bold" data-key="footer_about">About</span>
+        </a>
+        <a href="#contact" class="nav-link flex flex-col items-center gap-1 p-2 rounded-xl transition-all" onclick="handleNav(this)">
+            <i class="fas fa-envelope text-lg"></i>
+            <span class="text-[10px] font-bold" data-key="footer_contact">Contact</span>
+        </a>
+        <a href="#privacy" class="nav-link flex flex-col items-center gap-1 p-2 rounded-xl transition-all" onclick="handleNav(this)">
+            <i class="fas fa-shield-alt text-lg"></i>
+            <span class="text-[10px] font-bold" data-key="footer_privacy">Privacy</span>
+        </a>
+        <a href="#terms" class="nav-link flex flex-col items-center gap-1 p-2 rounded-xl transition-all" onclick="handleNav(this)">
+            <i class="fas fa-file-contract text-lg"></i>
+            <span class="text-[10px] font-bold" data-key="footer_terms">Terms</span>
+        </a>
+    </nav>
+</div>
 
+<footer class="bg-white border-t border-gray-100 pt-16 pb-32">
+    <div class="max-w-7xl mx-auto px-4 text-center space-y-6">
+        <div class="flex justify-center">
+            <div class="w-16 h-16 border-2 border-purple-600 rounded-2xl overflow-hidden shadow-sm">
+                <img src="assets/logo.png" alt="RG1Shop" class="w-full h-full object-cover">
+            </div>
+        </div>
+        <p class="text-gray-500 text-sm max-w-md mx-auto" data-key="footer_tagline">Your gateway to global luxury and secure travel experiences.</p>
+        <div class="text-xs text-gray-400">
+            &copy; 2024 <span class="font-bold text-purple-600">RG1Shop</span>. All rights reserved.
+        </div>
+    </div>
+</footer>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KN75BHJN"    
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
