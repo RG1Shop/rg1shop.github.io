@@ -1,179 +1,45 @@
-/* ============================================================ 
-   متغيرات الألوان للوضعين (Dark/Light Mode) 
-   ============================================================ */ 
-:root { 
-  /* الوضع الداكن (افتراضي) */ 
-  --bg-primary: linear-gradient(135deg, #0d0f1a, #111320, #14172b); 
-  --bg-secondary: #1f2937; 
-  --bg-card: rgba(255, 255, 255, 0.07); 
-  --text-primary: #e4e6f3; 
-  --text-secondary: #d1d5db; 
-  --accent-primary: #6366f1; 
-  --accent-secondary: #00e0ff; 
-  --accent-highlight: #facc15; 
-  --accent-gold: #FFD700; 
-  --accent-gold-dark: #B8860B; 
-  --accent-success: #4ade80; 
-  --border-light: rgba(255, 255, 255, 0.08); 
-  --shadow-dark: rgba(0, 0, 0, 0.25); 
-  --purple-border: #8b5cf6; 
-  --cookie-bg: #14172b; 
-  --top-nav-total-height: 57px; 
-  --top-nav-bar-height: calc(var(--top-nav-total-height) / 2); 
-  --bottom-nav-height: 38px; 
-} 
- 
-/* الوضع النهاري */ 
-[data-theme="light"] { 
-  --bg-primary: linear-gradient(135deg, #f8fafc, #f1f5f9, #e2e8f0); 
-  --bg-secondary: #ffffff; 
-  --bg-card: rgba(255, 255, 255, 0.85); 
-  --text-primary: #1e293b; 
-  --text-secondary: #64748b; 
-  --accent-primary: #4f46e5; 
-  --accent-secondary: #0ea5e9; 
-  --accent-highlight: #eab308; 
-  --accent-gold: #FFD700; 
-  --accent-gold-dark: #DAA520; 
-  --accent-success: #22c55e; 
-  --border-light: rgba(0, 0, 0, 0.08); 
-  --shadow-dark: rgba(0, 0, 0, 0.1); 
-  --purple-border: #7c3aed; 
-  --cookie-bg: #f0f2f5; 
-} 
- 
-/* ============================================================ 
-   إعادة تعيين الهوامش والحشو لكل العناصر وتحديد حجم الصندوق 
-   ============================================================ */ 
-* { margin: 0; padding: 0; box-sizing: border-box; } 
- 
-body { 
-  font-family: 'Inter', sans-serif; 
-  background: var(--bg-primary); 
-  background-attachment: fixed; 
-  margin: 0; 
-  padding: 0; 
-  color: var(--text-primary); 
-  direction: rtl; /* اتجاه الكتابة الافتراضي */ 
-  transition: all 0.3s ease; 
-  padding-top: var(--top-nav-total-height); 
-  padding-bottom: var(--top-nav-total-height); 
-  font-size: 16px; 
-} 
- 
-/* ============================================================ 
-   الصناديق + تأثير الزجاج Glassmorphism 
-   ============================================================ */ 
-.card, .box, .section, .container, .panel, .content-box { 
-  background: var(--bg-card); 
-  backdrop-filter: blur(12px); 
-  border-radius: 14px; 
-  padding: 20px; 
-  border: 1px solid var(--border-light); 
-  box-shadow: 0 4px 12px var(--shadow-dark); 
-  transition: all 0.3s ease; 
-  margin: 20px 0; /* تم إضافته ليكون عامًا هنا */ 
-  border: 1px solid var(--purple-border); /* تم إضافته ليكون عامًا هنا */ 
-} 
- 
-/* ============================================================ 
-   الأزرار — Button Styling (عام) 
-   ============================================================ */ 
-button, .btn { 
-  background: linear-gradient(135deg, var(--accent-primary), #4f46e5); 
-  padding: 12px 22px; 
-  border: none; 
-  border-radius: 12px; 
-  color: #ffffff !important; 
-  font-weight: 600; 
-  cursor: pointer; 
-  transition: all 0.25s ease; 
-} 
- 
-button:hover, .btn:hover { 
-  opacity: 0.9; 
-  transform: translateY(-2px); 
-  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4); 
-} 
- 
-/* ============================================================ 
-   ستايلات النجوم الذهبية الفاخرة (Gold Stars Section) 
-   ============================================================ */ 
-.gold-stars-section { 
-  background: linear-gradient(135deg, var(--accent-gold), #FFA500, var(--accent-gold)); 
-  padding: 30px 20px; 
-  text-align: center; 
-  border-radius: 20px; 
-  margin: 20px 0; 
-  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4); 
-  animation: goldGlow 3s ease-in-out infinite alternate; 
-} 
- 
-@keyframes goldGlow { 
-  0% { box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4); } 
-  100% { box-shadow: 0 15px 40px rgba(255, 215, 0, 0.6); } 
-} 
- 
-.gold-stars-section h2 { 
-  font-family: 'Playfair Display', serif; 
-  font-size: 2.2em; 
-  color: var(--accent-gold-dark); 
-  margin: 0 0 15px 0; 
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.5); 
-  font-weight: 700; 
-} 
- 
-.gold-stars-section .stars { 
-  font-size: 3.5em; 
-  color: var(--accent-gold-dark); 
-  margin-bottom: 15px; 
-  text-shadow: 0 0 20px rgba(255, 215, 0, 0.8); 
-} 
- 
-.gold-stars-section p { 
-  color: var(--accent-gold-dark); 
-  font-size: 1.1em; 
-  font-style: italic; 
-  margin: 0; 
-} 
- 
-/* ============================================================ 
-   تخطيط التطبيق العام 
-   ============================================================ */ 
-#app-container { 
-  max-width: 1400px; 
-  margin: 0 auto; 
-  padding: 0 20px; 
-  display: flex; 
-  gap: 20px; 
-} 
- 
-#main-content { flex: 1; } 
- 
-/* ============================================================ 
-   Media Queries عامة 
-   ============================================================ */ 
-@media (max-width: 1200px) { 
-  #media-sidebar {  
-    position: static;  
-    width: 100%;  
-    order: -1;  
-    margin-bottom: 20px;  
-  } 
-  #app-container { flex-direction: column; } 
-} 
- 
-@media (max-width: 500px) { 
-  /* تعديلات عامة لأحجام الخطوط والأيقونات على الشاشات الصغيرة */ 
-  .control-icon-btn { 
-    width: 25px; 
-    height: 25px; 
-    font-size: 12px; 
-  } 
-  .control-icon-btn i, 
-  .lang-toggle[data-lang="ar"]::before, 
-  .lang-toggle[data-lang="en"]::before { 
-    font-size: 12px !important; 
-  } 
-} 
+/* الأنماط العامة وإعادة الضبط */
+:root {
+    --primary-purple: #9333ea;
+    --dark-purple: #581c87;
+    --active-red: #ff4d4d;
+}
 
+body {
+    font-family: 'Cairo', sans-serif;
+    scroll-behavior: smooth;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* نمط الروابط النشطة (اللون الأحمر الذي طلبته) */
+.nav-link.active-red {
+    background-color: var(--active-red) !important;
+    color: white !important;
+    transform: scale(1.05);
+}
+
+/* تأثيرات الانتقال للبطاقات */
+.content-section {
+    transition: all 0.4s ease-in-out;
+}
+
+/* إخفاء الأقسام */
+.hidden {
+    display: none;
+}
+
+/* تنسيق الصور واللوجو */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* تحسينات القوائم */
+.no-underline {
+    text-decoration: none !important;
+}
+
+/* الهوامش العامة للمحتوى */
+main {
+    min-height: 80vh;
+}
