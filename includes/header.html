@@ -5,37 +5,37 @@
         </div>
 
         <div class="flex-grow grid grid-cols-5 gap-1">
-            <a href="#events" onclick="activateNav(this)" class="nav-item active-red flex flex-col items-center justify-center py-1 rounded-lg no-underline">
+            <a href="#events" class="nav-link active-red flex flex-col items-center justify-center py-1 rounded-lg no-underline">
                 <span class="text-xl">🎉</span><span class="text-[9px] font-bold">Events</span>
             </a>
-            <a href="#tourism" onclick="activateNav(this)" class="nav-item flex flex-col items-center justify-center py-1 rounded-lg no-underline">
+            <a href="#tourism" class="nav-link flex flex-col items-center justify-center py-1 rounded-lg no-underline">
                 <span class="text-xl">✈️</span><span class="text-[9px] font-bold">Tourism</span>
             </a>
-            <button onclick="activateNav(this)" class="nav-item flex flex-col items-center justify-center py-1 rounded-lg">
+            <a href="#restaurants" class="nav-link flex flex-col items-center justify-center py-1 rounded-lg no-underline">
                 <span class="text-xl">🍴</span><span class="text-[9px] font-bold">Resto</span>
-            </button>
-            <button onclick="activateNav(this)" class="nav-item flex flex-col items-center justify-center py-1 rounded-lg">
+            </a>
+            <a href="#flights" class="nav-link flex flex-col items-center justify-center py-1 rounded-lg no-underline">
                 <span class="text-xl">🛫</span><span class="text-[9px] font-bold">Flights</span>
-            </button>
-            <button onclick="activateNav(this)" class="nav-item flex flex-col items-center justify-center py-1 rounded-lg">
+            </a>
+            <a href="#shop" class="nav-link flex flex-col items-center justify-center py-1 rounded-lg no-underline">
                 <span class="text-xl">🛒</span><span class="text-[9px] font-bold">Shop</span>
-            </button>
+            </a>
         </div>
     </div>
 </nav>
 
 <style>
-    .nav-item { color: #581c87 !important; background: white; border: 1px solid #f3e8ff; cursor: pointer; transition: 0.3s; }
-    .active-red { background-color: #ff4d4d !important; color: white !important; border-color: #ff4d4d !important; }
+    /* التنسيق الذي يضمن ثبات اللون الأحمر وانتقاله */
+    .nav-link { color: #581c87 !important; background: white; border: 1px solid #f3e8ff; transition: 0.3s; }
+    .nav-link.active-red { background-color: #ff4d4d !important; color: white !important; border-color: #ff4d4d !important; }
 </style>
 
 <script>
-    function activateNav(el) {
-        // إزالة اللون الأحمر من جميع العناصر داخل التنقل
-        document.querySelectorAll('.nav-item').forEach(item => {
-            item.classList.remove('active-red');
+    // هذه الوظيفة هي التي تجعل اللون ينتقل فور الضغط
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function() {
+            document.querySelectorAll('.nav-link').forEach(btn => btn.classList.remove('active-red'));
+            this.classList.add('active-red');
         });
-        // إضافة اللون الأحمر للعنصر الذي تم النقر عليه
-        el.classList.add('active-red');
-    }
+    });
 </script>
