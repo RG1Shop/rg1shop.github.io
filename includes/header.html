@@ -1,38 +1,41 @@
-<header class="bg-white border-b-2 border-purple-600 sticky top-0 z-50">
-    <div class="flex items-center p-2 gap-2">
+<div class="bg-white border-b-2 border-purple-600 sticky top-0 z-50">
+    <div class="flex items-center p-2 gap-2 max-w-full overflow-hidden">
         <div class="flex-shrink-0 border-2 border-purple-600 rounded-lg overflow-hidden w-12 h-12">
             <img src="https://via.placeholder.com/48" alt="RG1Shop" class="w-full h-full object-cover">
         </div>
 
-        <nav class="flex-grow grid grid-cols-5 gap-1">
-            <button onclick="changeActive(this)" class="nav-item active-red flex flex-col items-center justify-center py-1 rounded-lg">
+        <nav id="top-nav" class="flex-grow grid grid-cols-5 gap-1">
+            <button onclick="updateActive(this)" class="nav-btn active-red flex flex-col items-center justify-center py-1 rounded-lg">
                 <span class="text-xl">🎉</span><span class="text-[9px] font-bold">Events</span>
             </button>
-            <button onclick="changeActive(this)" class="nav-item flex flex-col items-center justify-center py-1 rounded-lg">
+            <button onclick="updateActive(this)" class="nav-btn flex flex-col items-center justify-center py-1 rounded-lg">
                 <span class="text-xl">✈️</span><span class="text-[9px] font-bold">Tourism</span>
             </button>
-            <button onclick="changeActive(this)" class="nav-item flex flex-col items-center justify-center py-1 rounded-lg">
+            <button onclick="updateActive(this)" class="nav-btn flex flex-col items-center justify-center py-1 rounded-lg">
                 <span class="text-xl">🍴</span><span class="text-[9px] font-bold">Resto</span>
             </button>
-            <button onclick="changeActive(this)" class="nav-item flex flex-col items-center justify-center py-1 rounded-lg">
+            <button onclick="updateActive(this)" class="nav-btn flex flex-col items-center justify-center py-1 rounded-lg">
                 <span class="text-xl">🛫</span><span class="text-[9px] font-bold">Flights</span>
             </button>
-            <button onclick="changeActive(this)" class="nav-item flex flex-col items-center justify-center py-1 rounded-lg">
+            <button onclick="updateActive(this)" class="nav-btn flex flex-col items-center justify-center py-1 rounded-lg">
                 <span class="text-xl">🛒</span><span class="text-[9px] font-bold">Shop</span>
             </button>
         </nav>
     </div>
-</header>
+</div>
 
 <style>
-    .nav-item { color: #581c87; transition: all 0.2s ease; border: 1px solid transparent; cursor: pointer; }
-    .active-red { background-color: #ff4d4d !important; color: white !important; }
+    .nav-btn { color: #581c87 !important; border: 1px solid #f3e8ff !important; background: white !important; transition: 0.2s; cursor: pointer; }
+    /* اللون الأحمر الذي ينتقل */
+    .nav-btn.active-red { background-color: #ff4d4d !important; color: white !important; border-color: #ff4d4d !important; }
 </style>
 
 <script>
-    function changeActive(element) {
-        // إزالة الكلاس من الجميع ثم إضافته للعنصر المضغوط
-        document.querySelectorAll('.nav-item').forEach(btn => btn.classList.remove('active-red'));
+    function updateActive(element) {
+        // إزالة اللون الأحمر من الكل
+        const buttons = document.querySelectorAll('.nav-btn');
+        buttons.forEach(btn => btn.classList.remove('active-red'));
+        // وضعه على الزر المختار فوراً
         element.classList.add('active-red');
     }
 </script>
