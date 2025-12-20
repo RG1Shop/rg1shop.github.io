@@ -1,33 +1,30 @@
-/* ============================================================ 
-   ستايلات بطاقات المنتجات والروابط التابعة 
-   ============================================================ */ 
-.product-card, .affiliate-link-card { 
-    border: 1px solid var(--border-light); 
-    box-shadow: 0 2px 8px var(--shadow-dark); 
-    padding: 12px; 
-    margin: 10px 0; 
-    transition: all 0.2s; 
-    border-radius: 14px; 
-    text-align: center; 
-    background: var(--bg-card); 
-    border: 1px solid var(--purple-border); 
-} 
- 
-.product-card:hover, .affiliate-link-card:hover { 
-    box-shadow: 0 4px 12px var(--shadow-dark); 
-    transform: translateY(-2px); 
-} 
-.product-card.hidden-by-filter { 
-    display: none; 
-} 
- 
-/* Affiliate/Ad Links Styling */ 
-.ad-link-icon { 
-    font-size: 1.2em; 
-    margin-left: 5px; 
-    color: var(--accent-primary) !important; 
-    border: 1px solid var(--purple-border); 
-    border-radius: 50%; 
-    padding: 2px; 
-} 
+/* تنسيق بطاقة المنتج */
+.product-card {
+    transition: all 0.3s ease;
+    border: 1px solid #f3f4f6;
+    background: white;
+}
 
+.product-card:hover {
+    transform: translateY(-10px);
+    shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img {
+    height: 200px;
+    object-fit: cover;
+    border-radius: 1.5rem 1.5rem 0 0;
+}
+
+/* تنسيق شريط الشركاء */
+#affiliates-slider img {
+    height: 40px;
+    opacity: 0.6;
+    transition: opacity 0.3s;
+    filter: grayscale(100%);
+}
+
+#affiliates-slider img:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+}
