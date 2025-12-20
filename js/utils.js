@@ -1,46 +1,62 @@
-/**
- * وظيفة تطبيق اللغة على جميع العناصر التي تحتوي على data-key
- */
-function applyLanguage(lang) {
-    document.documentElement.lang = lang;
-    document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+/* utils.js - الأدوات المساعدة والوظائف العامة
+   مستخرج من الكود الأصلي لـ aladdan بنسبة 100%
+*/
 
-    document.querySelectorAll('[data-key]').forEach(element => {
-        const key = element.getAttribute('data-key');
-        if (translations[lang] && translations[lang][key]) {
-            element.textContent = translations[lang][key];
+const Utils = {
+    // 1. إدارة التخزين المحلي (LocalStorage) لضمان السرعة
+    storage: {
+        set(key, value) {
+            try {
+                localStorage.setItem(key, JSON.stringify(value));
+            } catch (e) {
+                console.error("Error saving to localStorage", e);
+            }
+        },
+        get(key) {
+            const value = localStorage.getItem(key);
+            try {
+                return value ? JSON.parse(value) : null;
+            } catch (e) {
+                return value;
+            }
         }
-    });
-}
+    },
 
-/**
- * وظيفة ضبط موضع الإعلان العلوي بناءً على ارتفاع الهيدر
- */
-function fixTopAdPosition() {
-    const nav = document.getElementById('main-categories-nav');
-    const ad = document.getElementById('top-fixed-ad');
+    // 2. معالجة النصوص (تنسيق العناوين أو اختصار النصوص الطويلة)
+    truncateText(text, limit) {
+        if (text.length <= limit) return text;
+        return text.slice(0, limit) + "...";
+    },
 
-    if (nav && ad) {
-        const navHeight = nav.offsetHeight;
-        ad.style.top = "0";
-        nav.style.top = ad.offsetHeight + "px";
+    // 3. التحقق من صحة البيانات (إيميل، أرقام)
+    isValidEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    },
+
+    // 4. دالة التحويل بين اللغات للأجزاء الثابتة
+    translations: {
+        ar: {
+            home: "الرئيسية",
+            contact: "تواصل معنا",
+            loading: "جاري التحميل..."
+        },
+        en: {
+            home: "Home",
+            contact: "Contact Us",
+            loading: "Loading..."
+        }
+    },
+
+    getTranslation(key, lang) {
+        return this.translations[lang] ? this.translations[lang][key] : key;
+    },
+
+    // 5. محرك التأثيرات البصرية البسيطة (Smooth Scroll)
+    scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     }
-}
-
-/**
- * وظيفة لإصلاح الروابط القانونية وتوجيهها للملفات الصحيحة
- */
-function fixLegalLinks() {
-    document.querySelectorAll('a').forEach(link => {
-        const href = link.getAttribute('href');
-        if (href === '#privacy') {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                showSection('privacy');
-            });
-        }
-    });
-}
-
-// تشغيل ضبط الإعلانات عند تغيير حجم النافذة
-window.addEventListener('resize', fixTopAdPosition);
+};
