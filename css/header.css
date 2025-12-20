@@ -1,83 +1,44 @@
-/* ============================================================ 
-   الشريط العلوي الجديد (الأقسام الرئيسية الـ 5) 
-   ============================================================ */ 
-.main-categories-nav { 
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-  right: 0; 
-  z-index: 1000; 
-  height: var(--top-nav-total-height); 
-  background: var(--bg-secondary); 
-  box-shadow: 0 2px 10px var(--shadow-dark); 
-  backdrop-filter: blur(20px); 
-  display: flex; 
-  align-items: center; 
-  justify-content: space-evenly; 
-  padding: 0 5px; 
-  font-size: 13px; 
-  font-weight: 700; 
-  border-bottom: 2px solid var(--purple-border); 
-} 
- 
-.main-categories-nav .main-nav-link { 
-  color: var(--text-primary); 
-  text-decoration: none; 
-  font-weight: 600; 
-  white-space: nowrap; 
-  padding: 5px 8px; 
-  border-radius: 4px; 
-  transition: all 0.2s ease; 
-  display: flex; 
-  align-items: center; 
-  gap: 6px; 
-  border: 1px solid transparent; 
-} 
- 
-.main-categories-nav .main-nav-link i { 
-  font-size: 18px; 
-  color: var(--accent-primary); 
-  border: 1px solid var(--purple-border); 
-  border-radius: 50%; 
-  padding: 2px; 
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-} 
- 
-.main-categories-nav .main-nav-link:hover { 
-  background: var(--accent-primary); 
-  color: white !important; 
-  border-color: var(--accent-primary); 
-  transform: translateY(-2px); 
-  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3); 
-} 
- 
-.main-categories-nav .main-nav-link:hover i { 
-  color: white !important; 
-  border-color: white; 
-} 
- 
-.main-categories-nav .main-nav-link.active-link { 
-  background: #DC2626 !important; 
-  color: white !important; 
-  border-color: #DC2626 !important; 
-  box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3); 
-} 
- 
-.main-categories-nav .main-nav-link.active-link i { 
-  color: white !important; 
-  border-color: white; 
-} 
- 
-@media (max-width: 500px) { 
-  .main-categories-nav .main-nav-link { 
-    font-size: 10px; 
-    padding: 3px 5px; 
-    gap: 2px; 
-  } 
-  .main-categories-nav .main-nav-link i { 
-    font-size: 14px !important; 
-  } 
-} 
+/* شريط الإعلانات العلوي */
+#top-fixed-ad {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
 
+/* شريط التنقل الرئيسي */
+#main-categories-nav {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+/* تنسيق الأيقونات في الهيدر */
+.nav-link {
+    color: #581c87;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid transparent;
+}
+
+.nav-link:hover {
+    background-color: #f3e8ff;
+    transform: translateY(-1px);
+}
+
+/* تنسيق النصوص الصغيرة تحت الأيقونات */
+.nav-link span[data-key] {
+    letter-spacing: 0.02em;
+    line-height: 1;
+    margin-top: 2px;
+}
+
+/* استجابة الهيدر للشاشات الصغيرة */
+@media (max-width: 640px) {
+    .nav-link {
+        padding: 4px 2px;
+    }
+    .nav-link .text-xl {
+        font-size: 1.25rem;
+    }
+}
