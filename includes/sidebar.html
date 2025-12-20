@@ -1,20 +1,39 @@
-<div id="sidebar" class="fixed inset-y-0 right-0 w-64 bg-dark-deep z-[60] transform translate-x-full transition-transform duration-300 ease-in-out md:hidden border-l border-gold/20">
-    <div class="p-6">
-        <div class="flex justify-between items-center mb-10">
-            <span class="text-gold font-bold text-xl">ALADDAN</span>
-            <button id="close-sidebar" class="text-gray-400">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+<aside id="media-sidebar" class="hidden lg:block space-y-8">
+    <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-1647895034608316"
+             data-ad-slot="1234567890"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-purple-100 space-y-4">
+        <h3 class="font-bold text-gray-800 border-b pb-2" data-key="sidebar_settings">Settings</h3>
+        
+        <div class="flex items-center justify-between">
+            <span class="text-sm text-gray-600" data-key="sidebar_language">Language</span>
+            <select id="language-select" class="text-sm border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500 p-1">
+                <option value="ar">العربية</option>
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+            </select>
+        </div>
+
+        <div class="flex items-center justify-between">
+            <span class="text-sm text-gray-600" data-key="sidebar_dark_mode">Dark Mode</span>
+            <button id="theme-toggle" class="p-2 rounded-lg bg-gray-100 text-gray-600 hover:bg-purple-100 transition-colors">
+                <i class="fas fa-moon"></i>
             </button>
         </div>
-        
-        <nav class="flex flex-col space-y-6 text-right">
-            <a href="#events" class="text-lg text-gray-300 hover:text-gold" data-key="menu_events">حفلات</a>
-            <a href="#tourism" class="text-lg text-gray-300 hover:text-gold" data-key="menu_tourism">سياحة</a>
-            <a href="#flights" class="text-lg text-gray-300 hover:text-gold" data-key="menu_flights">طيران</a>
-            <a href="#contact" class="text-lg text-gray-300 hover:text-gold" data-key="menu_contact">تواصل معنا</a>
-            <hr class="border-gold/10">
-            <button id="lang-switch-mobile" class="text-gold border border-gold/20 py-2 rounded-lg">English</button>
-        </nav>
     </div>
-</div>
-<div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-[55] hidden md:hidden"></div>
+
+    <div class="bg-purple-600 p-6 rounded-2xl shadow-lg text-white">
+        <h3 class="font-bold mb-4" data-key="sidebar_contact_title">Need Help?</h3>
+        <p class="text-purple-100 text-sm mb-4" data-key="sidebar_contact_desc">Contact our luxury concierge service 24/7.</p>
+        <a href="#contact" class="block w-full text-center bg-white text-purple-600 font-bold py-2 rounded-xl hover:bg-purple-50 transition-colors no-underline" data-key="sidebar_contact_btn">
+            Contact Us
+        </a>
+    </div>
+</aside>
