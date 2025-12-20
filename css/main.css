@@ -1,45 +1,92 @@
-/* الأنماط العامة وإعادة الضبط */
+/* main.css - الهوية البصرية الأساسية لمشروع RG1Shop
+   مستخرج من الكود الأصلي بنسبة 100%
+*/
+
 :root {
-    --primary-purple: #9333ea;
-    --dark-purple: #581c87;
-    --active-red: #ff4d4d;
+    /* الألوان الأساسية المستخرجة */
+    --primary-red: #ff0000;
+    --purple-border: #8b5cf6;
+    --accent-gold: #fbbf24;
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-dark-bg: rgba(31, 41, 55, 0.85);
+    
+    /* المتغيرات الخاصة بالوضع الليلي والنهاري */
+    --bg-gradient-light: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);
+    --bg-gradient-dark: linear-gradient(135deg, #0d0f1a 0%, #14172b 100%);
+    
+    --text-light: #1f2937;
+    --text-dark: #f9fafb;
+}
+
+/* إعادة الضبط العامة (Reset) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
-    font-family: 'Cairo', sans-serif;
-    scroll-behavior: smooth;
-    transition: background-color 0.3s, color 0.3s;
+    font-family: 'Cairo', 'Inter', sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    overflow-x: hidden;
 }
 
-/* نمط الروابط النشطة (اللون الأحمر الذي طلبته) */
-.nav-link.active-red {
-    background-color: var(--active-red) !important;
-    color: white !important;
-    transform: scale(1.05);
+/* تطبيق الخلفية بناءً على الوضع (Theme) */
+body[data-theme="light"] {
+    background: var(--bg-gradient-light);
+    color: var(--text-light);
 }
 
-/* تأثيرات الانتقال للبطاقات */
-.content-section {
-    transition: all 0.4s ease-in-out;
+body[data-theme="dark"] {
+    background: var(--bg-gradient-dark);
+    color: var(--text-dark);
 }
 
-/* إخفاء الأقسام */
-.hidden {
-    display: none;
+/* حاوية التطبيق الرئيسية */
+#app-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 15px 100px 15px; /* مسافات للهيدر والفوتر المثبتين */
+    display: flex;
+    flex-direction: row-reverse; /* لضمان مكان السايدبار الصحيح */
+    gap: 20px;
 }
 
-/* تنسيق الصور واللوجو */
+/* التأثير الزجاجي العام */
+.glass-effect {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 1rem;
+}
+
+body[data-theme="dark"] .glass-effect {
+    background: var(--glass-dark-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* تنسيق الروابط العام */
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: 0.3s ease;
+}
+
+/* إعدادات الصور */
 img {
     max-width: 100%;
     height: auto;
+    display: block;
 }
 
-/* تحسينات القوائم */
-.no-underline {
-    text-decoration: none !important;
-}
-
-/* الهوامش العامة للمحتوى */
-main {
-    min-height: 80vh;
+/* شاشات الموبايل */
+@media (max-width: 768px) {
+    #app-container {
+        flex-direction: column;
+        padding-top: 120px; /* زيادة المسافة بسبب الإعلانات العلوية */
+    }
 }
