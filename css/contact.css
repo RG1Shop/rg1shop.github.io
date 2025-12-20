@@ -1,0 +1,23 @@
+/* Contact Form Styles */     
+.contact-info-block .info-item a {     
+    color: var(--accent-primary);     
+}     
+.contact-info-block .info-item i {     
+    color: var(--accent-primary) !important;     
+    border: 1px solid var(--purple-border);     
+    border-radius: 50%;     
+    padding: 2px;     
+}     
+.contact-form .form-control {     
+    background: rgba(255, 255, 255, 0.05);     
+    border: 1px solid var(--purple-border) !important;     
+    color: var(--text-primary);     
+    width: 100%; padding: 8px; border-radius: 4px;     
+}     
+.contact-form .form-control::placeholder {     
+    color: var(--text-secondary);     
+}     
+.form-group { margin-bottom: 10px; }     
+.form-group label { display: block; margin-bottom: 5px; }     
+.contact-grid { display: grid; gap: 30px; grid-template-columns: 1fr; } 
+
