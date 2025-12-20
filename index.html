@@ -1,62 +1,65 @@
-<!DOCTYPE html> 
-<html lang="ar" dir="rtl"> 
-<head> 
-    <!-- تضمين ملف الرأس --> 
-    <div data-include="includes/head.html"></div> 
-</head> 
-<body data-theme="light"> 
-    <!-- Google Tag Manager (noscript) --> 
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KN75BHJN" 
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> 
-    <!-- End Google Tag Manager (noscript) --> 
- 
-    <!-- Cookie Banner --> 
-    <div id="cookie-banner" style="display: none;"> 
-        <p data-key="cookie_text"></p> 
-        <button id="accept-cookies" data-key="accept_button"></button> 
-        <button id="reject-cookies" style="background-color: #EF4444; color: white;" data-key="reject_button"></button> 
-    </div> 
- 
-    <div id="app-container"> 
-        <!-- تضمين الشريط الجانبي --> 
-        <div data-include="includes/sidebar.html"></div> 
-         
-        <div id="main-content"> 
-            <!-- تضمين شريط التنقل العلوي والإعلانات العلوية --> 
-            <div data-include="includes/header.html"></div> 
- 
-            <!-- الأقسام الرئيسية --> 
-            <div data-include="includes/main-sections.html"></div> 
-            <div data-include="includes/products-section.html"></div> 
-            <div data-include="includes/affiliates-section.html"></div> 
-            <div data-include="includes/blog-section.html"></div> 
-            <div data-include="includes/contact-section.html"></div> 
-            <div data-include="includes/privacy-section.html"></div> 
-            <div data-include="includes/terms-section.html"></div> 
-            <div data-include="includes/about-section.html"></div> 
- 
-            <!-- تضمين الشريط السفلي والتذييل --> 
-            <div data-include="includes/footer.html"></div> 
-        </div> 
-    </div> 
- 
-    <!-- ملفات CSS --> 
-    <link rel="stylesheet" href="css/main.css"> 
-    <link rel="stylesheet" href="css/header.css"> 
-    <link rel="stylesheet" href="css/footer.css"> 
-    <link rel="stylesheet" href="css/sidebar.css"> 
-    <link rel="stylesheet" href="css/sections.css"> 
-    <link rel="stylesheet" href="css/products.css"> 
-    <link rel="stylesheet" href="css/blog.css"> 
-    <link rel="stylesheet" href="css/contact.css"> 
-    <link rel="stylesheet" href="css/utility.css"> 
- 
-    <!-- ملفات JavaScript --> 
-    <script src="js/data.js"></script> 
-    <script src="js/utils.js"></script> 
-    <script src="js/components.js"></script> 
-    <script src="js/blog.js"></script> 
-    <script src="js/main.js"></script> 
-</body> 
-</html> 
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/sections.css">
+    <link rel="stylesheet" href="css/products.css">
+    <link rel="stylesheet" href="css/blog.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="css/utility.css">
+</head>
+<body class="bg-gray-50 font-sans text-gray-900 overflow-x-hidden">
 
+    <div id="header-placeholder"></div>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col lg:flex-row gap-8">
+        <div class="flex-grow space-y-12">
+            <div id="main-sections-placeholder"></div>
+            <div id="products-section-placeholder"></div>
+            <div id="affiliates-section-placeholder"></div>
+            <div id="blog-section-placeholder"></div>
+            <div id="contact-section-placeholder"></div>
+            <div id="about-section-placeholder"></div>
+            <div id="privacy-section-placeholder"></div>
+            <div id="terms-section-placeholder"></div>
+        </div>
+
+        <div id="sidebar-placeholder" class="lg:w-80 flex-shrink-0"></div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="js/data.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/blog.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        // وظيفة بسيطة لتحميل الأجزاء المقطعة (Includes) في GitHub Pages
+        async function loadInclude(id, path) {
+            const response = await fetch(path);
+            const text = await response.text();
+            document.getElementById(id).innerHTML = text;
+        }
+
+        // تحميل جميع الأجزاء عند فتح الصفحة
+        window.addEventListener('DOMContentLoaded', () => {
+            loadInclude('header-placeholder', 'includes/header.html');
+            loadInclude('main-sections-placeholder', 'includes/main-sections.html');
+            loadInclude('products-section-placeholder', 'includes/products-section.html');
+            loadInclude('affiliates-section-placeholder', 'includes/affiliates-section.html');
+            loadInclude('blog-section-placeholder', 'includes/blog-section.html');
+            loadInclude('contact-section-placeholder', 'includes/contact-section.html');
+            loadInclude('about-section-placeholder', 'includes/about-section.html');
+            loadInclude('privacy-section-placeholder', 'includes/privacy-section.html');
+            loadInclude('terms-section-placeholder', 'includes/terms-section.html');
+            loadInclude('sidebar-placeholder', 'includes/sidebar.html');
+            loadInclude('footer-placeholder', 'includes/footer.html');
+        });
+    </script>
+</body>
+</html>
