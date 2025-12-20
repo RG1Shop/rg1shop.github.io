@@ -1,43 +1,36 @@
-// ======================================================================= 
-// --- وظائف عرض المنتجات والروابط التابعة (محدثة لدعم الترجمة) --- 
-// ======================================================================= 
- 
-function renderProducts(filterCategory) { 
-    const container = document.getElementById('products-container'); 
-    if (!container) return; 
-    container.innerHTML = ''; 
- 
-    const actualFilter = (filterCategory === 'all') ? null : filterCategory; 
-    products.forEach(product => { 
-        if (actualFilter === null || product.category === actualFilter) { 
-            const card = document.createElement('div'); 
-            card.className = 'product-card'; 
-            card.setAttribute('data-category', product.category); 
-            card.innerHTML = `<img src="${product.image}" alt="${product.name[currentLang]}" loading="lazy" style="width:100%; height:auto; border-radius: 14px; margin-bottom: 10px;" /> 
-                              <h3 style="font-size:1.1em; color: var(--accent-primary);">${product.name[currentLang]}</h3> 
-                              <p style="color: var(--text-secondary); margin-bottom: 10px; font-size:0.9em;">${product.price[currentLang]}</p> 
-                              <a href="${product.link}" target="_blank" class="btn" style="width:100%; text-align:center; display:block; background:var(--accent-success); text-decoration:none; font-weight: bold;">${currentLang === 'ar' ? 'عرض التفاصيل' : 'View Details'}</a>`; 
-            container.appendChild(card); 
-        } 
-    }); 
-} 
- 
-function renderAffiliates() { 
-    const affiliatesGrid = document.getElementById('affiliates-grid'); 
-    if (!affiliatesGrid) return; 
-    affiliatesGrid.innerHTML = ''; 
- 
-    affiliatePlatforms.forEach(platform => { 
-        const platformDiv = document.createElement('a'); 
-        platformDiv.href = platform.link; 
-        platformDiv.target = '_blank'; 
-        platformDiv.className = 'affiliate-link-card'; 
-        platformDiv.style.cssText = 'text-decoration:none; display:flex; flex-direction: column; align-items: center; justify-content: center; gap:8px;'; 
-        platformDiv.innerHTML = ` 
-            <img src="${platform.img}" alt="${platform.name[currentLang]}" style="width:48px; height:48px; object-fit:contain; border-radius: 14px;"> 
-            <span style="font-size:1.1em; font-weight:bold; color: var(--accent-primary);">${platform.name[currentLang]}</span> 
-        `; 
-        affiliatesGrid.appendChild(platformDiv); 
-    }); 
-} 
+/**
+ * وظيفة عرض المنتجات في الشبكة
+ */
+function renderProducts() {
+    const grid = document.getElementById('products-grid');
+    if (!grid) return;
 
+    grid.innerHTML = products.map(product => `
+        <div class="product-card rounded-3xl overflow-hidden shadow-sm border border-gray-100 flex flex-col">
+            <img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover">
+            <div class="p-6 flex-grow flex flex-col justify-between">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">${product.name}</h3>
+                    <p class="text-purple-600 font-bold text-lg">${product.price}</p>
+                </div>
+                <a href="${product.link}" target="_blank" class="mt-4 block w-full text-center bg-gray-900 text-white py-3 rounded-xl font-bold hover:bg-purple-600 transition-colors no-underline">
+                    Book Now
+                </a>
+            </div>
+        </div>
+    `).join('');
+}
+
+/**
+ * وظيفة عرض شعارات الشركاء
+ */
+function renderAffiliates() {
+    const slider = document.getElementById('affiliates-slider');
+    if (!slider) return;
+
+    slider.innerHTML = affiliatePlatforms.map(partner => `
+        <div class="flex-shrink-0 group">
+            <img src="${partner.logo}" alt="${partner.name}" class="h-12 w-auto grayscale group-hover:grayscale-0 transition-all duration-300 opacity-60 group-hover:opacity-100">
+        </div>
+    `).join('');
+}
