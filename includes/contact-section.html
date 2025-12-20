@@ -1,41 +1,38 @@
-<section id="contact-messages-section" class="card section">     
-    <h2 data-key="contact_section_title"></h2>     
-    <div class="contact-grid" style="display: grid; gap: 30px; grid-template-columns: 1fr;">     
-        <div class="contact-info-block">     
-            <div class="info-list">     
-                <div class="info-item" style="margin-bottom: 10px;">     
-                    <i class="fas fa-envelope info-icon" style="color: var(--accent-primary);"></i>     
-                    <span class="label" data-key="contact_email_label"></span>     
-                    <a id="contact-email-link" href="mailto:a.laghrifi@outlook.fr" style="color: var(--accent-primary);">a.laghrifi@outlook.fr</a>     
-                </div>     
-                <div class="info-item" style="margin-bottom: 10px;">     
-                    <i class="fab fa-whatsapp info-icon" style="color:#25D366;"></i>     
-                    <span class="label" data-key="whatsapp_label"></span>     
-                    <a data-key="whatsapp_link_text" href="https://wa.me/212660074196" target="_blank" style="color: var(--accent-primary);"></a>     
-                </div>     
-                <div class="info-item">     
-                    <i class="fas fa-hand-holding-usd info-icon" style="color: #0070BA;"></i>     
-                    <span class="label" data-key="support_payments_label"></span>     
-                    <a id="paypal-support-button-contact" href="https://www.paypal.com/ncp/payment/QTMEP82WWYHQ2" target="_blank" class="btn" style="background:#0070BA; padding: 5px 10px; margin-top: 5px; display: inline-block;" data-key="paypal_button_text"></a>     
-                </div>     
-            </div>     
-        </div>     
-        <form id="contactForm" class="contact-form">     
-            <h3 class="sub-section-title" data-key="send_query_title"></h3>     
-            <div class="form-group" style="margin-bottom: 10px;">     
-                <label for="name" data-key="full_name_label"></label>     
-                <input type="text" id="name" name="name" class="form-control" data-placeholder-key="full_name_placeholder" required />     
-            </div>     
-            <div class="form-group" style="margin-bottom: 10px;">     
-                <label for="email" data-key="email_label"></label>     
-                <input type="email" id="email" name="email" class="form-control" data-placeholder-key="email_placeholder" required />     
-            </div>     
-            <div class="form-group" style="margin-bottom: 10px;">     
-                <label for="message" data-key="message_label"></label>     
-                <textarea id="message" name="message" class="form-control" rows="5" data-placeholder-key="message_placeholder" required ></textarea>     
-            </div>     
-            <button type="submit" class="btn" style="width:100%; margin-top:20px; background:var(--accent-primary);" data-key="send_message_button"></button>     
-        </form>     
-    </div>     
-</section> 
+<section id="contact" class="py-20 bg-dark-deep">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-16 text-gold" data-key="contact_section_title">تواصل معنا مباشرة</h2>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div class="space-y-8 text-right">
+                <div class="bg-dark-accent p-6 rounded-2xl border border-gold/10">
+                    <h3 class="text-xl font-bold text-gold mb-4" data-key="whatsapp_label">الدعم الفني والطلبات</h3>
+                    <p class="text-gray-300 mb-4">نحن هنا لمساعدتك في حجز رحلاتك وفعالياتك.</p>
+                    <a href="https://wa.me/212660074196" class="text-gold font-bold hover:underline">
+                        +212 660-074196
+                    </a>
+                </div>
+                
+                <div class="bg-dark-accent p-6 rounded-2xl border border-gold/10">
+                    <h3 class="text-xl font-bold text-gold mb-4" data-key="contact_email_label">البريد الإلكتروني</h3>
+                    <p class="text-gray-300">support@rg1shop.com</p>
+                </div>
+            </div>
 
+            <div class="bg-dark-accent p-8 rounded-2xl border border-gold/20">
+                <form id="contact-form" class="space-y-6">
+                    <div>
+                        <label class="block text-gold mb-2 text-right" data-key="full_name_label">الاسم الكامل</label>
+                        <input type="text" class="w-full bg-dark-deep border border-gold/20 rounded-lg p-3 text-white focus:outline-none focus:border-gold" data-placeholder-key="full_name_placeholder" placeholder="أدخل اسمك هنا...">
+                    </div>
+                    <div>
+                        <label class="block text-gold mb-2 text-right" data-key="message_label">رسالتك</label>
+                        <textarea rows="4" class="w-full bg-dark-deep border border-gold/20 rounded-lg p-3 text-white focus:outline-none focus:border-gold" data-placeholder-key="message_placeholder" placeholder="كيف يمكننا مساعدتك؟"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-gold text-black font-bold py-4 rounded-lg hover:bg-yellow-500 transition-all shadow-lg" data-key="send_message_button">
+                        إرسال الرسالة الآن
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
