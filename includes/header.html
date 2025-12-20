@@ -1,52 +1,22 @@
-<div id="main-categories-nav" class="main-categories-nav"> 
-    <div id="top-fixed-ad" style=" 
-        width: 100%; 
-        margin: 0; 
-        padding: 5px 0; 
-        background: transparent; 
-        text-align: center; 
-        position: relative; 
-        z-index: 9999; 
-    "> 
-        <ins class="adsbygoogle" 
-            style="display:block" 
-            data-ad-client="ca-pub-9228235223985409" 
-            data-ad-slot="1234567890" 
-            data-ad-format="auto" 
-            data-full-width-responsive="true"></ins> 
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> 
-    </div> 
-    <div id="top-ad-wrapper" style=" 
-        width: 100%; 
-        position: relative; 
-        z-index: 10000; 
-        text-align: center; 
-        padding: 5px 0; 
-    "> 
-        <ins class="adsbygoogle" 
-            style="display:block; height: 90px;" 
-            data-ad-client="ca-pub-9228235223985409" 
-            data-ad-slot="1234567890"  
-            data-ad-format="auto" 
-            data-full-width-responsive="true"> 
-        </ins> 
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> 
-    </div> 
-    <!-- تم تعديل هيكلة الروابط لإضافة data-key على span لتغيير النص فقط -->     
-    <a href="#events-section" class="main-nav-link active-link">     
-        <i class="fas fa-calendar-alt"></i> <span data-key="menu_events">حفلات</span>     
-    </a>     
-    <a href="#tourism-section" class="main-nav-link">     
-        <i class="fas fa-plane"></i> <span data-key="menu_tourism">سياحة</span>     
-    </a>     
-    <a href="#restaurants-section" class="main-nav-link">     
-        <i class="fas fa-utensils"></i> <span data-key="menu_restaurants">مطاعم</span>     
-    </a>     
-    <a href="#flights-section" class="main-nav-link">     
-        <i class="fas fa-fighter-jet"></i> <span data-key="menu_flights">طيران</span>     
-    </a>     
-    <a href="#shopping-section" class="main-nav-link">     
-        <i class="fas fa-shopping-bag"></i> <span data-key="menu_shopping">تسوق</span>     
-    </a> 
-</div> 
+<header class="fixed w-full z-50 bg-dark-deep/90 backdrop-blur-md border-b border-gold/10">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center flex-row-reverse">
+        <div class="text-2xl font-bold text-gold tracking-wider">
+            ALADDAN
+        </div>
 
+        <nav class="hidden md:flex space-x-8 space-x-reverse items-center">
+            <a href="#events" class="text-gray-300 hover:text-gold transition-colors" data-key="menu_events">حفلات</a>
+            <a href="#tourism" class="text-gray-300 hover:text-gold transition-colors" data-key="menu_tourism">سياحة</a>
+            <a href="#flights" class="text-gray-300 hover:text-gold transition-colors" data-key="menu_flights">طيران</a>
+            <a href="#contact" class="text-gray-300 hover:text-gold transition-colors" data-key="menu_contact">تواصل</a>
+            
+            <button id="lang-switch" class="bg-gold/10 text-gold border border-gold/20 px-4 py-1 rounded-full text-sm hover:bg-gold hover:text-black transition-all">
+                English
+            </button>
+        </nav>
+
+        <button class="md:hidden text-gold" id="mobile-menu-btn">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+        </button>
+    </div>
+</header>
