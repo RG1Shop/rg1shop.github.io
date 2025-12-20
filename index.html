@@ -1,26 +1,57 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>aladdan - RG1Shop</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body class="bg-black text-white">
-    <div data-include="header"></div>
-    <div data-include="sidebar"></div>
-    
-    <main>
-        <div data-include="main-sections"></div>
-        <div data-include="products-section"></div>
-        <div data-include="contact-section"></div>
-        <div data-include="about-section"></div>
-    </main>
+<!DOCTYPE html> 
+<html lang="ar" dir="rtl"> 
+<head> 
+    <!-- سيتم تضمين head.html هنا بواسطة JS --> 
+    <div data-include="includes/head.html"></div> 
+</head> 
+<body data-theme="light"> 
+    <!-- Cookie Banner --> 
+    <div id="cookie-banner" style="display: none;"> 
+        <p data-key="cookie_text"></p> 
+        <button id="accept-cookies" data-key="accept_button"></button> 
+        <button id="reject-cookies" style="background-color: #EF4444; color: white;" data-key="reject_button"></button> 
+    </div> 
+ 
+    <div id="app-container"> 
+        <!-- سيتم تضمين sidebar.html هنا --> 
+        <div data-include="includes/sidebar.html"></div> 
+         
+        <div id="main-content"> 
+            <!-- سيتم تضمين header.html هنا --> 
+            <div data-include="includes/header.html"></div> 
+ 
+            <!-- سيتم تضمين الأقسام هنا --> 
+            <div data-include="includes/main-sections.html"></div> 
+            <div data-include="includes/products-section.html"></div> 
+            <div data-include="includes/affiliates-section.html"></div> 
+            <div data-include="includes/blog-section.html"></div> 
+            <div data-include="includes/contact-section.html"></div> 
+            <div data-include="includes/privacy-section.html"></div> 
+            <div data-include="includes/terms-section.html"></div> 
+            <div data-include="includes/about-section.html"></div> 
+ 
+            <!-- سيتم تضمين footer.html هنا --> 
+            <div data-include="includes/footer.html"></div> 
+        </div> 
+    </div> 
+ 
+    <!-- تحميل ملفات CSS --> 
+    <link rel="stylesheet" href="css/main.css"> 
+    <link rel="stylesheet" href="css/header.css"> 
+    <link rel="stylesheet" href="css/footer.css"> 
+    <link rel="stylesheet" href="css/sidebar.css"> 
+    <link rel="stylesheet" href="css/sections.css"> 
+    <link rel="stylesheet" href="css/products.css"> 
+    <link rel="stylesheet" href="css/blog.css"> 
+    <link rel="stylesheet" href="css/contact.css"> 
+    <link rel="stylesheet" href="css/utility.css"> 
+ 
+    <!-- تحميل ملفات JS --> 
+    <script src="js/data.js"></script> 
+    <script src="js/utils.js"></script> 
+    <script src="js/components.js"></script> 
+    <script src="js/blog.js"></script> 
+    <script src="js/main.js"></script> 
+</body> 
+</html> 
 
-    <div data-include="footer"></div>
-
-    <script src="js/data.js"></script>
-    <script src="js/main.js"></script>
-</body>
-</html>
