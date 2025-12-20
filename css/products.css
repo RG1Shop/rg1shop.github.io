@@ -1,30 +1,106 @@
-/* تنسيق بطاقة المنتج */
+/* products.css - تنسيق بطاقات المنتجات والخدمات (فنادق، طيران، إلخ)
+   مستخرج من الكود الأصلي لمشروع RG1Shop بنسبة 100%
+*/
+
+#products-container, .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+/* بطاقة المنتج الزجاجية */
 .product-card {
-    transition: all 0.3s ease;
-    border: 1px solid #f3f4f6;
-    background: white;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--purple-border);
+    border-radius: 1.25rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body[data-theme="dark"] .product-card {
+    background: var(--glass-dark-bg);
 }
 
 .product-card:hover {
-    transform: translateY(-10px);
-    shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    transform: scale(1.03);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
-.product-card img {
-    height: 200px;
+/* تنسيق صورة المنتج */
+.product-image-wrapper {
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    position: relative;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    border-radius: 1.5rem 1.5rem 0 0;
+    transition: transform 0.5s ease;
 }
 
-/* تنسيق شريط الشركاء */
-#affiliates-slider img {
-    height: 40px;
-    opacity: 0.6;
-    transition: opacity 0.3s;
-    filter: grayscale(100%);
+.product-card:hover .product-image {
+    transform: scale(1.1);
 }
 
-#affiliates-slider img:hover {
-    opacity: 1;
-    filter: grayscale(0%);
+/* تفاصيل المنتج (الاسم والسعر) */
+.product-details {
+    padding: 1.25rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.product-name {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-light);
+}
+
+body[data-theme="dark"] .product-name {
+    color: var(--text-dark);
+}
+
+.product-price {
+    color: var(--primary-red);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+/* زر الرابط التجاري (Affiliate Link) */
+.product-link {
+    display: block;
+    text-align: center;
+    background: var(--primary-red);
+    color: white !important;
+    padding: 0.75rem;
+    margin: 1rem;
+    border-radius: 0.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: background 0.3s ease;
+}
+
+.product-link:hover {
+    background: #cc0000;
+}
+
+/* شارات الخصم أو التميز */
+.product-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--accent-gold);
+    color: #000;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
 }
