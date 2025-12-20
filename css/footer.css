@@ -1,25 +1,74 @@
-/* شريط التنقل السفلي للجوال */
-.secondary-bottom-nav-wrapper nav {
-    background-color: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+/* footer.css - تنسيق الشريط السفلي وأدوات التحكم
+   مستخرج من الكود الأصلي لـ RG1Shop بنسبة 100%
+*/
+
+.secondary-bottom-nav-wrapper {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 10px 20px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border-top: 1px solid var(--purple-border);
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
 }
 
-.secondary-bottom-nav-wrapper i {
-    color: #9333ea;
-    transition: transform 0.2s;
+body[data-theme="dark"] .secondary-bottom-nav-wrapper {
+    background: var(--glass-dark-bg);
 }
 
-.secondary-bottom-nav-wrapper a:hover i {
-    transform: scale(1.2);
+.top-nav-bar {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
-/* التذييل الرئيسي */
-footer img {
-    filter: grayscale(0.2);
-    transition: filter 0.3s;
+/* تنسيق روابط وأزرار الفوتر */
+.nav-link, .control-icon-btn {
+    color: var(--text-light);
+    font-size: 1.4rem;
+    padding: 10px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background: none;
+    border: none;
 }
 
-footer img:hover {
-    filter: grayscale(0);
+body[data-theme="dark"] .nav-link, 
+body[data-theme="dark"] .control-icon-btn {
+    color: var(--text-dark);
+}
+
+.nav-link:hover, .control-icon-btn:hover {
+    background: rgba(139, 92, 246, 0.15);
+    transform: scale(1.1);
+}
+
+/* تمييز زر اللغة */
+.lang-toggle {
+    font-weight: 700;
+    font-size: 0.9rem;
+    font-family: 'Inter', sans-serif;
+    border: 1.5px solid var(--purple-border);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* تحسينات لضمان عدم اختفاء المحتوى خلف الفوتر */
+@media (max-width: 768px) {
+    .secondary-bottom-nav-wrapper {
+        padding: 8px 10px;
+    }
+    
+    .nav-link, .control-icon-btn {
+        font-size: 1.2rem;
+    }
 }
