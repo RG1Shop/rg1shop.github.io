@@ -1,0 +1,98 @@
+/* ============================================================     
+   الأيقونات التحكمية مع الحدود البنفسجية     
+   (الوضع واللغة) - تستخدم نفس الستايلات     
+   ============================================================ */     
+.control-icon-btn {     
+  width: 30px;     
+  height: 30px;     
+  border: 1px solid var(--purple-border) !important;     
+  border-radius: 50%;     
+  display: flex;     
+  align-items: center;     
+  justify-content: center;     
+  background: rgba(139, 92, 246, 0.1);     
+  color: var(--accent-primary) !important;     
+  font-size: 14px;     
+  cursor: pointer;     
+  transition: all 0.2s ease;     
+}     
+ 
+.control-icon-btn:hover {     
+  background: var(--accent-primary);     
+  color: white !important;     
+  transform: scale(1.1);     
+  box-shadow: 0 0 5px var(--purple-border);     
+}     
+ 
+.control-icon-btn i {     
+    font-size: 18px !important;     
+    color: var(--accent-primary) !important;     
+}     
+.control-icon-btn:hover i {     
+    color: white !important;     
+}     
+ 
+/* أيقونات اللغة داخل الأزرار */     
+.lang-toggle[data-lang="ar"]::before { content: "ع"; font-weight: bold; font-size: 14px; }     
+.lang-toggle[data-lang="en"]::before { content: "E"; font-weight: bold; font-size: 14px; }     
+ 
+/* Cookie Banner */     
+#cookie-banner {     
+  position: fixed;     
+  top: var(--top-nav-total-height);     
+  left: 0;     
+  right: 0;     
+  width: 100%;     
+  background-color: var(--cookie-bg);     
+  color: var(--text-primary);     
+  text-align: center;     
+  padding: 4px 10px;     
+  /* ✅ زيادة الـ z-index ليكون أعلى من أشرطة التنقل ومن إعلانات AdSense الافتراضية */     
+  z-index: 10002;     
+  box-shadow: 0 1px 5px var(--shadow-dark);     
+  display: flex;     
+  justify-content: center;     
+  align-items: center;     
+  flex-wrap: wrap;     
+  gap: 10px;     
+  font-size: 0.8em;     
+}     
+#cookie-banner p { margin: 0; color: var(--text-secondary); }     
+#cookie-banner button {     
+  background-color: var(--text-primary);     
+  color: var(--cookie-bg);     
+  border: none;     
+  padding: 3px 8px;     
+  border-radius: 4px;     
+  font-weight: bold;     
+  cursor: pointer;     
+  transition: background 0.2s;     
+}     
+#cookie-banner button:hover { opacity: 0.8; }     
+ 
+/* ✅ جديد: ستايل لوحدات إعلان AdSense */     
+.adsense-unit {     
+    margin: 20px auto; /* توسيط الإعلان وإعطائه مسافة */     
+    text-align: center; /* للتأكد من توسيط المحتوى داخل الوحدة */     
+    min-height: 100px; /* لتوفير مساحة كافية للإعلان */     
+    background: rgba(255, 255, 255, 0.03); /* خلفية خفيفة */     
+    border: 1px dashed var(--accent-primary); /* حدود مميزة */     
+    padding: 10px;     
+    border-radius: 8px;     
+}     
+ 
+/* هذا العنصر لم يعد placeholder نصي، بل سيكون الحاوية لإعلان AdSense */     
+.adsense-placeholder {     
+    display: none; /* إخفاء الـ placeholder النصي بعد وضع الإعلانات الحقيقية */     
+}     
+ 
+/* Affiliate/Ad Links Styling */     
+.ad-link-icon {     
+    font-size: 1.2em;     
+    margin-left: 5px;     
+    color: var(--accent-primary) !important;     
+    border: 1px solid var(--purple-border);     
+    border-radius: 50%;     
+    padding: 2px;     
+} 
+
