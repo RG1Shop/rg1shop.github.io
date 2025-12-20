@@ -1,48 +1,51 @@
-/* Blog Card Styles */     
-.blog-card {     
-    background: var(--bg-card);     
-    padding: 20px;     
-    border-radius: 14px;     
-    box-shadow: 0 4px 12px var(--shadow-dark);     
-    transition: all 0.2s;     
-    border: 1px solid var(--accent-primary);     
-    display: flex;     
-    flex-direction: column;     
-}     
+/* ============================================================ 
+   ستايلات بطاقات المدونة (Blog Cards) 
+   ============================================================ */ 
+.blog-card { 
+    background: var(--bg-card); 
+    padding: 20px; 
+    border-radius: 14px; 
+    box-shadow: 0 4px 12px var(--shadow-dark); 
+    transition: all 0.2s; 
+    border: 1px solid var(--accent-primary); 
+    display: flex; 
+    flex-direction: column; 
+    margin-bottom: 20px; /* لتباعد بين المقالات */ 
+} 
  
-.blog-card:hover {     
-    box-shadow: 0 8px 20px var(--shadow-dark);     
-    transform: translateY(-4px);     
-}     
+.blog-card:hover { 
+    box-shadow: 0 8px 20px var(--shadow-dark); 
+    transform: translateY(-4px); 
+} 
  
-.blog-card img {     
-    width: 100%;     
-    height: auto;     
-    border-radius: 14px;     
-    margin-bottom: 15px;     
-    object-fit: cover;     
-    border: 1px solid var(--purple-border);     
-}     
+.blog-card img { 
+    width: 100%; 
+    height: auto; 
+    border-radius: 14px; 
+    margin-bottom: 15px; 
+    object-fit: cover; 
+    border: 1px solid var(--purple-border); 
+} 
  
-.blog-card h3 {     
-    color: var(--accent-primary);     
-    font-size: 1.3em;     
-    margin-top: 0;     
-    margin-bottom: 10px;     
-    padding-bottom: 5px;     
-    border-bottom: 1px dashed var(--accent-primary);     
-}     
+.blog-card h3 { 
+    color: var(--accent-primary); 
+    font-size: 1.3em; 
+    margin-top: 0; 
+    margin-bottom: 10px; 
+    padding-bottom: 5px; 
+    border-bottom: 1px dashed var(--accent-primary); 
+} 
  
-.blog-card h4 {     
-    color: var(--accent-secondary);     
-    font-size: 1.1em;     
-    margin-top: 15px;     
-    margin-bottom: 8px;     
-}     
+.blog-card h4 { 
+    color: var(--accent-secondary); 
+    font-size: 1.1em; 
+    margin-top: 15px; 
+    margin-bottom: 8px; 
+} 
  
-.blog-card p {     
-    font-size: 0.95em;     
-    line-height: 1.6;     
-    color: var(--text-secondary);     
+.blog-card p { 
+    font-size: 0.95em; 
+    line-height: 1.6; 
+    color: var(--text-secondary); 
 } 
 
