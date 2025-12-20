@@ -1,4 +1,4 @@
-<nav id="main-categories-nav" class="bg-white border-b-2 border-purple-600 sticky top-0 z-50">
+<nav id="main-categories-nav" class="bg-white border-b border-purple-200 sticky top-0 z-50">
     <div class="flex items-center p-2 gap-2">
         <div class="flex-shrink-0 border-2 border-purple-600 rounded-lg overflow-hidden w-12 h-12">
             <img src="https://via.placeholder.com/48" alt="RG1Shop">
@@ -6,35 +6,53 @@
 
         <div class="flex-grow grid grid-cols-5 gap-1">
             <a href="#events" class="nav-link active-red flex flex-col items-center justify-center py-1 rounded-lg no-underline">
-                <span class="text-xl">🎉</span><span class="text-[9px] font-bold">Events</span>
+                <span class="text-xl">🎉</span>
+                <span class="text-[9px] font-bold">Events</span>
             </a>
             <a href="#tourism" class="nav-link flex flex-col items-center justify-center py-1 rounded-lg no-underline">
-                <span class="text-xl">✈️</span><span class="text-[9px] font-bold">Tourism</span>
+                <span class="text-xl">✈️</span>
+                <span class="text-[9px] font-bold">Tourism</span>
             </a>
             <a href="#restaurants" class="nav-link flex flex-col items-center justify-center py-1 rounded-lg no-underline">
-                <span class="text-xl">🍴</span><span class="text-[9px] font-bold">Resto</span>
+                <span class="text-xl">🍴</span>
+                <span class="text-[9px] font-bold">Resto</span>
             </a>
             <a href="#flights" class="nav-link flex flex-col items-center justify-center py-1 rounded-lg no-underline">
-                <span class="text-xl">🛫</span><span class="text-[9px] font-bold">Flights</span>
+                <span class="text-xl">🛫</span>
+                <span class="text-[9px] font-bold">Flights</span>
             </a>
             <a href="#shop" class="nav-link flex flex-col items-center justify-center py-1 rounded-lg no-underline">
-                <span class="text-xl">🛒</span><span class="text-[9px] font-bold">Shop</span>
+                <span class="text-xl">🛒</span>
+                <span class="text-[9px] font-bold">Shop</span>
             </a>
         </div>
     </div>
 </nav>
 
 <style>
-    /* التنسيق الذي يضمن ثبات اللون الأحمر وانتقاله */
-    .nav-link { color: #581c87 !important; background: white; border: 1px solid #f3e8ff; transition: 0.3s; }
-    .nav-link.active-red { background-color: #ff4d4d !important; color: white !important; border-color: #ff4d4d !important; }
+    /* التنسيقات الأصلية لكودك مع إضافة ميزة اللون الأحمر */
+    .nav-link { 
+        color: #581c87 !important; 
+        background: white; 
+        border: 1px solid #f3e8ff; 
+        cursor: pointer;
+        text-decoration: none !important;
+    }
+    /* هذا هو اللون الأحمر الذي سينتقل */
+    .nav-link.active-red { 
+        background-color: #ff4d4d !important; 
+        color: white !important; 
+        border-color: #ff4d4d !important; 
+    }
 </style>
 
 <script>
-    // هذه الوظيفة هي التي تجعل اللون ينتقل فور الضغط
+    // وظيفة انتقال اللون الأحمر فور النقر
     document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', function() {
+        link.addEventListener('click', function(e) {
+            // إزالة اللون الأحمر من الجميع
             document.querySelectorAll('.nav-link').forEach(btn => btn.classList.remove('active-red'));
+            // إضافة اللون الأحمر للزر الذي ضغطت عليه
             this.classList.add('active-red');
         });
     });
