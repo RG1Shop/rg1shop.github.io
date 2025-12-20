@@ -1,22 +1,23 @@
-<header class="fixed w-full z-50 bg-dark-deep/90 backdrop-blur-md border-b border-gold/10">
-    <div class="container mx-auto px-4 py-4 flex justify-between items-center flex-row-reverse">
-        <div class="text-2xl font-bold text-gold tracking-wider">
-            ALADDAN
-        </div>
+<div class="bg-white border-b border-purple-200 sticky top-0 z-50 overflow-hidden">
+    <div class="flex overflow-x-auto py-4 px-2 gap-4 no-scrollbar items-center">
+        <a href="#events" class="flex items-center gap-2 bg-[#ff4d4d] text-white px-4 py-2 rounded-xl text-sm font-bold shadow-md whitespace-nowrap min-w-fit">
+            <span class="text-lg">📅</span>
+            <span data-key="menu_events">Events</span>
+        </a>
 
-        <nav class="hidden md:flex space-x-8 space-x-reverse items-center">
-            <a href="#events" class="text-gray-300 hover:text-gold transition-colors" data-key="menu_events">حفلات</a>
-            <a href="#tourism" class="text-gray-300 hover:text-gold transition-colors" data-key="menu_tourism">سياحة</a>
-            <a href="#flights" class="text-gray-300 hover:text-gold transition-colors" data-key="menu_flights">طيران</a>
-            <a href="#contact" class="text-gray-300 hover:text-gold transition-colors" data-key="menu_contact">تواصل</a>
-            
-            <button id="lang-switch" class="bg-gold/10 text-gold border border-gold/20 px-4 py-1 rounded-full text-sm hover:bg-gold hover:text-black transition-all">
-                English
-            </button>
-        </nav>
+        <a href="#tourism" class="flex items-center gap-2 bg-white text-purple-900 border border-purple-100 px-4 py-2 rounded-xl text-sm font-bold shadow-sm whitespace-nowrap min-w-fit">
+            <span class="text-lg">✈️</span>
+            <span data-key="menu_tourism">Tourism</span>
+        </a>
 
-        <button class="md:hidden text-gold" id="mobile-menu-btn">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-        </button>
+        <a href="#restaurants" class="flex items-center gap-2 bg-white text-purple-900 border border-purple-100 px-4 py-2 rounded-xl text-sm font-bold shadow-sm whitespace-nowrap min-w-fit">
+            <span class="text-lg">🍴</span>
+            <span data-key="menu_restaurants">Restaurants</span>
+        </a>
+
+        <a href="#flights" class="flex items-center gap-2 bg-white text-purple-900 border border-purple-100 px-4 py-2 rounded-xl text-sm font-bold shadow-sm whitespace-nowrap min-w-fit">
+            <span class="text-lg">🛫</span>
+            <span data-key="menu_flights">Flights</span>
+        </a>
     </div>
-</header>
+</div>
