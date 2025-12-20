@@ -1,7 +1,29 @@
-<section id="products" class="py-20">
-    <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-12 text-gold" data-key="section_products_title">📦 عروضنا المختارة</h2>
-        <div id="products-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-right">
-            </div>
+<section id="products-section" class="space-y-8 py-10 border-t border-gray-100">
+    <div class="text-center space-y-2">
+        <h2 class="text-3xl font-bold text-gray-900" data-key="section_products_title">Featured Luxury Offers</h2>
+        <p class="text-gray-500 max-w-2xl mx-auto" data-key="section_products_subtitle">Hand-picked premium selections from our global partners.</p>
     </div>
+
+    <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="animate-pulse bg-white rounded-3xl h-80 shadow-sm border border-gray-100"></div>
+        <div class="animate-pulse bg-white rounded-3xl h-80 shadow-sm border border-gray-100"></div>
+        <div class="animate-pulse bg-white rounded-3xl h-80 shadow-sm border border-gray-100"></div>
+    </div>
+</section>
+
+<section id="affiliates-section" class="py-12 bg-gray-50 rounded-3xl px-6">
+    <div class="flex flex-col md:flex-row items-center justify-between mb-8 gap-4">
+        <h3 class="text-xl font-bold text-gray-800" data-key="section_partners">Our Trusted Partners</h3>
+        <div class="flex gap-2">
+            <button class="p-2 rounded-full bg-white shadow-sm hover:bg-purple-600 hover:text-white transition-all">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <button class="p-2 rounded-full bg-white shadow-sm hover:bg-purple-600 hover:text-white transition-all">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+    </div>
+    
+    <div id="affiliates-slider" class="flex gap-6 overflow-hidden pb-4">
+        </div>
 </section>
