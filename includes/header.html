@@ -1,40 +1,24 @@
-<div id="top-fixed-ad" class="fixed top-0 left-0 w-full z-[60] bg-white border-b border-gray-200 shadow-sm transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-2 py-1">
-        <ins class="adsbygoogle"
-             style="display:inline-block;width:100%;height:50px"
-             data-ad-client="ca-pub-1647895034608316"
-             data-ad-slot="9876543210"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </div>
-</div>
+<a href="#events" class="nav-link flex flex-col items-center" onclick="handleNav(this)">
+    <i class="fa-solid fa-sparkles text-2xl mb-1"></i>
+    <span class="text-xs" data-key="menu_events">فعاليات</span>
+</a>
 
-<nav id="main-categories-nav" class="bg-white border-b-2 border-purple-600 sticky top-0 z-50">
-    <div class="flex items-center p-2 gap-2">
-        <div class="flex-shrink-0 border-2 border-purple-600 rounded-lg overflow-hidden w-12 h-12 bg-gray-100 flex items-center justify-center">
-            <img src="assets/logo.png" alt="RG1Shop" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/48?text=RG1'">
-        </div>
+<a href="#tourism" class="nav-link flex flex-col items-center" onclick="handleNav(this)">
+    <i class="fa-solid fa-map-location-dot text-2xl mb-1"></i>
+    <span class="text-xs" data-key="menu_tourism">سياحة</span>
+</a>
 
-        <div class="flex-grow grid grid-cols-5 gap-1">
-            <a href="#events" class="nav-link active-red flex flex-col items-center justify-center py-1 rounded-lg no-underline transition-all duration-200">
-                <span class="text-xl">🎉</span>
-                <span class="text-[9px] font-bold" data-key="menu_events">Events</span>
-            </a>
-            <a href="#tourism" class="nav-link flex flex-col items-center justify-center py-1 rounded-lg no-underline transition-all duration-200">
-                <span class="text-xl">✈️</span>
-                <span class="text-[9px] font-bold" data-key="menu_tourism">Tourism</span>
-            </a>
-            <a href="#restaurants" class="nav-link flex flex-col items-center justify-center py-1 rounded-lg no-underline transition-all duration-200">
-                <span class="text-xl">🍴</span>
-                <span class="text-[9px] font-bold" data-key="menu_restaurants">Resto</span>
-            </a>
-            <a href="#flights" class="nav-link flex flex-col items-center justify-center py-1 rounded-lg no-underline transition-all duration-200">
-                <span class="text-xl">🛫</span>
-                <span class="text-[9px] font-bold" data-key="menu_flights">Flights</span>
-            </a>
-            <a href="#shop" class="nav-link flex flex-col items-center justify-center py-1 rounded-lg no-underline transition-all duration-200">
-                <span class="text-xl">🛒</span>
-                <span class="text-[9px] font-bold" data-key="menu_shop">Shop</span>
-            </a>
-        </div>
-    </div>
-</nav>
+<a href="#restaurants" class="nav-link flex flex-col items-center" onclick="handleNav(this)">
+    <i class="fa-solid fa-utensils text-2xl mb-1"></i>
+    <span class="text-xs" data-key="menu_restaurants">مطاعم</span>
+</a>
+
+<a href="#flights" class="nav-link flex flex-col items-center" onclick="handleNav(this)">
+    <i class="fa-solid fa-plane-up text-2xl mb-1"></i>
+    <span class="text-xs" data-key="menu_flights">طيران</span>
+</a>
+
+<a href="#shop" class="nav-link flex flex-col items-center" onclick="handleNav(this)">
+    <i class="fa-solid fa-bag-shopping text-2xl mb-1"></i>
+    <span class="text-xs" data-key="menu_shop">تسوق</span>
+</a>
