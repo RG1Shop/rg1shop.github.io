@@ -1,94 +1,25 @@
-/* ============================================================ 
-   الشريط السفلي الثانوي (كانت top-nav-wrapper) - الآن شريط روابط التنقل 
-   ============================================================ */ 
-.secondary-bottom-nav-wrapper { 
-  position: fixed; 
-  bottom: 0; 
-  left: 0; 
-  right: 0; 
-  z-index: 1000; 
-  height: var(--top-nav-total-height); 
-  background: var(--bg-secondary); 
-  box-shadow: 0 -2px 10px var(--shadow-dark); 
-  backdrop-filter: blur(20px); 
-  border-top: 2px solid var(--purple-border); 
-} 
- 
-.secondary-bottom-nav-wrapper .top-nav-bar { 
-  width: 100%; 
-  height: var(--top-nav-bar-height); 
-  display: flex; 
-  align-items: center; 
-  justify-content: space-evenly; 
-  padding: 0 5px; 
-  font-size: 10px; 
-  overflow: hidden; 
-  border-bottom: 1px solid rgba(255,255,255,0.05); /* فقط للشريط الأول */ 
-} 
- 
-/* تنسيق روابط التنقل داخل الشريط السفلي الثانوي */ 
-.secondary-bottom-nav-wrapper .nav-link { 
-  color: var(--text-primary); 
-  text-decoration: none; 
-  font-weight: 600; 
-  font-size: 13px; 
-  white-space: nowrap; 
-  padding: 5px 8px; 
-  border-radius: 4px; 
-  transition: all 0.2s ease; 
-  display: flex; 
-  align-items: center; 
-  gap: 6px; 
-  border: 1px solid transparent; 
-} 
- 
-.secondary-bottom-nav-wrapper .nav-link i { 
-    font-size: 18px !important; 
-    color: var(--accent-primary) !important; 
-    border: 1px solid var(--purple-border); 
-    border-radius: 50%; 
-    padding: 2px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-} 
-     
-.secondary-bottom-nav-wrapper .nav-link:hover { 
-  background: var(--accent-primary); 
-  color: white !important; 
-  border-color: var(--accent-primary); 
-  transform: translateY(-2px); 
-  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3); 
-} 
-.secondary-bottom-nav-wrapper .nav-link:hover i { 
-    color: white !important; 
-    border-color: white; 
-} 
- 
-.secondary-bottom-nav-wrapper .nav-link.active-link { 
-  background: #DC2626 !important; 
-  color: white !important; 
-  border-color: #DC2626 !important; 
-  box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3); 
-} 
-.secondary-bottom-nav-wrapper .nav-link.active-link i { 
-    color: white !important; 
-    border-color: white; 
-} 
- 
-/* الشريط السفلي الثابت لفلترة المنتجات (تم إخفاؤه بالكامل) */ 
-#bottom-product-bar { 
-  display: none !important; 
-} 
- 
-@media (max-width: 500px) { 
-    .secondary-bottom-nav-wrapper .nav-link { 
-        font-size: 10px; 
-        padding: 3px 5px; 
-        gap: 2px; 
-    } 
-    .secondary-bottom-nav-wrapper .nav-link i { 
-        font-size: 14px !important; 
-    } 
-} 
+/* شريط التنقل السفلي للجوال */
+.secondary-bottom-nav-wrapper nav {
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
 
+.secondary-bottom-nav-wrapper i {
+    color: #9333ea;
+    transition: transform 0.2s;
+}
+
+.secondary-bottom-nav-wrapper a:hover i {
+    transform: scale(1.2);
+}
+
+/* التذييل الرئيسي */
+footer img {
+    filter: grayscale(0.2);
+    transition: filter 0.3s;
+}
+
+footer img:hover {
+    filter: grayscale(0);
+}
