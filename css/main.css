@@ -1,5 +1,8 @@
-/* متغيرات الألوان للوضعين */ 
+/* ============================================================ 
+   متغيرات الألوان للوضعين (Dark/Light Mode) 
+   ============================================================ */ 
 :root { 
+  /* الوضع الداكن (افتراضي) */ 
   --bg-primary: linear-gradient(135deg, #0d0f1a, #111320, #14172b); 
   --bg-secondary: #1f2937; 
   --bg-card: rgba(255, 255, 255, 0.07); 
@@ -39,7 +42,9 @@
   --cookie-bg: #f0f2f5; 
 } 
  
-/* إعادة تعيين أساسي */ 
+/* ============================================================ 
+   إعادة تعيين الهوامش والحشو لكل العناصر وتحديد حجم الصندوق 
+   ============================================================ */ 
 * { margin: 0; padding: 0; box-sizing: border-box; } 
  
 body { 
@@ -49,14 +54,16 @@ body {
   margin: 0; 
   padding: 0; 
   color: var(--text-primary); 
-  direction: rtl; 
+  direction: rtl; /* اتجاه الكتابة الافتراضي */ 
   transition: all 0.3s ease; 
   padding-top: var(--top-nav-total-height); 
   padding-bottom: var(--top-nav-total-height); 
   font-size: 16px; 
 } 
  
-/* الصناديق العامة */ 
+/* ============================================================ 
+   الصناديق + تأثير الزجاج Glassmorphism 
+   ============================================================ */ 
 .card, .box, .section, .container, .panel, .content-box { 
   background: var(--bg-card); 
   backdrop-filter: blur(12px); 
@@ -65,11 +72,13 @@ body {
   border: 1px solid var(--border-light); 
   box-shadow: 0 4px 12px var(--shadow-dark); 
   transition: all 0.3s ease; 
-  margin: 20px 0; 
-  border: 1px solid var(--purple-border); 
+  margin: 20px 0; /* تم إضافته ليكون عامًا هنا */ 
+  border: 1px solid var(--purple-border); /* تم إضافته ليكون عامًا هنا */ 
 } 
  
-/* الأزرار العامة */ 
+/* ============================================================ 
+   الأزرار — Button Styling (عام) 
+   ============================================================ */ 
 button, .btn { 
   background: linear-gradient(135deg, var(--accent-primary), #4f46e5); 
   padding: 12px 22px; 
@@ -87,21 +96,9 @@ button:hover, .btn:hover {
   box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4); 
 } 
  
-/* الأقسام العامة */ 
-.section { display: none; } 
-.section.active { display: block; } 
- 
-#app-container { 
-  max-width: 1400px; 
-  margin: 0 auto; 
-  padding: 0 20px; 
-  display: flex; 
-  gap: 20px; 
-} 
- 
-#main-content { flex: 1; } 
- 
-/* النجوم الذهبية */ 
+/* ============================================================ 
+   ستايلات النجوم الذهبية الفاخرة (Gold Stars Section) 
+   ============================================================ */ 
 .gold-stars-section { 
   background: linear-gradient(135deg, var(--accent-gold), #FFA500, var(--accent-gold)); 
   padding: 30px 20px; 
@@ -126,7 +123,36 @@ button:hover, .btn:hover {
   font-weight: 700; 
 } 
  
-/* Media Queries عامة */ 
+.gold-stars-section .stars { 
+  font-size: 3.5em; 
+  color: var(--accent-gold-dark); 
+  margin-bottom: 15px; 
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.8); 
+} 
+ 
+.gold-stars-section p { 
+  color: var(--accent-gold-dark); 
+  font-size: 1.1em; 
+  font-style: italic; 
+  margin: 0; 
+} 
+ 
+/* ============================================================ 
+   تخطيط التطبيق العام 
+   ============================================================ */ 
+#app-container { 
+  max-width: 1400px; 
+  margin: 0 auto; 
+  padding: 0 20px; 
+  display: flex; 
+  gap: 20px; 
+} 
+ 
+#main-content { flex: 1; } 
+ 
+/* ============================================================ 
+   Media Queries عامة 
+   ============================================================ */ 
 @media (max-width: 1200px) { 
   #media-sidebar {  
     position: static;  
@@ -138,10 +164,16 @@ button:hover, .btn:hover {
 } 
  
 @media (max-width: 500px) { 
+  /* تعديلات عامة لأحجام الخطوط والأيقونات على الشاشات الصغيرة */ 
   .control-icon-btn { 
     width: 25px; 
     height: 25px; 
     font-size: 12px; 
+  } 
+  .control-icon-btn i, 
+  .lang-toggle[data-lang="ar"]::before, 
+  .lang-toggle[data-lang="en"]::before { 
+    font-size: 12px !important; 
   } 
 } 
 
