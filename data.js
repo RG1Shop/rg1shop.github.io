@@ -7,13 +7,15 @@ window.affiliatePlatforms = Object.freeze([
     { name: { ar: "Agoda", en: "Agoda" }, link: "https://www.agoda.com/?cid=your_affiliate_id", img: "https://via.placeholder.com/48x48/006699/FFFFFF?text=Agoda" } 
 ]); 
  
-// بيانات المنتجات مع ترجمة 
+// بيانات المنتجات مع ترجمة شاملة لقسم الملابس الجديد
 window.products = Object.freeze([ 
     { id: 1, name: { ar: "فندق الرمال الذهبية الفاخر", en: "Golden Sands Luxury Hotel" }, price: { ar: "يبدأ من 250$ / الليلة", en: "From $250/night" }, category: "tourism-hotels", image: "https://via.placeholder.com/150x100/FFD700/000000?text=Luxury+Hotel", link: "https://example.com/hotel1_affiliate_link" }, 
     { id: 2, name: { ar: "منتجع الواحة الهادئة", en: "Oasis Serenity Resort" }, price: { ar: "يبدأ من 300$ / الليلة", en: "From $300/night" }, category: "tourism-hotels", image: "https://via.placeholder.com/150x100/008080/FFFFFF?text=Resort+Spa", link: "https://example.com/resort2_affiliate_link" }, 
     { id: 3, name: { ar: "جولة سياحية في المدينة القديمة", en: "Old City Sightseeing Tour" }, price: { ar: "50$ للفرد", en: "$50 per person" }, category: "tourism-destinations", image: "https://via.placeholder.com/150x100/A52A2A/FFFFFF?text=City+Tour", link: "https://example.com/tour3_affiliate_link" }, 
     { id: 4, name: { ar: "عشاء فاخر في مطعم النجوم", en: "Fine Dining at Star Restaurant" }, price: { ar: "80$ للفرد", en: "$80 per person" }, category: "restaurants-luxury", image: "https://via.placeholder.com/150x100/800080/FFFFFF?text=Fine+Dining", link: "https://example.com/restaurant4_affiliate_link" }, 
     { id: 5, name: { ar: "تذاكر حفل الموسيقى الكلاسيكية", en: "Classical Music Concert Tickets" }, price: { ar: "من 60$", en: "From $60" }, category: "events-tickets", image: "https://via.placeholder.com/150x100/4B0082/FFFFFF?text=Concert+Tickets", link: "https://example.com/event5_affiliate_link" }, 
+    { id: 6, name: { ar: "ملابس كاجوال أنيقة", en: "Elegant Casual Wear" }, price: { ar: "سعر مميز", en: "Special Price" }, category: "clothing", image: "https://via.placeholder.com/150x100/FF69B4/FFFFFF?text=Clothing+1", link: "https://s.click.aliexpress.com/e/_ExoRd3O" },
+    { id: 7, name: { ar: "طقم ملابس صيفي", en: "Summer Clothing Set" }, price: { ar: "سعر مميز", en: "Special Price" }, category: "clothing", image: "https://via.placeholder.com/150x100/FF69B4/FFFFFF?text=Clothing+2", link: "https://s.click.aliexpress.com/e/_Ev4OFHa" }
 ]); 
  
 // باقي البيانات (الكاروسيل) كما هي 
@@ -29,4 +31,3 @@ window.carouselMedia = Object.freeze([
     { type: 'image', src: "https://via.placeholder.com/300/EF4444/FFFFFF?text=RG1+Ad+5+(Image)" }, 
     { type: 'video', src: "https://www.youtube-nocookie.com/embed/Vl85j_0n-uA?controls=0" }, 
 ]); 
-
