@@ -4,41 +4,44 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>RG1Shop: شراكات فاخرة وحجوزات 5 نجوم</title>
-    <meta name="google-site-verification" content="Aky3m7nGb7Ul1x7CqCrKKk89qprqeM1etTkP7xaX4AE" />
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9228235223985409" crossorigin="anonymous"></script>
-
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+Arabic:wght@400;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="theme.css">
-    <link rel="stylesheet" href="glass-effects.css">
-    <link rel="stylesheet" href="navigation.css">
-    <link rel="stylesheet" href="sections.css">
+    
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/utility.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/sections.css">
+    <link rel="stylesheet" href="css/products.css">
+    <link rel="stylesheet" href="css/blog.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="css/footer.css">
 </head>
 
 <body>
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KN75BHJN" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-
     <div id="app-wrapper">
         <header id="header-root"></header>
         
-        <aside id="sidebar-root"></aside>
+        <div class="layout-container" style="display: flex; gap: 20px; padding: 20px;">
+            <main id="main-content" style="flex: 1;">
+                <div id="dynamic-sections"></div>
+                <div id="blog-posts-container"></div>
+            </main>
 
-        <main id="main-content">
-            <div id="dynamic-sections"></div>
-            <div id="affiliates-section"></div>
-            <div id="blog-posts-container"></div>
-            <div id="contact-section"></div>
-        </main>
+            <aside id="sidebar-root"></aside>
+        </div>
 
         <footer id="footer-root"></footer>
     </div>
 
-    <script src="translations.js"></script> <script src="data.js"></script>         <script src="blog.js"></script>         <script src="main.js"></script>         <script>
-        // كود تشغيل نهائي لضمان ربط كل شيء
-        window.addEventListener('load', function() {
-            console.log("الموقع يعمل بكافة بيانات aladdan الأصلية.");
-        });
-    </script>
+    <div id="cookie-banner" class="glass-effect" style="display: none;"></div>
+
+    <script src="js/translations.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/blog.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
